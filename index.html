@@ -1229,9 +1229,464 @@ a { color: var(--blue); text-decoration: none; }
   border-radius: 3px;
 }
 
+/* =========================================================
+   LOGIN GATE
+   ========================================================= */
+.gate {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: var(--blue);
+  color: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  overflow: hidden;
+}
+.gate-bg-swallow {
+  position: absolute;
+  right: -12%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60%;
+  max-width: 700px;
+  color: var(--paper);
+  opacity: 0.05;
+  pointer-events: none;
+}
+.gate-card {
+  max-width: 440px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+.gate-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+.gate-logo .swallow { width: 36px; height: 36px; color: var(--paper); }
+.gate-logo-text {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+}
+.gate-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+}
+.gate-title {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  text-transform: lowercase;
+  margin-bottom: 12px;
+}
+.gate-title .script {
+  font-family: var(--f-script);
+  font-weight: 400;
+  color: var(--orange);
+  text-transform: none;
+  font-size: 0.85em;
+}
+.gate-sub {
+  font-size: 14px;
+  color: rgba(247, 239, 229, 0.75);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+.gate-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.gate-input {
+  width: 100%;
+  padding: 16px 20px;
+  background: rgba(247, 239, 229, 0.08);
+  border: 1px solid rgba(247, 239, 229, 0.2);
+  color: var(--paper);
+  font-family: var(--f-body);
+  font-size: 16px;
+  border-radius: var(--radius);
+  letter-spacing: 0.05em;
+  outline: none;
+  transition: all .2s var(--ease);
+}
+.gate-input::placeholder { color: rgba(247, 239, 229, 0.4); }
+.gate-input:focus {
+  background: rgba(247, 239, 229, 0.12);
+  border-color: var(--orange);
+}
+.gate-btn {
+  padding: 16px 24px;
+  background: var(--orange);
+  color: var(--blue);
+  border: none;
+  font-family: var(--f-body);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all .2s var(--ease);
+  margin-top: 8px;
+}
+.gate-btn:hover { background: var(--paper); transform: translateY(-1px); }
+.gate-error {
+  font-size: 13px;
+  color: var(--orange);
+  min-height: 20px;
+  margin-top: -4px;
+}
+.gate-footer {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(247, 239, 229, 0.15);
+  font-size: 11px;
+  color: rgba(247, 239, 229, 0.5);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+body.gated { overflow: hidden; }
+body.gated > *:not(.gate) { display: none !important; }
+
+/* =========================================================
+   FIELD-MODE (cola do tour — mobile)
+   ========================================================= */
+.fieldmode-trigger {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 95;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  background: var(--orange);
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 12px 28px -8px rgba(10, 59, 147, 0.5);
+  transition: all .2s var(--ease);
+  font-family: var(--f-body);
+}
+.fieldmode-trigger:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -8px rgba(10,59,147,.6); }
+.fieldmode-trigger svg { width: 16px; height: 16px; }
+
+.fieldmode {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--blue);
+  color: var(--paper);
+  display: flex;
+  flex-direction: column;
+  transform: translateY(100%);
+  transition: transform .35s var(--ease);
+  overflow: hidden;
+}
+.fieldmode.open { transform: translateY(0); }
+
+.fm-header {
+  flex-shrink: 0;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--ink);
+  border-bottom: 1px solid rgba(247, 239, 229, 0.1);
+}
+.fm-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.fm-header-left .swallow { width: 22px; height: 22px; color: var(--paper); }
+.fm-header-title {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+.fm-close {
+  width: 40px; height: 40px;
+  background: rgba(247, 239, 229, 0.1);
+  border: none;
+  border-radius: 50%;
+  color: var(--paper);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s;
+}
+.fm-close:hover { background: rgba(247, 239, 229, 0.2); }
+.fm-close svg { width: 20px; height: 20px; }
+
+/* Station tabs — horizontal swipe on mobile */
+.fm-tabs {
+  flex-shrink: 0;
+  display: flex;
+  gap: 4px;
+  padding: 12px 16px;
+  background: var(--ink);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  border-bottom: 1px solid rgba(247, 239, 229, 0.1);
+}
+.fm-tabs::-webkit-scrollbar { display: none; }
+.fm-tab {
+  flex-shrink: 0;
+  padding: 10px 18px;
+  background: transparent;
+  border: 1px solid rgba(247, 239, 229, 0.2);
+  color: rgba(247, 239, 229, 0.7);
+  font-family: var(--f-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all .2s var(--ease);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.fm-tab-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: rgba(247, 239, 229, 0.15);
+  font-size: 11px;
+  font-weight: 900;
+}
+.fm-tab.active {
+  background: var(--orange);
+  color: var(--blue);
+  border-color: var(--orange);
+}
+.fm-tab.active .fm-tab-num { background: var(--blue); color: var(--paper); }
+
+.fm-body {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 24px 20px 40px;
+}
+.fm-panel { display: none; }
+.fm-panel.active { display: block; animation: fmIn .3s var(--ease); }
+@keyframes fmIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fm-station-header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(247, 239, 229, 0.15);
+  margin-bottom: 20px;
+}
+.fm-station-num {
+  font-size: 56px;
+  font-weight: 900;
+  line-height: 0.9;
+  color: var(--orange);
+  letter-spacing: -0.04em;
+}
+.fm-station-title {
+  font-size: 22px;
+  font-weight: 900;
+  text-transform: lowercase;
+  margin-top: 8px;
+}
+.fm-station-meta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  font-size: 12px;
+  color: rgba(247, 239, 229, 0.7);
+}
+.fm-station-meta span strong { color: var(--paper); font-weight: 700; }
+
+.fm-block {
+  background: rgba(247, 239, 229, 0.07);
+  border-left: 3px solid var(--orange);
+  border-radius: 3px;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+}
+.fm-block-label {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 10px;
+}
+.fm-block p {
+  font-size: 15px;
+  line-height: 1.55;
+  margin-bottom: 8px;
+}
+.fm-block p:last-child { margin-bottom: 0; }
+.fm-block strong { color: var(--orange); font-weight: 700; }
+
+.fm-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.fm-bullets li {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+.fm-bullets li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 6px; height: 6px;
+  background: var(--orange);
+  border-radius: 50%;
+  margin-top: 8px;
+}
+.fm-bullets li strong { color: var(--paper); font-weight: 700; }
+
+.fm-dodont {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 4px;
+}
+.fm-dd {
+  padding: 14px 14px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.fm-dd-do {
+  background: rgba(136, 186, 20, 0.15);
+  border: 1px solid rgba(136, 186, 20, 0.4);
+}
+.fm-dd-dont {
+  background: rgba(240, 138, 0, 0.12);
+  border: 1px solid rgba(240, 138, 0, 0.35);
+}
+.fm-dd-label {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.fm-dd-do .fm-dd-label { color: #b9dd4e; }
+.fm-dd-dont .fm-dd-label { color: var(--orange); }
+.fm-dd ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.fm-dd li { padding-left: 12px; position: relative; }
+.fm-dd-do li::before { content: '+'; position: absolute; left: 0; color: #b9dd4e; font-weight: 900; }
+.fm-dd-dont li::before { content: '×'; position: absolute; left: 0; color: var(--orange); font-weight: 900; }
+
+/* Anchor phrase big callout — the memorable line */
+.fm-anchor {
+  padding: 18px 18px;
+  margin-bottom: 18px;
+  background: var(--orange);
+  color: var(--blue);
+  border-radius: 4px;
+  font-family: var(--f-script);
+  font-size: 20px;
+  line-height: 1.3;
+}
+.fm-anchor::before {
+  content: 'frase-âncora';
+  display: block;
+  font-family: var(--f-body);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  opacity: 0.75;
+}
+
+/* Section titles inside field mode */
+.fm-sec-title {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(247, 239, 229, 0.65);
+  margin: 22px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.fm-sec-title::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: rgba(247, 239, 229, 0.5);
+}
+
+/* Nav arrows */
+.fm-nav {
+  display: flex;
+  gap: 10px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(247, 239, 229, 0.15);
+}
+.fm-nav-btn {
+  flex: 1;
+  padding: 14px;
+  background: rgba(247, 239, 229, 0.08);
+  border: 1px solid rgba(247, 239, 229, 0.2);
+  color: var(--paper);
+  font-family: var(--f-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all .2s var(--ease);
+}
+.fm-nav-btn:hover:not(:disabled) { background: rgba(247,239,229,.15); }
+.fm-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* Don't show field-mode trigger when printing */
+@media print {
+  .fieldmode-trigger, .fieldmode, .gate { display: none !important; }
+}
+/* Bigger trigger label on mobile, icon-only on tiny screens */
+@media (max-width: 380px) {
+  .fieldmode-trigger { padding: 14px 18px; font-size: 11px; }
+}
+
 /* Print */
 @media print {
-  .nav, .hero-cta, .quiz, .checklist-actions, .progress-bar, .faq-toggle { display: none; }
+  .nav, .hero-cta, .quiz, .checklist-actions, .progress-bar, .faq-toggle,
+  .fieldmode-trigger, .fieldmode, .gate { display: none !important; }
   .section, .station, .briefing, .checklist-section { page-break-inside: avoid; padding: 20px; }
   body { background: white; color: black; }
   .faq-answer { max-height: none !important; }
@@ -1239,7 +1694,46 @@ a { color: var(--blue); text-decoration: none; }
 }
 </style>
 </head>
-<body>
+<body class="gated">
+
+<!-- ======================================================= -->
+<!-- LOGIN GATE                                                -->
+<!-- ======================================================= -->
+<div class="gate" id="gate">
+  <svg class="gate-bg-swallow" viewBox="0 0 200 100" aria-hidden="true">
+    <path d="M15,65 Q40,55 70,50 Q95,48 115,52 L175,32 Q178,31 180,34 Q181,37 178,39 L125,60 Q120,62 118,66 Q117,70 118,75 Q119,80 115,80 Q100,78 75,75 Q45,72 15,65 Z M115,52 L108,40 Q107,37 110,37 L118,42 Z M120,62 L128,72 Q130,75 127,76 L118,71 Z"/>
+  </svg>
+  <div class="gate-card">
+    <div class="gate-logo">
+      <svg class="swallow" viewBox="0 0 200 100" aria-hidden="true">
+        <path d="M15,65 Q40,55 70,50 Q95,48 115,52 L175,32 Q178,31 180,34 Q181,37 178,39 L125,60 Q120,62 118,66 Q117,70 118,75 Q119,80 115,80 Q100,78 75,75 Q45,72 15,65 Z M115,52 L108,40 Q107,37 110,37 L118,42 Z M120,62 L128,72 Q130,75 127,76 L118,71 Z"/>
+      </svg>
+      <span class="gate-logo-text">LESAFFRE</span>
+    </div>
+    <div class="gate-eyebrow">Playbook do Tour · Acesso Interno</div>
+    <h1 class="gate-title">uma <span class="script">nova era</span> começa aqui.</h1>
+    <p class="gate-sub">
+      Este material é interno e destinado ao time que conduzirá tours na fábrica de Narandiba. Digite a senha fornecida pela equipe de Comunicação.
+    </p>
+    <form class="gate-form" id="gateForm" autocomplete="off">
+      <input
+        type="password"
+        class="gate-input"
+        id="gateInput"
+        placeholder="senha de acesso"
+        autocomplete="off"
+        autocapitalize="characters"
+        spellcheck="false"
+        required
+      />
+      <div class="gate-error" id="gateError"></div>
+      <button type="submit" class="gate-btn">entrar no playbook</button>
+    </form>
+    <div class="gate-footer">
+      Lesaffre Brasil · Narandiba · Inauguração 18 · 06 · 2026
+    </div>
+  </div>
+</div>
 
 <!-- Progress bar -->
 <div class="progress-bar" id="progressBar"></div>
@@ -2193,12 +2687,434 @@ a { color: var(--blue); text-decoration: none; }
   </div>
 </footer>
 
+<!-- ======================================================= -->
+<!-- MODO COLA (FIELD MODE) — uso durante o tour               -->
+<!-- ======================================================= -->
+<button class="fieldmode-trigger" id="fmTrigger" aria-label="Abrir modo cola">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 11H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-5"/>
+    <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+  </svg>
+  modo cola
+</button>
+
+<div class="fieldmode" id="fieldmode" aria-hidden="true">
+  <div class="fm-header">
+    <div class="fm-header-left">
+      <svg class="swallow" viewBox="0 0 200 100" aria-hidden="true">
+        <path d="M15,65 Q40,55 70,50 Q95,48 115,52 L175,32 Q178,31 180,34 Q181,37 178,39 L125,60 Q120,62 118,66 Q117,70 118,75 Q119,80 115,80 Q100,78 75,75 Q45,72 15,65 Z M115,52 L108,40 Q107,37 110,37 L118,42 Z M120,62 L128,72 Q130,75 127,76 L118,71 Z"/>
+      </svg>
+      <span class="fm-header-title">modo cola · tour narandiba</span>
+    </div>
+    <button class="fm-close" id="fmClose" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+
+  <div class="fm-tabs" id="fmTabs">
+    <button class="fm-tab active" data-panel="fm-intro"><span class="fm-tab-num">·</span>início</button>
+    <button class="fm-tab" data-panel="fm-s3"><span class="fm-tab-num">3</span>controle</button>
+    <button class="fm-tab" data-panel="fm-s4"><span class="fm-tab-num">4</span>laboratório</button>
+    <button class="fm-tab" data-panel="fm-s5"><span class="fm-tab-num">5</span>CIP</button>
+    <button class="fm-tab" data-panel="fm-s6"><span class="fm-tab-num">6</span>empacotamento</button>
+    <button class="fm-tab" data-panel="fm-faq"><span class="fm-tab-num">?</span>faq</button>
+  </div>
+
+  <div class="fm-body">
+
+    <!-- INÍCIO / FRASES-ÂNCORA -->
+    <div class="fm-panel active" id="fm-intro">
+      <div class="fm-anchor">
+        "tradição de 170 anos, tecnologia de ponta, feita aqui para você."
+      </div>
+
+      <div class="fm-sec-title">os 4 pilares</div>
+      <ul class="fm-bullets">
+        <li><span><strong>Proximidade</strong> — fábrica local, CRM, app Lesaffre e Você, massa madre e fermento fresco no Brasil.</span></li>
+        <li><span><strong>Qualidade</strong> — produção padronizada, automatizada, parque tecnológico mais moderno do mundo Lesaffre.</span></li>
+        <li><span><strong>Serviço</strong> — torre de controle logística, novo Baking Center, equipe técnica para todo o Brasil.</span></li>
+        <li><span><strong>Inovação</strong> — novos produtos e projetos <em>tailor made</em>.</span></li>
+      </ul>
+
+      <div class="fm-sec-title">quem fala em cada estação</div>
+      <ul class="fm-bullets">
+        <li><span><strong>3 · Sala de Controle</strong> — Fabián (10 min)</span></li>
+        <li><span><strong>4 · Laboratório</strong> — Valdinei (5 min)</span></li>
+        <li><span><strong>5 · CIP / Limpeza</strong> — Giovani (5 min)</span></li>
+        <li><span><strong>6 · Empacotamento</strong> — José Victor (5 min)</span></li>
+      </ul>
+
+      <div class="fm-sec-title">safety — antes de entrar</div>
+      <ul class="fm-bullets">
+        <li><span>Sapatos de segurança · crachá visível · vídeo de segurança via QR Code</span></li>
+        <li><span>Antes da câmara fria: <strong>sanitizante de calçado</strong> + lavagem de mãos</span></li>
+        <li><span>Se algo sair do script — <strong>pare</strong>. Segurança vale mais que ritmo.</span></li>
+      </ul>
+    </div>
+
+    <!-- ESTAÇÃO 3 -->
+    <div class="fm-panel" id="fm-s3">
+      <div class="fm-station-header">
+        <div class="fm-station-num">03</div>
+        <div class="fm-station-title">sala de controle</div>
+        <div class="fm-station-meta">
+          <span><strong>10 min</strong></span>
+          <span>fala: <strong>Fabián</strong></span>
+          <span>apoio: TV + mesa de amostras</span>
+        </div>
+      </div>
+
+      <div class="fm-anchor">
+        "vocês estão no coração da operação."
+      </div>
+
+      <div class="fm-sec-title">o que o especialista vai dizer</div>
+      <div class="fm-block">
+        <div class="fm-block-label">resumo</div>
+        <p>Melaço vem da <strong>Cocal</strong> (parceiro local) → tratamento térmico → alimenta fermentadores. Primeiro o <strong>creme-mãe</strong>, depois a fermentação comercial. Separação: creme de levedura vai para o cliente como <strong>levedura líquida</strong> ou segue para empacotamento em <strong>bloquinhos</strong>.</p>
+        <p><strong>Automação + interlock</strong> → qualidade não depende de fator humano. Monitoramento <strong>em tempo real, desde o processo</strong> — não só no produto final.</p>
+      </div>
+
+      <div class="fm-sec-title">você (guia) reforça</div>
+      <ul class="fm-bullets">
+        <li><span><strong>"Coração da operação"</strong> — use essa expressão.</span></li>
+        <li><span><strong>Economia circular com a Cocal</strong> — parceria local, matéria-prima + efluente voltam.</span></li>
+        <li><span><strong>Diferente da padaria</strong> — é fermentação industrial, outra escala.</span></li>
+        <li><span><strong>Qualidade em tempo real</strong> — não é laudo depois, é parâmetro durante.</span></li>
+      </ul>
+
+      <div class="fm-sec-title">atenção</div>
+      <div class="fm-dodont">
+        <div class="fm-dd fm-dd-do">
+          <div class="fm-dd-label">diga</div>
+          <ul>
+            <li>"Cepa de levedura" sem detalhar</li>
+            <li>"Parceria local com a Cocal"</li>
+            <li>"Automação = qualidade consistente"</li>
+          </ul>
+        </div>
+        <div class="fm-dd fm-dd-dont">
+          <div class="fm-dd-label">evite</div>
+          <ul>
+            <li>Nome da cepa (segredo)</li>
+            <li>pH, temperatura, tempos exatos</li>
+            <li>Comparar com concorrente</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="fm-nav">
+        <button class="fm-nav-btn" data-prev>← anterior</button>
+        <button class="fm-nav-btn" data-next>próxima →</button>
+      </div>
+    </div>
+
+    <!-- ESTAÇÃO 4 -->
+    <div class="fm-panel" id="fm-s4">
+      <div class="fm-station-header">
+        <div class="fm-station-num">04</div>
+        <div class="fm-station-title">laboratório · cultura pura</div>
+        <div class="fm-station-meta">
+          <span><strong>5 min</strong></span>
+          <span>fala: <strong>Valdinei</strong></span>
+          <span>apoio: 3 balões atrás do vidro</span>
+        </div>
+      </div>
+
+      <div class="fm-anchor">
+        "daqui tudo começa. nem nós entramos."
+      </div>
+
+      <div class="fm-sec-title">o que o especialista vai dizer</div>
+      <div class="fm-block">
+        <div class="fm-block-label">resumo</div>
+        <p>Ambiente <strong>estéril, sem bactérias</strong>. A propagação começa com uma quantidade mínima em balões. <strong>Qualidade microbiológica</strong> é um dos controles mais críticos da operação.</p>
+        <p>Prática aperfeiçoada há <strong>170 anos</strong>. O que é novo é a tecnologia; a disciplina, a gente já tinha.</p>
+      </div>
+
+      <div class="fm-sec-title">você (guia) reforça</div>
+      <ul class="fm-bullets">
+        <li><span>Foco no <strong>porquê</strong>, não no <em>como</em>. O cliente quer saber por que isso importa para ele.</span></li>
+        <li><span><strong>"Daqui tudo começa"</strong> — dá dimensão.</span></li>
+        <li><span>O vidro é parte do argumento — "nem nós entramos".</span></li>
+        <li><span>Conecte com os <strong>170 anos</strong>.</span></li>
+      </ul>
+
+      <div class="fm-sec-title">atenção</div>
+      <div class="fm-dodont">
+        <div class="fm-dd fm-dd-do">
+          <div class="fm-dd-label">diga</div>
+          <ul>
+            <li>"Qualidade microbiológica"</li>
+            <li>"Estéril", "controlado"</li>
+            <li>"170 anos de prática"</li>
+          </ul>
+        </div>
+        <div class="fm-dd fm-dd-dont">
+          <div class="fm-dd-label">evite</div>
+          <ul>
+            <li>Exames específicos do lab</li>
+            <li>Jargão (UFC, CFU, biorreator)</li>
+            <li>Deixar o grupo encostar no vidro</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="fm-nav">
+        <button class="fm-nav-btn" data-prev>← anterior</button>
+        <button class="fm-nav-btn" data-next>próxima →</button>
+      </div>
+    </div>
+
+    <!-- ESTAÇÃO 5 -->
+    <div class="fm-panel" id="fm-s5">
+      <div class="fm-station-header">
+        <div class="fm-station-num">05</div>
+        <div class="fm-station-title">CIP · limpeza & economia circular</div>
+        <div class="fm-station-meta">
+          <span><strong>5 min</strong></span>
+          <span>fala: <strong>Giovani</strong></span>
+          <span>apoio: 2 vidros de efluente</span>
+        </div>
+      </div>
+
+      <div class="fm-anchor">
+        "o resíduo volta para o mesmo parceiro que nos vendeu o melaço."
+      </div>
+
+      <div class="fm-sec-title">o que o especialista vai dizer</div>
+      <div class="fm-block">
+        <div class="fm-block-label">resumo</div>
+        <p><strong>CIP = Cleaning In Place</strong>. Estação <strong>100% automatizada</strong>. Sequência: detergente → desincrustante → desinfetante + água quente. Comandada da sala de controle.</p>
+        <p><strong>Inocuidade</strong>: nada do ciclo anterior chega ao produto seguinte.</p>
+        <p><strong>Economia circular</strong>: efluente leve → lagoa → volta para a <strong>Cocal</strong> para biofertilização da cana. Melaço vem da Cocal, resíduo volta para a Cocal.</p>
+      </div>
+
+      <div class="fm-sec-title">você (guia) reforça</div>
+      <ul class="fm-bullets">
+        <li><span><strong>"100% automatizado"</strong> — a limpeza não depende de alguém lembrar.</span></li>
+        <li><span><strong>Inocuidade</strong> = "chega limpo, sempre".</span></li>
+        <li><span>Mostre <strong>os dois vidros</strong> — a imagem fecha o argumento.</span></li>
+        <li><span>"A fábrica mais moderna do grupo Lesaffre no mundo."</span></li>
+      </ul>
+
+      <div class="fm-sec-title">atenção</div>
+      <div class="fm-dodont">
+        <div class="fm-dd fm-dd-do">
+          <div class="fm-dd-label">diga</div>
+          <ul>
+            <li>"Economia circular + local"</li>
+            <li>"Limpeza conectada à fermentação"</li>
+            <li>"Tecnologia de ponta"</li>
+          </ul>
+        </div>
+        <div class="fm-dd fm-dd-dont">
+          <div class="fm-dd-label">evite</div>
+          <ul>
+            <li>Nomes químicos dos detergentes</li>
+            <li>Números ambientais sem base</li>
+            <li>"Sustentabilidade" genérica</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="fm-nav">
+        <button class="fm-nav-btn" data-prev>← anterior</button>
+        <button class="fm-nav-btn" data-next>próxima →</button>
+      </div>
+    </div>
+
+    <!-- ESTAÇÃO 6 -->
+    <div class="fm-panel" id="fm-s6">
+      <div class="fm-station-header">
+        <div class="fm-station-num">06</div>
+        <div class="fm-station-title">empacotamento · câmara fria</div>
+        <div class="fm-station-meta">
+          <span><strong>5 min</strong></span>
+          <span>fala: <strong>José Victor</strong></span>
+          <span>apoio: CCTV + esteira + robô</span>
+        </div>
+      </div>
+
+      <div class="fm-anchor">
+        "vocês viram hoje 170 anos condensados em 45 minutos."
+      </div>
+
+      <div class="fm-sec-title">o que o especialista vai dizer</div>
+      <div class="fm-block">
+        <div class="fm-block-label">resumo</div>
+        <p>Creme desidratado → <strong>extrusor</strong> (forma o bloco) → embalagem → esteira → encaixotadora → <strong>robô paletizador</strong> → câmara fria.</p>
+        <p>O robô identifica código de barras e <strong>paletiza duas marcas ao mesmo tempo</strong> — flexibilidade + velocidade.</p>
+        <p>Câmara fria com <strong>controle de temperatura em tempo real</strong>. Produto chega ao cliente como saiu daqui.</p>
+      </div>
+
+      <div class="fm-sec-title">você (guia) reforça</div>
+      <ul class="fm-bullets">
+        <li><span><strong>"Duas marcas ao mesmo tempo"</strong> — fato único, o cliente vai repetir.</span></li>
+        <li><span>Equipamentos de <strong>última geração</strong> do grupo Lesaffre.</span></li>
+        <li><span><strong>Feche o círculo</strong>: "começamos no melaço bruto, terminamos no bloquinho".</span></li>
+        <li><span>Encerre com intenção — nunca com "é isso, gente".</span></li>
+      </ul>
+
+      <div class="fm-sec-title">atenção</div>
+      <div class="fm-dodont">
+        <div class="fm-dd fm-dd-do">
+          <div class="fm-dd-label">diga</div>
+          <ul>
+            <li>"Última geração"</li>
+            <li>"Paletização simultânea"</li>
+            <li>Frase de fechamento emocional</li>
+          </ul>
+        </div>
+        <div class="fm-dd fm-dd-dont">
+          <div class="fm-dd-label">evite</div>
+          <ul>
+            <li>Abrir câmara sem sinal verde</li>
+            <li>Aglomerar perto da esteira</li>
+            <li>Terminar sem síntese</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="fm-nav">
+        <button class="fm-nav-btn" data-prev>← anterior</button>
+        <button class="fm-nav-btn" data-next disabled>fim do tour</button>
+      </div>
+    </div>
+
+    <!-- FAQ RÁPIDO -->
+    <div class="fm-panel" id="fm-faq">
+      <div class="fm-sec-title">respostas rápidas</div>
+
+      <div class="fm-block">
+        <div class="fm-block-label">preço do produto</div>
+        <p>Redirecione para o comercial do grupo. Preço é conversa personalizada — <em>fora</em> do tour.</p>
+      </div>
+
+      <div class="fm-block">
+        <div class="fm-block-label">qual cepa usam</div>
+        <p>"Linhagem proprietária desenvolvida pela Lesaffre em 170 anos — os detalhes são <strong>confidenciais</strong>."</p>
+      </div>
+
+      <div class="fm-block">
+        <div class="fm-block-label">volume / capacidade</div>
+        <p>Só fale números se tiver o dado <strong>oficial</strong> memorizado. Se não: "prefiro te passar o exato por e-mail, com a equipe operacional."</p>
+      </div>
+
+      <div class="fm-block">
+        <div class="fm-block-label">é OGM?</div>
+        <p>"Linhagens tradicionais, selecionadas ao longo de décadas. Posso pedir ao time de qualidade o detalhe técnico em documento."</p>
+      </div>
+
+      <div class="fm-block">
+        <div class="fm-block-label">comparar com concorrente</div>
+        <p>Não compare pelo nome. Responda pelo <strong>valor Lesaffre</strong>: 170 anos, economia circular, Baking Center, equipe técnica no campo.</p>
+      </div>
+
+      <div class="fm-block">
+        <div class="fm-block-label">posso tirar foto?</div>
+        <p>Ambiente <strong>sim</strong>. Telas, painéis, laboratório <strong>não</strong>. Se em dúvida no momento: "prefiro confirmar antes de liberar."</p>
+      </div>
+
+      <div class="fm-block">
+        <div class="fm-block-label">atende só Brasil?</div>
+        <p>"Fábrica local, atendimento Brasil, com capacidade de escala. Detalhes de exportação, o comercial pode abrir."</p>
+      </div>
+
+      <div class="fm-block">
+        <div class="fm-block-label">efluente pesado volta pra Cocal?</div>
+        <p>Não. Só o <strong>efluente leve</strong> (menor carga orgânica) vai para biofertilização. O pesado segue tratamento específico.</p>
+      </div>
+
+      <div class="fm-block">
+        <div class="fm-block-label">problema técnico na minha padaria/indústria?</div>
+        <p>"A Lesaffre tem equipe técnica dedicada para ir no seu processo. Você não fica sozinho depois da compra — é um dos pilares do serviço."</p>
+      </div>
+
+      <div class="fm-block">
+        <div class="fm-block-label">pergunta que eu não sei</div>
+        <p><strong>Nunca invente.</strong> "Deixa eu confirmar com a equipe e te mando por e-mail" vale mais que um número errado.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <script>
+// =========================================================
+// LOGIN GATE
+// =========================================================
+(function(){
+  // SHA-256 hash of "TGTLES2026"
+  const PASS_HASH = '5b9447929a0e59a19b229844293bc0f60e2c8bdface05cd230e3bec407974a0b';
+  const STORAGE_KEY = 'lesaffre_auth_v1';
+  const SESSION_HOURS = 12;
+
+  const gate = document.getElementById('gate');
+  const form = document.getElementById('gateForm');
+  const input = document.getElementById('gateInput');
+  const err = document.getElementById('gateError');
+
+  // Web Crypto SHA-256
+  async function sha256(text) {
+    const buf = new TextEncoder().encode(text);
+    const hash = await crypto.subtle.digest('SHA-256', buf);
+    return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  function unlock() {
+    document.body.classList.remove('gated');
+    gate.style.display = 'none';
+  }
+
+  function checkSession() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return false;
+      const { ts } = JSON.parse(raw);
+      const ageH = (Date.now() - ts) / 36e5;
+      return ageH < SESSION_HOURS;
+    } catch(_) { return false; }
+  }
+
+  // Auto-unlock if valid session
+  if (checkSession()) {
+    unlock();
+    return;
+  }
+
+  // Auto-focus the input
+  setTimeout(() => input && input.focus(), 100);
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const pw = input.value.trim();
+    if (!pw) return;
+    err.textContent = '';
+    try {
+      const hash = await sha256(pw);
+      if (hash === PASS_HASH) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({ ts: Date.now() }));
+        } catch(_) {}
+        unlock();
+      } else {
+        err.textContent = 'senha incorreta. tente novamente.';
+        input.value = '';
+        input.focus();
+      }
+    } catch (_) {
+      err.textContent = 'não foi possível validar. atualize a página.';
+    }
+  });
+})();
+
 // =========================================================
 // Progress bar
 // =========================================================
 (function(){
   const bar = document.getElementById('progressBar');
+  if (!bar) return;
   window.addEventListener('scroll', () => {
     const h = document.documentElement;
     const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
@@ -2309,6 +3225,71 @@ a { color: var(--blue); text-decoration: none; }
     });
   }, { rootMargin: '-40% 0px -55% 0px' });
   stations.forEach(s => io.observe(s));
+})();
+
+// =========================================================
+// FIELD MODE (Modo Cola)
+// =========================================================
+(function(){
+  const trigger = document.getElementById('fmTrigger');
+  const panel = document.getElementById('fieldmode');
+  const closeBtn = document.getElementById('fmClose');
+  const tabs = document.querySelectorAll('.fm-tab');
+  const panels = document.querySelectorAll('.fm-panel');
+  const body = document.getElementById('fmBody') || panel.querySelector('.fm-body');
+
+  if (!trigger || !panel) return;
+
+  const order = ['fm-intro', 'fm-s3', 'fm-s4', 'fm-s5', 'fm-s6', 'fm-faq'];
+
+  function open(){
+    panel.classList.add('open');
+    panel.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+  function close(){
+    panel.classList.remove('open');
+    panel.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+  function activate(id){
+    tabs.forEach(t => t.classList.toggle('active', t.getAttribute('data-panel') === id));
+    panels.forEach(p => p.classList.toggle('active', p.id === id));
+    // Scroll tab into view (mobile)
+    const activeTab = Array.from(tabs).find(t => t.getAttribute('data-panel') === id);
+    if (activeTab && activeTab.scrollIntoView) {
+      activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+    // Scroll body to top inside field mode
+    if (body) body.scrollTop = 0;
+  }
+
+  trigger.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+
+  // Tab click
+  tabs.forEach(t => {
+    t.addEventListener('click', () => activate(t.getAttribute('data-panel')));
+  });
+
+  // Prev/Next buttons
+  panels.forEach(p => {
+    const prev = p.querySelector('[data-prev]');
+    const next = p.querySelector('[data-next]');
+    if (prev) prev.addEventListener('click', () => {
+      const idx = order.indexOf(p.id);
+      if (idx > 0) activate(order[idx - 1]);
+    });
+    if (next) next.addEventListener('click', () => {
+      const idx = order.indexOf(p.id);
+      if (idx >= 0 && idx < order.length - 1) activate(order[idx + 1]);
+    });
+  });
+
+  // ESC closes
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && panel.classList.contains('open')) close();
+  });
 })();
 </script>
 
