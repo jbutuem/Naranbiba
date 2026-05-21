@@ -1,3337 +1,644 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Playbook do Tour · Fábrica Narandiba · Lesaffre</title>
-<meta name="description" content="Guia de treinamento para condução do tour da fábrica Lesaffre em Narandiba. Uma nova era da panificação chegou." />
-
-<!-- Fontes Lesaffre: Lato (primary) + Nothing You Could Do (script accent) -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Configurador de Visita · Lesaffre Narandiba</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
 <style>
-/* =========================================================
-   LESAFFRE BRAND TOKENS (from 2025 Brand Guidelines)
-   ========================================================= */
-:root {
-  /* Primary */
-  --blue: #0A3B93;            /* Ultramarine blue - iconic */
-  --blue-light: #2C59A2;      /* Swallow blue */
-  --taupe: #8A7B60;           /* Taupe brown */
-  --taupe-50: #C4BDAF;        /* Taupe brown 50% */
-  --beige: #F7EFE5;           /* Light brown */
-  --grey: #C6C6C6;            /* Light grey */
-
-  /* Secondary */
-  --ruby: #791D41;
-  --tunic: #135975;
-  --orange: #F08A00;
-  --green: #88BA14;
-
-  /* Working colors */
-  --ink: #0A3B93;
-  --paper: #F7EFE5;
-  --paper-pure: #FBF7F0;
-  --white: #FFFFFF;
-  --muted: #8A7B60;
-
-  /* Typography */
-  --f-body: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
-  --f-script: 'Nothing You Could Do', cursive;
-
-  /* Scale */
-  --max-width: 1180px;
-  --radius: 4px;
-
-  /* Motion */
-  --ease: cubic-bezier(.2,.7,.2,1);
-}
-
-/* =========================================================
-   RESET + BASE
-   ========================================================= */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-body {
-  font-family: var(--f-body);
-  font-weight: 400;
-  color: var(--ink);
-  background: var(--paper);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-img, svg { display: block; max-width: 100%; }
-a { color: var(--blue); text-decoration: none; }
-
-/* =========================================================
-   SWALLOW SVG (re-used throughout) — from brand guide
-   Minimal outline approximation
-   ========================================================= */
-.swallow {
-  display: inline-block;
-  fill: currentColor;
-}
-
-/* =========================================================
-   NAV
-   ========================================================= */
-.nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  background: rgba(247, 239, 229, 0.96);
-  backdrop-filter: blur(16px) saturate(1.2);
-  -webkit-backdrop-filter: blur(16px) saturate(1.2);
-  border-bottom: 1px solid rgba(10, 59, 147, 0.1);
-  transition: transform .3s var(--ease);
-  box-shadow: 0 1px 0 rgba(10, 59, 147, 0.02);
-}
-.nav-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 18px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--blue);
-  font-weight: 900;
-  font-size: 18px;
-  letter-spacing: 0.12em;
-}
-.nav-logo .swallow { width: 28px; height: 28px; }
-.nav-links {
-  display: flex;
-  gap: 28px;
-  list-style: none;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-.nav-links a {
-  color: var(--blue);
-  position: relative;
-  padding: 6px 0;
-  transition: opacity .2s;
-}
-.nav-links a:hover { opacity: 0.6; }
-.nav-burger {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--blue);
-  cursor: pointer;
-  padding: 8px;
-}
-@media (max-width: 860px) {
-  .nav-links { display: none; }
-  .nav-burger { display: block; }
-  .nav-links.open {
-    display: flex;
-    position: absolute;
-    top: 100%; left: 0; right: 0;
-    flex-direction: column;
-    background: var(--paper);
-    padding: 20px 32px;
-    gap: 18px;
-    border-bottom: 1px solid rgba(10,59,147,.08);
+  :root{
+    --blue:#0A3B93; --blue-deep:#062a6e; --tunic:#3E6FB7;
+    --ruby:#C8282A; --orange:#EE7D31; --green:#6FA539;
+    --cream:#F7EFE5; --cream-2:#FBF6EF; --ink:#1c1a17; --muted:#6b6457;
+    --line:#e3d8c6; --card:#ffffff;
+    --f-body:'Lato',-apple-system,system-ui,sans-serif;
+    --f-script:'Nothing You Could Do',cursive;
+    --shadow:0 10px 40px rgba(10,59,147,.10);
+    --shadow-sm:0 3px 14px rgba(28,26,23,.08);
+    --radius:18px;
   }
-}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--f-body); color:var(--ink); background:var(--cream);
+    background-image:radial-gradient(circle at 12% -10%,rgba(62,111,183,.10),transparent 45%),
+                     radial-gradient(circle at 100% 0%,rgba(238,125,49,.07),transparent 38%);
+    min-height:100vh; -webkit-font-smoothing:antialiased; line-height:1.55;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
 
-/* =========================================================
-   HERO
-   ========================================================= */
-.hero {
-  min-height: 100vh;
-  padding: 140px 32px 80px;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-}
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at top right, rgba(240, 138, 0, 0.08), transparent 50%),
-    radial-gradient(ellipse at bottom left, rgba(136, 186, 20, 0.06), transparent 50%);
-  pointer-events: none;
-}
-/* Oversized swallow as brand element */
-.hero-swallow {
-  position: absolute;
-  right: -8%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 70%;
-  max-width: 900px;
-  color: var(--blue);
-  opacity: 0.06;
-  pointer-events: none;
-  z-index: 0;
-}
-.hero-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  width: 100%;
-  position: relative;
-  z-index: 1;
-}
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--taupe);
-  margin-bottom: 32px;
-  padding: 8px 16px;
-  border: 1px solid var(--taupe-50);
-  border-radius: 100px;
-}
-.hero-eyebrow::before {
-  content: '';
-  width: 6px; height: 6px;
-  background: var(--orange);
-  border-radius: 50%;
-  animation: pulse 2s ease-in-out infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.3); }
-}
-.hero h1 {
-  font-size: clamp(2.8rem, 7vw, 6rem);
-  font-weight: 900;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  text-transform: lowercase;
-  max-width: 820px;
-  margin-bottom: 24px;
-}
-.hero h1 .script {
-  font-family: var(--f-script);
-  font-weight: 400;
-  color: var(--orange);
-  text-transform: none;
-  font-size: 0.75em;
-  display: inline-block;
-  transform: rotate(-3deg);
-  margin: 0 10px;
-  letter-spacing: 0;
-}
-.hero h1 .outlined {
-  -webkit-text-stroke: 2px var(--blue);
-  color: transparent;
-}
-.hero p.lead {
-  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
-  font-weight: 300;
-  max-width: 620px;
-  color: var(--blue);
-  margin-bottom: 48px;
-}
-.hero-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  padding-top: 32px;
-  border-top: 1px solid rgba(10, 59, 147, 0.15);
-  max-width: 720px;
-}
-.hero-meta-item {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.hero-meta-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--taupe);
-}
-.hero-meta-value {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--blue);
-}
-.hero-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 32px;
-  background: var(--blue);
-  color: var(--white);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  border-radius: 100px;
-  transition: all .3s var(--ease);
-  margin-top: 16px;
-}
-.hero-cta:hover {
-  background: var(--ink);
-  transform: translateY(-2px);
-  box-shadow: 0 14px 30px -10px rgba(10, 59, 147, 0.35);
-}
-.hero-cta svg { width: 14px; height: 14px; fill: currentColor; }
+  /* ---------- top bar ---------- */
+  header.top{
+    position:sticky;top:0;z-index:50;
+    background:rgba(247,239,229,.86);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-in{display:flex;align-items:center;gap:16px;padding:14px 0}
+  .brand{display:flex;align-items:center;gap:12px}
+  .swallow{width:40px;height:40px;flex:0 0 40px;display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--blue),var(--tunic));border-radius:12px;color:#fff}
+  .swallow svg{width:24px;height:24px}
+  .brand b{font-weight:900;letter-spacing:.3px;color:var(--blue);font-size:1.05rem;display:block;line-height:1}
+  .brand span{font-size:.72rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+  .top-nav{margin-left:auto;display:flex;gap:6px}
+  .top-nav button{
+    font-family:var(--f-body);font-weight:700;font-size:.86rem;cursor:pointer;
+    border:1px solid transparent;background:transparent;color:var(--muted);
+    padding:9px 16px;border-radius:999px;transition:.18s;
+  }
+  .top-nav button:hover{color:var(--blue)}
+  .top-nav button.active{background:var(--blue);color:#fff;box-shadow:0 4px 14px rgba(10,59,147,.28)}
 
-/* =========================================================
-   SECTION BASE
-   ========================================================= */
-.section {
-  padding: 100px 32px;
-  position: relative;
-}
-.section-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  position: relative;
-}
-.section-eyebrow {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--taupe);
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.section-eyebrow::before {
-  content: '';
-  width: 40px;
-  height: 1px;
-  background: var(--taupe);
-}
-.section-title {
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: -0.015em;
-  text-transform: lowercase;
-  max-width: 780px;
-  margin-bottom: 24px;
-}
-.section-title .accent { color: var(--orange); }
-.section-title .ruby { color: var(--ruby); }
-.section-title .green { color: var(--green); }
-.section-title .tunic { color: var(--tunic); }
-.section-intro {
-  font-size: 1.05rem;
-  font-weight: 300;
-  max-width: 680px;
-  margin-bottom: 56px;
-  color: var(--blue);
-}
+  .view{display:none;animation:fade .45s ease both}
+  .view.show{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-/* =========================================================
-   WHY MATTERS (4 PILLARS)
-   ========================================================= */
-.pillars {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: rgba(10, 59, 147, 0.12);
-  border: 1px solid rgba(10, 59, 147, 0.12);
-}
-.pillar {
-  background: var(--paper);
-  padding: 40px 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  transition: background .3s;
-  position: relative;
-}
-.pillar:hover { background: var(--paper-pure); }
-.pillar-num {
-  font-size: 40px;
-  font-weight: 900;
-  color: var(--blue);
-  line-height: 1;
-}
-.pillar-title {
-  font-size: 22px;
-  font-weight: 900;
-  color: var(--blue);
-  text-transform: lowercase;
-}
-.pillar-desc {
-  font-size: 14px;
-  color: var(--blue);
-  line-height: 1.55;
-}
-.pillar:nth-child(1) .pillar-num { color: var(--tunic); }
-.pillar:nth-child(2) .pillar-num { color: var(--ruby); }
-.pillar:nth-child(3) .pillar-num { color: var(--orange); }
-.pillar:nth-child(4) .pillar-num { color: var(--green); }
-@media (max-width: 860px) {
-  .pillars { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 500px) {
-  .pillars { grid-template-columns: 1fr; }
-}
+  /* ---------- hero (builder) ---------- */
+  .hero{padding:40px 0 18px}
+  .kick{font-family:var(--f-script);font-size:1.9rem;color:var(--orange);line-height:.8}
+  .hero h1{font-size:clamp(1.8rem,4vw,2.7rem);font-weight:900;color:var(--blue);letter-spacing:-.5px;margin:.15em 0 .25em}
+  .hero p{max-width:640px;color:var(--muted);font-size:1.02rem}
 
-/* =========================================================
-   BEFORE YOU START
-   ========================================================= */
-.briefing {
-  background: var(--blue);
-  color: var(--paper);
-  padding: 100px 32px;
-  position: relative;
-  overflow: hidden;
-}
-.briefing::before {
-  content: '';
-  position: absolute;
-  top: -20%;
-  right: -10%;
-  width: 50%;
-  height: 140%;
-  background: radial-gradient(circle, rgba(240, 138, 0, 0.18), transparent 60%);
-  pointer-events: none;
-}
-.briefing .section-eyebrow { color: rgba(247, 239, 229, 0.7); }
-.briefing .section-eyebrow::before { background: rgba(247, 239, 229, 0.4); }
-.briefing .section-title { color: var(--paper); }
-.briefing .section-intro { color: rgba(247, 239, 229, 0.85); }
+  /* meta + depth controls */
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm)}
+  .config-row{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;margin:22px 0 30px}
+  @media(max-width:780px){.config-row{grid-template-columns:1fr}}
+  .config-row .panel{padding:20px 22px}
+  .panel h3{font-size:.74rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:14px;font-weight:900}
+  .field{margin-bottom:12px}
+  .field:last-child{margin-bottom:0}
+  .field label{display:block;font-size:.78rem;font-weight:700;color:var(--ink);margin-bottom:5px}
+  .field input{width:100%;font-family:var(--f-body);font-size:.95rem;padding:10px 13px;border:1.5px solid var(--line);
+    border-radius:11px;background:var(--cream-2);color:var(--ink);transition:.16s}
+  .field input:focus{outline:none;border-color:var(--tunic);background:#fff;box-shadow:0 0 0 3px rgba(62,111,183,.14)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
-.briefing-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-top: 20px;
-}
-.briefing-card {
-  padding: 32px 28px;
-  border: 1px solid rgba(247, 239, 229, 0.18);
-  border-radius: var(--radius);
-  background: rgba(247, 239, 229, 0.03);
-  transition: all .3s var(--ease);
-}
-.briefing-card:hover {
-  background: rgba(247, 239, 229, 0.06);
-  transform: translateY(-4px);
-}
-.briefing-card-icon {
-  width: 44px; height: 44px;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--orange);
-  color: var(--blue);
-  border-radius: 50%;
-  font-weight: 900;
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-.briefing-card-title {
-  font-size: 18px;
-  font-weight: 900;
-  text-transform: lowercase;
-  margin-bottom: 10px;
-}
-.briefing-card-text {
-  font-size: 14px;
-  color: rgba(247, 239, 229, 0.85);
-}
-@media (max-width: 860px) {
-  .briefing-grid { grid-template-columns: 1fr; }
-}
+  /* depth meter (gamified) */
+  .depth-opts{display:flex;flex-direction:column;gap:9px}
+  .depth{display:flex;align-items:center;gap:13px;padding:11px 14px;border:1.5px solid var(--line);border-radius:13px;
+    cursor:pointer;background:var(--cream-2);transition:.16s;position:relative;overflow:hidden}
+  .depth:hover{border-color:var(--tunic)}
+  .depth.on{border-color:var(--blue);background:#fff;box-shadow:0 4px 16px rgba(10,59,147,.12)}
+  .depth.on::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(var(--blue),var(--tunic))}
+  .bars{display:flex;gap:3px;align-items:flex-end;height:22px;flex:0 0 auto}
+  .bars i{width:6px;background:var(--line);border-radius:2px;transition:.2s}
+  .depth.on .bars i{background:var(--blue)}
+  .bars i:nth-child(1){height:9px}.bars i:nth-child(2){height:15px}.bars i:nth-child(3){height:22px}
+  .depth .dt{flex:1}
+  .depth .dt b{display:block;font-size:.92rem}
+  .depth .dt small{color:var(--muted);font-size:.76rem}
 
-/* Safety callout */
-.safety {
-  margin-top: 56px;
-  padding: 32px;
-  background: rgba(240, 138, 0, 0.15);
-  border-left: 4px solid var(--orange);
-  border-radius: var(--radius);
-  display: flex;
-  gap: 24px;
-  align-items: flex-start;
-}
-.safety-icon {
-  flex-shrink: 0;
-  width: 48px; height: 48px;
-  background: var(--orange);
-  color: var(--blue);
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 50%;
-  font-size: 24px;
-  font-weight: 900;
-}
-.safety-content h3 {
-  font-size: 18px;
-  font-weight: 900;
-  color: var(--paper);
-  text-transform: lowercase;
-  margin-bottom: 6px;
-}
-.safety-content p {
-  font-size: 14px;
-  color: rgba(247, 239, 229, 0.9);
-}
-.safety-content strong { color: var(--orange); font-weight: 700; }
+  /* ---------- builder columns ---------- */
+  .builder{display:grid;grid-template-columns:1fr 1.05fr;gap:22px;align-items:start}
+  @media(max-width:880px){.builder{grid-template-columns:1fr}}
+  .col-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
+  .col-head h2{font-size:1.05rem;font-weight:900;color:var(--blue)}
+  .col-head .hint{font-size:.76rem;color:var(--muted)}
 
-/* =========================================================
-   TOUR OVERVIEW MAP
-   ========================================================= */
-.tour-map {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 8px;
-  margin-top: 48px;
-  counter-reset: station;
-}
-.map-station {
-  aspect-ratio: 1;
-  border: 2px solid var(--taupe-50);
-  padding: 16px 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: all .3s var(--ease);
-  position: relative;
-  cursor: pointer;
-  background: var(--paper);
-  text-align: left;
-  text-decoration: none;
-  color: inherit;
-}
-.map-station:hover,
-.map-station:focus-visible {
-  background: var(--blue);
-  color: var(--paper);
-  border-color: var(--blue);
-  transform: translateY(-4px);
-  outline: none;
-}
-.map-station.focus {
-  background: var(--blue);
-  color: var(--paper);
-  border-color: var(--blue);
-}
-.map-station-num {
-  font-size: 28px;
-  font-weight: 900;
-  line-height: 1;
-}
-.map-station-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  line-height: 1.3;
-}
-.map-station-time {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 2px 8px;
-  background: var(--orange);
-  color: var(--blue);
-  border-radius: 100px;
-  letter-spacing: 0.05em;
-}
-@media (max-width: 860px) {
-  .tour-map { grid-template-columns: repeat(3, 1fr); }
-}
-@media (max-width: 500px) {
-  .tour-map { grid-template-columns: repeat(2, 1fr); }
-}
+  .palette,.route{display:flex;flex-direction:column;gap:10px}
+  .route{min-height:120px;padding:8px;border:2px dashed var(--line);border-radius:var(--radius);background:rgba(255,255,255,.4);transition:.18s}
+  .route.drag-over{border-color:var(--tunic);background:rgba(62,111,183,.06)}
+  .route-empty{text-align:center;color:var(--muted);font-size:.9rem;padding:34px 18px}
+  .route-empty b{display:block;color:var(--blue);font-weight:900;margin-bottom:4px}
 
-/* =========================================================
-   STATION DETAIL CARDS
-   ========================================================= */
-.station {
-  padding: 120px 32px;
-  position: relative;
-  border-top: 1px solid rgba(10, 59, 147, 0.1);
-}
-.station:nth-child(even) { background: var(--paper-pure); }
-.station-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 60px;
-  align-items: flex-start;
-}
-@media (max-width: 900px) {
-  .station-inner { grid-template-columns: 1fr; gap: 40px; }
-}
+  .mod{display:flex;align-items:center;gap:12px;padding:13px 14px;background:var(--card);
+    border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-sm);transition:.16s;cursor:grab}
+  .mod:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .mod.dragging{opacity:.45}
+  .mod .ic{width:42px;height:42px;flex:0 0 42px;border-radius:11px;display:grid;place-items:center;font-size:1.35rem;
+    background:linear-gradient(135deg,rgba(10,59,147,.10),rgba(62,111,183,.16))}
+  .mod .mt{flex:1;min-width:0}
+  .mod .mt b{display:block;font-size:.95rem;font-weight:700;line-height:1.2}
+  .mod .mt small{color:var(--muted);font-size:.76rem}
+  .pill{font-size:.64rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;padding:3px 8px;border-radius:999px;color:#fff;white-space:nowrap}
+  .p-prox{background:var(--green)}.p-qual{background:var(--blue)}.p-serv{background:var(--orange)}.p-inov{background:var(--tunic)}.p-all{background:var(--ruby)}
+  .mod .add{margin-left:2px;border:none;background:var(--blue);color:#fff;width:30px;height:30px;border-radius:9px;
+    font-size:1.2rem;cursor:pointer;flex:0 0 30px;transition:.15s;line-height:1}
+  .mod .add:hover{background:var(--blue-deep)}
+  .mod.in-route{cursor:default}
+  .route .mod{border-left:4px solid var(--tunic)}
+  .route .mod .num{width:24px;height:24px;border-radius:50%;background:var(--blue);color:#fff;font-size:.78rem;
+    font-weight:900;display:grid;place-items:center;flex:0 0 24px}
+  .route .ctrls{display:flex;gap:4px;flex:0 0 auto}
+  .route .ctrls button{width:28px;height:28px;border:1px solid var(--line);background:var(--cream-2);border-radius:8px;
+    cursor:pointer;font-size:.82rem;color:var(--muted);transition:.14s;line-height:1}
+  .route .ctrls button:hover{border-color:var(--tunic);color:var(--blue)}
+  .route .ctrls .rm:hover{border-color:var(--ruby);color:var(--ruby)}
 
-.station-sidebar {
-  position: sticky;
-  top: 100px;
-  z-index: 1;
-}
-@media (max-width: 900px) {
-  .station-sidebar { position: static; }
-}
-.station-number {
-  font-size: clamp(4rem, 10vw, 7rem);
-  font-weight: 900;
-  line-height: 0.9;
-  color: var(--blue);
-  letter-spacing: -0.05em;
-}
-.station-number-total {
-  font-size: 14px;
-  color: var(--taupe);
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  margin-top: 8px;
-}
-.station-meta {
-  margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(10, 59, 147, 0.15);
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.station-meta-item {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.station-meta-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--taupe);
-}
-.station-meta-value {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--blue);
-}
+  /* summary bar */
+  .summary{position:sticky;bottom:0;margin-top:26px;background:var(--blue);color:#fff;border-radius:var(--radius);
+    padding:16px 22px;display:flex;align-items:center;gap:22px;flex-wrap:wrap;box-shadow:0 -6px 30px rgba(10,59,147,.25)}
+  .summary .stat{display:flex;flex-direction:column;line-height:1.1}
+  .summary .stat b{font-size:1.45rem;font-weight:900}
+  .summary .stat span{font-size:.7rem;opacity:.8;text-transform:uppercase;letter-spacing:.1em}
+  .summary .sp{flex:1}
+  .btn{font-family:var(--f-body);font-weight:900;font-size:.92rem;border:none;border-radius:999px;padding:13px 26px;cursor:pointer;transition:.16s;display:inline-flex;align-items:center;gap:8px}
+  .btn-go{background:var(--orange);color:#fff}.btn-go:hover{background:#d96d22;transform:translateY(-1px)}
+  .btn-ghost{background:rgba(255,255,255,.16);color:#fff}.btn-ghost:hover{background:rgba(255,255,255,.26)}
+  .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
 
-.station-content h2 {
-  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-  font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: -0.015em;
-  text-transform: lowercase;
-  margin-bottom: 12px;
-}
-.station-content h2 .accent {
-  font-family: var(--f-script);
-  font-weight: 400;
-  color: var(--orange);
-  text-transform: none;
-  font-size: 0.7em;
-  display: inline-block;
-  transform: rotate(-2deg);
-  margin-left: 8px;
-}
-.station-tagline {
-  font-size: 18px;
-  font-weight: 300;
-  color: var(--blue);
-  margin-bottom: 40px;
-  padding-left: 16px;
-  border-left: 3px solid var(--orange);
-}
+  /* ---------- saved visits ---------- */
+  .saved-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:8px}
+  .sv{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow-sm);transition:.16s}
+  .sv:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+  .sv .tag{font-family:var(--f-script);color:var(--orange);font-size:1.3rem;line-height:.8}
+  .sv h4{font-size:1.1rem;color:var(--blue);font-weight:900;margin:2px 0}
+  .sv .meta{font-size:.8rem;color:var(--muted);margin-bottom:12px}
+  .sv .chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+  .sv .chip{font-size:.66rem;background:var(--cream-2);border:1px solid var(--line);padding:3px 8px;border-radius:999px;color:var(--muted)}
+  .sv .acts{display:flex;gap:8px}
+  .sv .acts button{flex:1;font-family:var(--f-body);font-weight:700;font-size:.8rem;border-radius:10px;padding:8px;cursor:pointer;border:1px solid var(--line);background:var(--cream-2);transition:.14s}
+  .sv .acts .open{background:var(--blue);color:#fff;border-color:var(--blue)}
+  .sv .acts .open:hover{background:var(--blue-deep)}
+  .sv .acts .del:hover{border-color:var(--ruby);color:var(--ruby)}
+  .empty-state{text-align:center;padding:60px 20px;color:var(--muted)}
+  .empty-state .big{font-size:2.6rem;margin-bottom:10px}
 
-.station-section {
-  margin-bottom: 44px;
-}
-.station-section-title {
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--taupe);
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.station-section-title::before {
-  content: '';
-  width: 24px;
-  height: 2px;
-  background: var(--taupe);
-}
+  /* ---------- playbook ---------- */
+  .pb-head{background:linear-gradient(120deg,var(--blue),var(--tunic));color:#fff;border-radius:0 0 26px 26px;padding:28px 0 30px;margin-bottom:8px;position:relative;overflow:hidden}
+  .pb-head::after{content:"";position:absolute;right:-40px;top:-40px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.07)}
+  .pb-head .kick{color:rgba(255,255,255,.9)}
+  .pb-head h1{color:#fff;font-size:clamp(1.5rem,3.5vw,2.2rem);margin:.1em 0}
+  .pb-head .pbmeta{display:flex;gap:18px;flex-wrap:wrap;font-size:.86rem;opacity:.92;margin-top:6px}
+  .pb-head .pbmeta b{font-weight:900}
+  .pb-tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0}
+  .seg{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px;box-shadow:var(--shadow-sm)}
+  .seg button{border:none;background:transparent;font-family:var(--f-body);font-weight:700;font-size:.8rem;color:var(--muted);
+    padding:8px 16px;border-radius:999px;cursor:pointer;transition:.14s}
+  .seg button.on{background:var(--blue);color:#fff}
+  .seg .lbl{align-self:center;font-size:.72rem;color:var(--muted);padding:0 10px 0 4px;text-transform:uppercase;letter-spacing:.1em}
 
-/* Script / speaking block */
-.script-block {
-  background: var(--white);
-  border: 1px solid rgba(10, 59, 147, 0.1);
-  border-left: 4px solid var(--blue);
-  padding: 28px 32px;
-  border-radius: 2px;
-  font-size: 16px;
-  line-height: 1.7;
-  font-weight: 400;
-  position: relative;
-  box-shadow: 0 2px 0 rgba(10, 59, 147, 0.05);
-}
-.script-block p { margin-bottom: 14px; }
-.script-block p:last-child { margin-bottom: 0; }
-.script-block strong {
-  background: rgba(240, 138, 0, 0.15);
-  padding: 1px 6px;
-  font-weight: 700;
-}
-.script-block em {
-  font-style: italic;
-  color: var(--taupe);
-  font-size: 0.92em;
-}
-.script-label {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--blue);
-  padding: 4px 10px;
-  background: rgba(240, 138, 0, 0.2);
-  border-radius: 100px;
-  margin-bottom: 16px;
-}
+  .progress{flex:1;min-width:160px;height:10px;background:#e7ddcd;border-radius:999px;overflow:hidden}
+  .progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--orange));transition:.4s;border-radius:999px}
 
-/* Key points list */
-.keypoints {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  list-style: none;
-}
-@media (max-width: 700px) { .keypoints { grid-template-columns: 1fr; } }
-.keypoints li {
-  display: flex;
-  gap: 14px;
-  padding: 18px 20px;
-  background: var(--white);
-  border-radius: var(--radius);
-  border: 1px solid rgba(10, 59, 147, 0.08);
-  font-size: 14px;
-  line-height: 1.5;
-}
-.keypoints li::before {
-  content: '';
-  flex-shrink: 0;
-  width: 6px;
-  height: 6px;
-  background: var(--orange);
-  border-radius: 50%;
-  margin-top: 8px;
-}
-.keypoints li strong {
-  color: var(--blue);
-  font-weight: 900;
-  display: block;
-  margin-bottom: 4px;
-}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);
+    margin-bottom:16px;overflow:hidden;scroll-margin-top:80px}
+  .st-head{display:flex;align-items:center;gap:14px;padding:18px 22px;cursor:pointer;user-select:none}
+  .st-head .ic{width:50px;height:50px;flex:0 0 50px;border-radius:13px;display:grid;place-items:center;font-size:1.6rem;
+    background:linear-gradient(135deg,var(--blue),var(--tunic));color:#fff}
+  .st-head .stt{flex:1;min-width:0}
+  .st-head .stt .n{font-size:.7rem;font-weight:900;color:var(--orange);letter-spacing:.12em;text-transform:uppercase}
+  .st-head .stt h3{font-size:1.2rem;color:var(--blue);font-weight:900;line-height:1.15}
+  .st-head .stt small{color:var(--muted);font-size:.82rem}
+  .st-head .chev{color:var(--muted);transition:.25s;font-size:1.1rem}
+  .station.open .chev{transform:rotate(180deg)}
+  .st-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+  .st-inner{padding:4px 22px 24px}
+  .script{background:var(--cream-2);border-left:4px solid var(--tunic);border-radius:0 12px 12px 0;padding:16px 18px;margin-bottom:16px;font-size:1.02rem}
+  .script .qq{font-family:var(--f-script);color:var(--orange);font-size:1.4rem;line-height:.6;display:block;margin-bottom:2px}
+  .block-title{font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:var(--blue);margin:14px 0 8px;display:flex;align-items:center;gap:7px}
+  .keys{list-style:none;display:flex;flex-direction:column;gap:7px}
+  .keys li{display:flex;gap:10px;align-items:flex-start;font-size:.92rem;padding:9px 12px;background:#fff;border:1px solid var(--line);border-radius:11px;cursor:pointer;transition:.14s}
+  .keys li:hover{border-color:var(--tunic)}
+  .keys li .ck{width:20px;height:20px;flex:0 0 20px;border:2px solid var(--line);border-radius:6px;display:grid;place-items:center;font-size:.8rem;color:#fff;transition:.15s;margin-top:1px}
+  .keys li.done .ck{background:var(--green);border-color:var(--green)}
+  .keys li.done span{color:var(--muted);text-decoration:line-through}
+  .reveal{border:none;background:linear-gradient(135deg,var(--orange),#f29d4f);color:#fff;font-family:var(--f-body);font-weight:900;
+    font-size:.86rem;padding:11px 18px;border-radius:12px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.16s}
+  .reveal:hover{filter:brightness(1.05);transform:translateY(-1px)}
+  .curio{display:none;margin-top:10px;padding:14px 16px;background:linear-gradient(135deg,rgba(238,125,49,.12),rgba(111,165,57,.10));
+    border:1px dashed var(--orange);border-radius:12px;font-size:.95rem;font-style:italic}
+  .curio.show{display:block;animation:fade .4s both}
+  .safety{margin-top:14px;font-size:.84rem;color:var(--ruby);background:rgba(200,40,42,.06);border:1px solid rgba(200,40,42,.2);
+    border-radius:11px;padding:10px 14px;display:flex;gap:9px;align-items:flex-start}
+  .pb-actions{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 50px}
+  .btn-blue{background:var(--blue);color:#fff}.btn-blue:hover{background:var(--blue-deep)}
+  .btn-line{background:transparent;border:1.5px solid var(--blue);color:var(--blue)}.btn-line:hover{background:var(--blue);color:#fff}
 
-/* Do / Don't */
-.dodont {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-@media (max-width: 700px) { .dodont { grid-template-columns: 1fr; } }
-.dodont-card {
-  padding: 24px;
-  border-radius: var(--radius);
-  border: 1px solid;
-}
-.do {
-  background: rgba(136, 186, 20, 0.08);
-  border-color: rgba(136, 186, 20, 0.3);
-}
-.dont {
-  background: rgba(121, 29, 65, 0.05);
-  border-color: rgba(121, 29, 65, 0.2);
-}
-.dodont-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
-.do .dodont-header { color: var(--green); }
-.dont .dodont-header { color: var(--ruby); }
-.dodont-badge {
-  width: 24px; height: 24px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: 50%;
-  font-size: 14px;
-}
-.do .dodont-badge { background: var(--green); color: var(--paper); }
-.dont .dodont-badge { background: var(--ruby); color: var(--paper); }
-.dodont-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.dodont-list li {
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--blue);
-  padding-left: 18px;
-  position: relative;
-}
-.dodont-list li::before {
-  position: absolute;
-  left: 0;
-  font-weight: 900;
-}
-.do .dodont-list li::before { content: '+'; color: var(--green); }
-.dont .dodont-list li::before { content: '×'; color: var(--ruby); }
+  footer{border-top:1px solid var(--line);padding:24px 0;text-align:center;color:var(--muted);font-size:.78rem}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;
+    padding:13px 22px;border-radius:999px;font-size:.88rem;font-weight:700;opacity:0;pointer-events:none;transition:.3s;z-index:200;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* Sample cards — visual specimens */
-.samples {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 12px;
-}
-.sample {
-  aspect-ratio: 3/4;
-  border-radius: var(--radius);
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 4px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--paper);
-  position: relative;
-  overflow: hidden;
-}
-.sample::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.4), transparent 60%);
-}
-.sample-name { position: relative; z-index: 1; font-size: 13px; font-weight: 900; }
-.sample-stage { position: relative; z-index: 1; font-size: 10px; opacity: 0.8; letter-spacing: 0.1em; text-transform: uppercase; }
-.s-melaco-bruto { background: linear-gradient(135deg, #3d2817, #1a0f08); }
-.s-melaco-diluido { background: linear-gradient(135deg, #8b6b3e, #5a4525); }
-.s-lodo { background: linear-gradient(135deg, #6a553a, #3d3020); }
-.s-mosto { background: linear-gradient(135deg, #c4a876, #8a7b60); }
-.s-creme { background: linear-gradient(135deg, #e8d8b5, #b8a580); color: var(--blue); }
-.s-creme::after { background: linear-gradient(to top, rgba(10,59,147,0.15), transparent 60%); }
-.s-fermento { background: linear-gradient(135deg, #f0e2c8, #cdb894); color: var(--blue); }
-.s-fermento::after { background: linear-gradient(to top, rgba(10,59,147,0.15), transparent 60%); }
-.s-efluente-leve { background: linear-gradient(135deg, #a8b8c8, #6a7b8e); }
-.s-efluente-pesado { background: linear-gradient(135deg, #5a4a3a, #2d251d); }
-
-/* =========================================================
-   QUIZ
-   ========================================================= */
-.quiz {
-  background: var(--white);
-  border: 2px solid var(--blue);
-  border-radius: var(--radius);
-  padding: 32px;
-  margin-top: 32px;
-  position: relative;
-}
-.quiz::before {
-  content: 'quiz';
-  position: absolute;
-  top: -12px;
-  left: 24px;
-  background: var(--blue);
-  color: var(--paper);
-  padding: 4px 14px;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  border-radius: 2px;
-}
-.quiz-question {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--blue);
-  margin-bottom: 20px;
-  margin-top: 4px;
-}
-.quiz-options {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.quiz-option {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 16px 20px;
-  background: var(--paper);
-  border: 1px solid rgba(10, 59, 147, 0.1);
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: all .2s var(--ease);
-  text-align: left;
-  width: 100%;
-  font-family: var(--f-body);
-  font-size: 14px;
-  color: var(--blue);
-  line-height: 1.5;
-}
-.quiz-option:hover:not(:disabled) {
-  background: var(--paper-pure);
-  border-color: var(--blue);
-}
-.quiz-option:disabled { cursor: default; }
-.quiz-option-letter {
-  flex-shrink: 0;
-  width: 28px; height: 28px;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--paper-pure);
-  color: var(--blue);
-  font-weight: 900;
-  font-size: 12px;
-  border-radius: 50%;
-  border: 1px solid rgba(10, 59, 147, 0.2);
-}
-.quiz-option.correct {
-  background: rgba(136, 186, 20, 0.12);
-  border-color: var(--green);
-  color: var(--blue);
-}
-.quiz-option.correct .quiz-option-letter {
-  background: var(--green);
-  color: var(--paper);
-  border-color: var(--green);
-}
-.quiz-option.incorrect {
-  background: rgba(121, 29, 65, 0.08);
-  border-color: var(--ruby);
-  color: var(--blue);
-}
-.quiz-option.incorrect .quiz-option-letter {
-  background: var(--ruby);
-  color: var(--paper);
-  border-color: var(--ruby);
-}
-.quiz-feedback {
-  margin-top: 20px;
-  padding: 18px 20px;
-  background: rgba(136, 186, 20, 0.1);
-  border-left: 3px solid var(--green);
-  font-size: 14px;
-  color: var(--blue);
-  border-radius: 2px;
-  display: none;
-  line-height: 1.55;
-}
-.quiz-feedback.show { display: block; animation: slideIn .3s var(--ease); }
-.quiz-feedback.error {
-  background: rgba(121, 29, 65, 0.08);
-  border-left-color: var(--ruby);
-}
-.quiz-feedback strong { font-weight: 900; }
-@keyframes slideIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* =========================================================
-   FAQ — "e se o cliente perguntar"
-   ========================================================= */
-.faq-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.faq-item {
-  background: var(--white);
-  border: 1px solid rgba(10, 59, 147, 0.08);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-.faq-question {
-  width: 100%;
-  padding: 22px 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  text-align: left;
-  font-family: var(--f-body);
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--blue);
-  line-height: 1.4;
-  transition: background .2s;
-}
-.faq-question:hover { background: var(--paper-pure); }
-.faq-toggle {
-  flex-shrink: 0;
-  width: 32px; height: 32px;
-  display: flex; align-items: center; justify-content: center;
-  border: 1px solid var(--blue);
-  border-radius: 50%;
-  transition: transform .3s var(--ease);
-  font-size: 18px;
-  font-weight: 300;
-}
-.faq-item.open .faq-toggle { transform: rotate(45deg); }
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height .4s var(--ease);
-}
-.faq-item.open .faq-answer { max-height: 500px; }
-.faq-answer-inner {
-  padding: 0 28px 24px;
-  font-size: 14px;
-  color: var(--blue);
-  line-height: 1.65;
-}
-.faq-answer-inner p { margin-bottom: 10px; }
-.faq-answer-inner strong { font-weight: 700; }
-
-/* =========================================================
-   CHECKLIST
-   ========================================================= */
-.checklist-section {
-  background: var(--taupe);
-  color: var(--paper);
-  padding: 100px 32px;
-  position: relative;
-  overflow: hidden;
-}
-.checklist-section::before {
-  content: '';
-  position: absolute;
-  bottom: -30%;
-  left: -10%;
-  width: 50%;
-  height: 120%;
-  background: radial-gradient(circle, rgba(247, 239, 229, 0.1), transparent 60%);
-  pointer-events: none;
-}
-.checklist-section .section-eyebrow { color: rgba(247, 239, 229, 0.7); }
-.checklist-section .section-eyebrow::before { background: rgba(247, 239, 229, 0.4); }
-.checklist-section .section-title { color: var(--paper); }
-.checklist-section .section-intro { color: rgba(247, 239, 229, 0.9); }
-
-.checklist {
-  background: var(--paper);
-  padding: 40px 44px;
-  border-radius: var(--radius);
-  margin-top: 20px;
-  color: var(--blue);
-}
-.checklist-group { margin-bottom: 36px; }
-.checklist-group:last-child { margin-bottom: 0; }
-.checklist-group-title {
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--taupe);
-  margin-bottom: 16px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(10, 59, 147, 0.1);
-}
-.checklist-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 12px 0;
-  cursor: pointer;
-  user-select: none;
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--blue);
-}
-.checklist-check {
-  flex-shrink: 0;
-  width: 22px; height: 22px;
-  border: 2px solid var(--blue);
-  border-radius: 4px;
-  display: flex; align-items: center; justify-content: center;
-  transition: all .2s var(--ease);
-  margin-top: 2px;
-}
-.checklist-item.checked .checklist-check {
-  background: var(--blue);
-  color: var(--paper);
-}
-.checklist-item.checked .checklist-check::after {
-  content: '✓';
-  font-weight: 900;
-  font-size: 14px;
-}
-.checklist-item.checked .checklist-label {
-  text-decoration: line-through;
-  opacity: 0.5;
-}
-
-.checklist-actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 24px;
-  flex-wrap: wrap;
-}
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 22px;
-  background: transparent;
-  border: 1px solid var(--blue);
-  color: var(--blue);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  border-radius: 100px;
-  cursor: pointer;
-  transition: all .2s var(--ease);
-  font-family: var(--f-body);
-}
-.btn:hover { background: var(--blue); color: var(--paper); }
-.btn-primary { background: var(--blue); color: var(--paper); }
-.btn-primary:hover { background: var(--ink); border-color: var(--ink); }
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-.footer {
-  background: var(--blue);
-  color: var(--paper);
-  padding: 60px 32px 32px;
-}
-.footer-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-}
-.footer-top {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 60px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid rgba(247, 239, 229, 0.2);
-}
-@media (max-width: 700px) {
-  .footer-top { grid-template-columns: 1fr; gap: 32px; }
-}
-.footer-brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 20px;
-}
-.footer-brand .swallow {
-  width: 36px;
-  height: 36px;
-  color: var(--paper);
-}
-.footer-brand-text {
-  font-size: 22px;
-  font-weight: 900;
-  letter-spacing: 0.1em;
-}
-.footer-tagline {
-  font-family: var(--f-script);
-  font-size: 22px;
-  color: var(--orange);
-  margin-bottom: 12px;
-}
-.footer-sub {
-  font-size: 13px;
-  color: rgba(247, 239, 229, 0.75);
-  max-width: 400px;
-  line-height: 1.6;
-}
-.footer-meta-title {
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: rgba(247, 239, 229, 0.6);
-  margin-bottom: 14px;
-}
-.footer-meta ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-size: 14px;
-}
-.footer-bottom {
-  padding-top: 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 12px;
-  color: rgba(247, 239, 229, 0.6);
-  letter-spacing: 0.05em;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-/* =========================================================
-   PROGRESS BAR
-   ========================================================= */
-.progress-bar {
-  position: fixed;
-  top: 0; left: 0;
-  height: 3px;
-  width: 0%;
-  background: linear-gradient(90deg, var(--orange), var(--ruby));
-  z-index: 200;
-  transition: width .1s linear;
-}
-
-/* =========================================================
-   UTIL & ANIM
-   ========================================================= */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity .8s var(--ease), transform .8s var(--ease);
-}
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-.kbd {
-  font-family: 'Courier New', monospace;
-  font-size: 0.88em;
-  background: rgba(10, 59, 147, 0.08);
-  padding: 2px 8px;
-  border-radius: 3px;
-}
-
-/* =========================================================
-   LOGIN GATE
-   ========================================================= */
-.gate {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  background: var(--blue);
-  color: var(--paper);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 32px;
-  overflow: hidden;
-}
-.gate-bg-swallow {
-  position: absolute;
-  right: -12%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 60%;
-  max-width: 700px;
-  color: var(--paper);
-  opacity: 0.05;
-  pointer-events: none;
-}
-.gate-card {
-  max-width: 440px;
-  width: 100%;
-  position: relative;
-  z-index: 1;
-}
-.gate-logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 48px;
-}
-.gate-logo .swallow { width: 36px; height: 36px; color: var(--paper); }
-.gate-logo-text {
-  font-size: 18px;
-  font-weight: 900;
-  letter-spacing: 0.15em;
-}
-.gate-eyebrow {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--orange);
-  margin-bottom: 16px;
-}
-.gate-title {
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: -0.015em;
-  text-transform: lowercase;
-  margin-bottom: 12px;
-}
-.gate-title .script {
-  font-family: var(--f-script);
-  font-weight: 400;
-  color: var(--orange);
-  text-transform: none;
-  font-size: 0.85em;
-}
-.gate-sub {
-  font-size: 14px;
-  color: rgba(247, 239, 229, 0.75);
-  margin-bottom: 32px;
-  line-height: 1.6;
-}
-.gate-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.gate-input {
-  width: 100%;
-  padding: 16px 20px;
-  background: rgba(247, 239, 229, 0.08);
-  border: 1px solid rgba(247, 239, 229, 0.2);
-  color: var(--paper);
-  font-family: var(--f-body);
-  font-size: 16px;
-  border-radius: var(--radius);
-  letter-spacing: 0.05em;
-  outline: none;
-  transition: all .2s var(--ease);
-}
-.gate-input::placeholder { color: rgba(247, 239, 229, 0.4); }
-.gate-input:focus {
-  background: rgba(247, 239, 229, 0.12);
-  border-color: var(--orange);
-}
-.gate-btn {
-  padding: 16px 24px;
-  background: var(--orange);
-  color: var(--blue);
-  border: none;
-  font-family: var(--f-body);
-  font-size: 13px;
-  font-weight: 900;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  border-radius: 100px;
-  cursor: pointer;
-  transition: all .2s var(--ease);
-  margin-top: 8px;
-}
-.gate-btn:hover { background: var(--paper); transform: translateY(-1px); }
-.gate-error {
-  font-size: 13px;
-  color: var(--orange);
-  min-height: 20px;
-  margin-top: -4px;
-}
-.gate-footer {
-  margin-top: 48px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(247, 239, 229, 0.15);
-  font-size: 11px;
-  color: rgba(247, 239, 229, 0.5);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-body.gated { overflow: hidden; }
-body.gated > *:not(.gate) { display: none !important; }
-
-/* =========================================================
-   FIELD-MODE (cola do tour — mobile)
-   ========================================================= */
-.fieldmode-trigger {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 95;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 22px;
-  background: var(--orange);
-  color: var(--blue);
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  border-radius: 100px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 12px 28px -8px rgba(10, 59, 147, 0.5);
-  transition: all .2s var(--ease);
-  font-family: var(--f-body);
-}
-.fieldmode-trigger:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -8px rgba(10,59,147,.6); }
-.fieldmode-trigger svg { width: 16px; height: 16px; }
-
-.fieldmode {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  background: var(--blue);
-  color: var(--paper);
-  display: flex;
-  flex-direction: column;
-  transform: translateY(100%);
-  transition: transform .35s var(--ease);
-  overflow: hidden;
-}
-.fieldmode.open { transform: translateY(0); }
-
-.fm-header {
-  flex-shrink: 0;
-  padding: 16px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  background: var(--ink);
-  border-bottom: 1px solid rgba(247, 239, 229, 0.1);
-}
-.fm-header-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.fm-header-left .swallow { width: 22px; height: 22px; color: var(--paper); }
-.fm-header-title {
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--orange);
-}
-.fm-close {
-  width: 40px; height: 40px;
-  background: rgba(247, 239, 229, 0.1);
-  border: none;
-  border-radius: 50%;
-  color: var(--paper);
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: background .2s;
-}
-.fm-close:hover { background: rgba(247, 239, 229, 0.2); }
-.fm-close svg { width: 20px; height: 20px; }
-
-/* Station tabs — horizontal swipe on mobile */
-.fm-tabs {
-  flex-shrink: 0;
-  display: flex;
-  gap: 4px;
-  padding: 12px 16px;
-  background: var(--ink);
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  border-bottom: 1px solid rgba(247, 239, 229, 0.1);
-}
-.fm-tabs::-webkit-scrollbar { display: none; }
-.fm-tab {
-  flex-shrink: 0;
-  padding: 10px 18px;
-  background: transparent;
-  border: 1px solid rgba(247, 239, 229, 0.2);
-  color: rgba(247, 239, 229, 0.7);
-  font-family: var(--f-body);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  border-radius: 100px;
-  cursor: pointer;
-  transition: all .2s var(--ease);
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.fm-tab-num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background: rgba(247, 239, 229, 0.15);
-  font-size: 11px;
-  font-weight: 900;
-}
-.fm-tab.active {
-  background: var(--orange);
-  color: var(--blue);
-  border-color: var(--orange);
-}
-.fm-tab.active .fm-tab-num { background: var(--blue); color: var(--paper); }
-
-.fm-body {
-  flex: 1;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 24px 20px 40px;
-}
-.fm-panel { display: none; }
-.fm-panel.active { display: block; animation: fmIn .3s var(--ease); }
-@keyframes fmIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.fm-station-header {
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(247, 239, 229, 0.15);
-  margin-bottom: 20px;
-}
-.fm-station-num {
-  font-size: 56px;
-  font-weight: 900;
-  line-height: 0.9;
-  color: var(--orange);
-  letter-spacing: -0.04em;
-}
-.fm-station-title {
-  font-size: 22px;
-  font-weight: 900;
-  text-transform: lowercase;
-  margin-top: 8px;
-}
-.fm-station-meta {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-top: 14px;
-  font-size: 12px;
-  color: rgba(247, 239, 229, 0.7);
-}
-.fm-station-meta span strong { color: var(--paper); font-weight: 700; }
-
-.fm-block {
-  background: rgba(247, 239, 229, 0.07);
-  border-left: 3px solid var(--orange);
-  border-radius: 3px;
-  padding: 16px 18px;
-  margin-bottom: 14px;
-}
-.fm-block-label {
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--orange);
-  margin-bottom: 10px;
-}
-.fm-block p {
-  font-size: 15px;
-  line-height: 1.55;
-  margin-bottom: 8px;
-}
-.fm-block p:last-child { margin-bottom: 0; }
-.fm-block strong { color: var(--orange); font-weight: 700; }
-
-.fm-bullets {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.fm-bullets li {
-  display: flex;
-  gap: 12px;
-  font-size: 14px;
-  line-height: 1.45;
-}
-.fm-bullets li::before {
-  content: '';
-  flex-shrink: 0;
-  width: 6px; height: 6px;
-  background: var(--orange);
-  border-radius: 50%;
-  margin-top: 8px;
-}
-.fm-bullets li strong { color: var(--paper); font-weight: 700; }
-
-.fm-dodont {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: 4px;
-}
-.fm-dd {
-  padding: 14px 14px;
-  border-radius: 4px;
-  font-size: 12px;
-  line-height: 1.4;
-}
-.fm-dd-do {
-  background: rgba(136, 186, 20, 0.15);
-  border: 1px solid rgba(136, 186, 20, 0.4);
-}
-.fm-dd-dont {
-  background: rgba(240, 138, 0, 0.12);
-  border: 1px solid rgba(240, 138, 0, 0.35);
-}
-.fm-dd-label {
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.fm-dd-do .fm-dd-label { color: #b9dd4e; }
-.fm-dd-dont .fm-dd-label { color: var(--orange); }
-.fm-dd ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-.fm-dd li { padding-left: 12px; position: relative; }
-.fm-dd-do li::before { content: '+'; position: absolute; left: 0; color: #b9dd4e; font-weight: 900; }
-.fm-dd-dont li::before { content: '×'; position: absolute; left: 0; color: var(--orange); font-weight: 900; }
-
-/* Anchor phrase big callout — the memorable line */
-.fm-anchor {
-  padding: 18px 18px;
-  margin-bottom: 18px;
-  background: var(--orange);
-  color: var(--blue);
-  border-radius: 4px;
-  font-family: var(--f-script);
-  font-size: 20px;
-  line-height: 1.3;
-}
-.fm-anchor::before {
-  content: 'frase-âncora';
-  display: block;
-  font-family: var(--f-body);
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-  opacity: 0.75;
-}
-
-/* Section titles inside field mode */
-.fm-sec-title {
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(247, 239, 229, 0.65);
-  margin: 22px 0 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.fm-sec-title::before {
-  content: '';
-  width: 20px;
-  height: 1px;
-  background: rgba(247, 239, 229, 0.5);
-}
-
-/* Nav arrows */
-.fm-nav {
-  display: flex;
-  gap: 10px;
-  margin-top: 28px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(247, 239, 229, 0.15);
-}
-.fm-nav-btn {
-  flex: 1;
-  padding: 14px;
-  background: rgba(247, 239, 229, 0.08);
-  border: 1px solid rgba(247, 239, 229, 0.2);
-  color: var(--paper);
-  font-family: var(--f-body);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  border-radius: 100px;
-  cursor: pointer;
-  transition: all .2s var(--ease);
-}
-.fm-nav-btn:hover:not(:disabled) { background: rgba(247,239,229,.15); }
-.fm-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-
-/* Don't show field-mode trigger when printing */
-@media print {
-  .fieldmode-trigger, .fieldmode, .gate { display: none !important; }
-}
-/* Bigger trigger label on mobile, icon-only on tiny screens */
-@media (max-width: 380px) {
-  .fieldmode-trigger { padding: 14px 18px; font-size: 11px; }
-}
-
-/* Print */
-@media print {
-  .nav, .hero-cta, .quiz, .checklist-actions, .progress-bar, .faq-toggle,
-  .fieldmode-trigger, .fieldmode, .gate { display: none !important; }
-  .section, .station, .briefing, .checklist-section { page-break-inside: avoid; padding: 20px; }
-  body { background: white; color: black; }
-  .faq-answer { max-height: none !important; }
-  .faq-answer-inner { padding: 0 28px 16px; }
-}
+  @media print{
+    header.top,.summary,.pb-tools,.pb-actions,.top-nav,.reveal{display:none!important}
+    .st-body{max-height:none!important}.curio{display:block!important}
+    body{background:#fff}.station{break-inside:avoid;box-shadow:none}
+  }
 </style>
 </head>
-<body class="gated">
+<body>
 
-<!-- ======================================================= -->
-<!-- LOGIN GATE                                                -->
-<!-- ======================================================= -->
-<div class="gate" id="gate">
-  <svg class="gate-bg-swallow" viewBox="0 0 99.74 59.92" aria-hidden="true">
-    <path d="M80.7,12.55c-.91,3.22-2.5,6.55-9.93,10.63-7.63,4.2-20.09,4.73-20.09,4.73-1.84.17-1.74-.03-.09-.58,8.41-2.7,10.89-4.35,16.27-7.51,6.01-3.54,12.14-8.33,12.14-8.33,0,0,2.72-2.45,1.69,1.06M85.91,5.33c.88-1.82,2.34-3.64,2.34-3.64l-2.79.59S84.68.08,81.85,0c-3.73-.12-5.4,4.94-5.4,4.94-.37.93-1.05.63-1.05.63-5.35-6.02-26.72-.43-42.57,19.83l.13.11s15.11-12.17,27.82-10.32c.78.12,3.89.38,1.18,2.85-1.18,1.06-7.59,6.06-14.58,8.48-7.15,2.5-12.92,2.38-12.92,2.38-7.85.59-23.29-3.33-23.29-3.33l-.18.12c6.05,3.57,23.54,4.63,23.54,4.63.23,0,.1.25.1.25-11.06,6.46-14.61,12.72-14.61,12.72l.21.14s10.23-11.47,21.48-13.14c17.95-2.66,16.52-1.87,23.57-3.73.54-.14.45.2.04.71-4.76,6.27-16.7,9.21-22.39,10.34l.02.13s11.42-.22,23.92-5.04c12.52-4.8,16.19-10.73,16.82-14.12.46-2.61-.81-3.95-1.34-4.52-.11-.09-.27-.29-.07-.71,0,0,2.1-4.96,3.61-8" fill="currentColor"/>
-  </svg>
-  <div class="gate-card">
-    <div class="gate-logo">
-      <svg class="swallow" viewBox="0 0 99.74 59.92" aria-hidden="true">
-        <path d="M93.68,54.46c2.14-.04,4.7-.52,5.08-1.19.06-.1.08-.4.08-.4,0-.06,0-.14-.15-.15-1.66.02-3.42.02-5.07-.03,0-.89.01-2.62.01-2.62h1.19c1.56,0,3.11.01,4.68.03.13,0,.2-.05.2-.12v-1.64c0-.06-.03-.18-.17-.18-3.02.11-6.05.05-9.09.07-.14,0-.12.12-.12.14.05,2.71.12,5.43.04,8.12-.04.89-.03,1.79-.15,2.66,0,.16.17.18.17.18.15,0,.3,0,.45,0,4.36-.07,3.36-.07,5.62-.07h1.55c.48,0,.79,0,1.55,0,.09,0,.2-.02.2-.1v-1.61c0-.1-.05-.19-.18-.18-2.22.07-1.26.05-5.89.05-.03-.99-.02-2.01-.04-2.97h.05Z" fill="currentColor"/>
-        <path d="M67.29,54.58c2.14-.03,4.6-.52,5-1.2.06-.1.08-.39.08-.39.01-.06,0-.14-.16-.14-1.64.02-3.38.02-5.02-.03v-2.75h1.01c1.63,0,3.03.02,4.66.03.12,0,.21-.05.21-.11l.02-1.64c0-.11-.04-.18-.16-.18-3.11.1-5.91.05-9.03.06-.08,0-.11.05-.11.15.04,2.71.11,5.43.03,8.12-.03.89-.03,1.79-.15,2.67-.01.1.06.18.16.18l3.18-.13c.11,0,.18-.05.18-.15v-1.91c.01.13.01.27.02.4v-1.18s0-1.79,0-1.79h.09Z" fill="currentColor"/>
-        <path d="M80.7,12.55c-.91,3.22-2.5,6.55-9.93,10.63-7.63,4.2-20.09,4.73-20.09,4.73-1.84.17-1.74-.03-.09-.58,8.41-2.7,10.89-4.35,16.27-7.51,6.01-3.54,12.14-8.33,12.14-8.33,0,0,2.72-2.45,1.69,1.06M85.91,5.33c.88-1.82,2.34-3.64,2.34-3.64l-2.79.59S84.68.08,81.85,0c-3.73-.12-5.4,4.94-5.4,4.94-.37.93-1.05.63-1.05.63-5.35-6.02-26.72-.43-42.57,19.83l.13.11s15.11-12.17,27.82-10.32c.78.12,3.89.38,1.18,2.85-1.18,1.06-7.59,6.06-14.58,8.48-7.15,2.5-12.92,2.38-12.92,2.38-7.85.59-23.29-3.33-23.29-3.33l-.18.12c6.05,3.57,23.54,4.63,23.54,4.63.23,0,.1.25.1.25-11.06,6.46-14.61,12.72-14.61,12.72l.21.14s10.23-11.47,21.48-13.14c17.95-2.66,16.52-1.87,23.57-3.73.54-.14.45.2.04.71-4.76,6.27-16.7,9.21-22.39,10.34l.02.13s11.42-.22,23.92-5.04c12.52-4.8,16.19-10.73,16.82-14.12.46-2.61-.81-3.95-1.34-4.52-.11-.09-.27-.29-.07-.71,0,0,2.1-4.96,3.61-8" fill="currentColor"/>
-        <path d="M8.47,59.27c-.71-.01-1-.01-1.4-.01h-1.73c-1.73,0-3.45.04-5.17.08,0,0-.17-.02-.17-.18.13-.87.12-1.77.16-2.66.08-2.69,0-5.41-.04-8.13,0-.06.02-.14.11-.15l3.21-.1c.09,0,.17.12.17.19-.05.84-.05,1.72-.06,2.59-.04,2.14-.05,4.3-.04,6.45,1.64.05,3.35.05,4.96,0,.09,0,.25.05.24.17l-.06,1.62c0,.05-.07.11-.19.11" fill="currentColor"/>
-        <path d="M33.05,49.02c-.26.64-.28.8-.48,1.46-.02.08-.13.05-.23.02-1.15-.42-2.15-.6-3.34-.6-1.39,0-2.24.46-2.11,1.03.33,1.51,6.41,1.85,7.1,5,.19.9-.06,1.66-.73,2.3-1.08.99-2.99,1.21-4.72,1.21-1.52,0-3.65-.32-5.31-.97-.07-.03-.1-.09-.08-.18.12-.58.14-.76.27-1.54.02-.1.11-.12.19-.08,1.36.61,3.36.93,4.47.93,1.82,0,2.74-.54,2.55-1.38-.39-1.8-6.33-1.98-6.96-4.89-.49-2.26,1.8-3.29,4.85-3.29,1.52,0,2.8.21,4.42.8.1.03.13.1.1.17" fill="currentColor"/>
-        <path d="M35.19,59.19c.88-1.41,1.63-2.82,2.29-4.23,1.27-2.7,3.07-6.58,3.07-6.58.04-.08.08-.15.18-.15l3.15-.1c.16,0,.19.13.19.13,1.45,3.48,3.2,7.25,4.88,10.85.03.07,0,.09-.14.1-.1,0-3.37.13-3.37.13-.1,0-.12-.09-.12-.09l-1.2-3.01c-.92-.02-2.45-.04-3.36-.04h-1.19l-1.36,2.97s-.04.1-.19.11l-2.71.07c-.11,0-.15-.1-.12-.15M41.93,50.71l-1.71,3.94c.4.01.8.01,1.09.01h.82c.29,0,.83,0,1.37-.01l-1.57-3.94Z" fill="currentColor"/>
-        <path d="M79.22,59.26l-3.14.12c-.13,0-.18-.1-.16-.18.12-.88.11-1.77.15-2.67.08-2.69,0-5.41-.04-8.13,0-.08.02-.14.12-.14,1.98,0,3.73-.09,5.71-.09,2.14,0,4.17.61,4.61,2.6.41,1.92-1.12,3.49-3.44,3.76,2.25,2.48,3.13,3.55,5,5.19.08.16-.12.18-.21.18-3.93-.09-8.1-5.24-8.1-5.24h-.36s0,2.95.03,4.43c0,.08-.08.15-.18.15M80.6,49.86c-.36,0-.66.02-1.18.03l-.05,3.16c1.27-.05,4.18.03,3.75-1.93-.19-.87-.99-1.27-2.53-1.27" fill="currentColor"/>
-        <path d="M14.85,54.46c2.14-.04,4.7-.52,5.09-1.19.06-.1.08-.4.08-.4,0-.06,0-.14-.16-.15-1.67.02-3.42.02-5.07-.03,0-.89.01-2.62.01-2.62h1.19c1.56,0,3.11.01,4.67.03.13,0,.2-.05.2-.12v-1.64c0-.06-.03-.18-.17-.18-3.02.11-6.05.05-9.1.07-.14,0-.11.12-.11.14.05,2.71.12,5.43.04,8.12-.04.89-.03,1.79-.15,2.66,0,.16.16.18.16.18.15,0,.31,0,.45,0,4.36-.07,3.36-.07,5.62-.07h1.55c.47,0,.79,0,1.55,0,.08,0,.2-.02.2-.1v-1.61c0-.1-.04-.19-.18-.18-2.22.07-1.26.05-5.89.05-.03-.99-.02-2.01-.04-2.97h.05Z" fill="currentColor"/>
-        <path d="M54.9,54.58c2.14-.03,4.61-.52,5-1.2.06-.1.08-.39.08-.39,0-.06,0-.14-.15-.14-1.65.02-3.38.02-5.02-.03v-2.75h1.01c1.63,0,3.03.02,4.65.03.12,0,.21-.05.21-.11l.02-1.64c0-.11-.04-.18-.16-.18-3.11.1-5.91.05-9.04.06-.08,0-.11.05-.11.15.05,2.71.11,5.43.03,8.12-.03.89-.03,1.79-.15,2.67-.01.1.06.18.16.18l3.18-.13c.11,0,.18-.05.18-.15v-1.91c0,.13.01.27.02.4v-1.18s0-1.79,0-1.79h.09Z" fill="currentColor"/>
-      </svg>
-      <span class="gate-logo-text">LESAFFRE</span>
+<header class="top">
+  <div class="wrap top-in">
+    <div class="brand">
+      <div class="swallow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 13c4-1 7-4 9-8 1 3 3 5 6 6-3 .5-5 2-6 5-1-2-3-3-9-3z"/></svg></div>
+      <div><b>Lesaffre · Narandiba</b><span>Configurador de Visita</span></div>
     </div>
-    <div class="gate-eyebrow">Playbook do Tour · Acesso Interno</div>
-    <h1 class="gate-title">uma <span class="script">nova era</span> começa aqui.</h1>
-    <p class="gate-sub">
-      Este material é interno e destinado ao time que conduzirá tours na fábrica de Narandiba. Digite a senha fornecida pela equipe de Comunicação.
-    </p>
-    <form class="gate-form" id="gateForm" autocomplete="off">
-      <input
-        type="password"
-        class="gate-input"
-        id="gateInput"
-        placeholder="senha de acesso"
-        autocomplete="off"
-        autocapitalize="characters"
-        spellcheck="false"
-        required
-      />
-      <div class="gate-error" id="gateError"></div>
-      <button type="submit" class="gate-btn">entrar no playbook</button>
-    </form>
-    <div class="gate-footer">
-      Lesaffre Brasil · Narandiba · Inauguração 18 · 06 · 2026
-    </div>
+    <nav class="top-nav">
+      <button data-view="builder" class="active">Montar visita</button>
+      <button data-view="saved">Visitas salvas</button>
+      <button data-view="playbook" id="navPlaybook" disabled style="opacity:.4">Playbook</button>
+    </nav>
   </div>
-</div>
+</header>
 
-<!-- Progress bar -->
-<div class="progress-bar" id="progressBar"></div>
-
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="#top" class="nav-logo">
-      <svg class="swallow" viewBox="0 0 99.74 59.92" aria-hidden="true">
-        <path class="cls-1" d="M93.68,54.46c2.14-.04,4.7-.52,5.08-1.19.06-.1.08-.4.08-.4,0-.06,0-.14-.15-.15-1.66.02-3.42.02-5.07-.03,0-.89.01-2.62.01-2.62h1.19c1.56,0,3.11.01,4.68.03.13,0,.2-.05.2-.12v-1.64c0-.06-.03-.18-.17-.18-3.02.11-6.05.05-9.09.07-.14,0-.12.12-.12.14.05,2.71.12,5.43.04,8.12-.04.89-.03,1.79-.15,2.66,0,.16.17.18.17.18.15,0,.3,0,.45,0,4.36-.07,3.36-.07,5.62-.07h1.55c.48,0,.79,0,1.55,0,.09,0,.2-.02.2-.1v-1.61c0-.1-.05-.19-.18-.18-2.22.07-1.26.05-5.89.05-.03-.99-.02-2.01-.04-2.97h.05Z" fill="currentColor"/>
-        <path class="cls-1" d="M67.29,54.58c2.14-.03,4.6-.52,5-1.2.06-.1.08-.39.08-.39.01-.06,0-.14-.16-.14-1.64.02-3.38.02-5.02-.03v-2.75h1.01c1.63,0,3.03.02,4.66.03.12,0,.21-.05.21-.11l.02-1.64c0-.11-.04-.18-.16-.18-3.11.1-5.91.05-9.03.06-.08,0-.11.05-.11.15.04,2.71.11,5.43.03,8.12-.03.89-.03,1.79-.15,2.67-.01.1.06.18.16.18l3.18-.13c.11,0,.18-.05.18-.15v-1.91c.01.13.01.27.02.4v-1.18s0-1.79,0-1.79h.09Z" fill="currentColor"/>
-        <path class="cls-1" d="M80.7,12.55c-.91,3.22-2.5,6.55-9.93,10.63-7.63,4.2-20.09,4.73-20.09,4.73-1.84.17-1.74-.03-.09-.58,8.41-2.7,10.89-4.35,16.27-7.51,6.01-3.54,12.14-8.33,12.14-8.33,0,0,2.72-2.45,1.69,1.06M85.91,5.33c.88-1.82,2.34-3.64,2.34-3.64l-2.79.59S84.68.08,81.85,0c-3.73-.12-5.4,4.94-5.4,4.94-.37.93-1.05.63-1.05.63-5.35-6.02-26.72-.43-42.57,19.83l.13.11s15.11-12.17,27.82-10.32c.78.12,3.89.38,1.18,2.85-1.18,1.06-7.59,6.06-14.58,8.48-7.15,2.5-12.92,2.38-12.92,2.38-7.85.59-23.29-3.33-23.29-3.33l-.18.12c6.05,3.57,23.54,4.63,23.54,4.63.23,0,.1.25.1.25-11.06,6.46-14.61,12.72-14.61,12.72l.21.14s10.23-11.47,21.48-13.14c17.95-2.66,16.52-1.87,23.57-3.73.54-.14.45.2.04.71-4.76,6.27-16.7,9.21-22.39,10.34l.02.13s11.42-.22,23.92-5.04c12.52-4.8,16.19-10.73,16.82-14.12.46-2.61-.81-3.95-1.34-4.52-.11-.09-.27-.29-.07-.71,0,0,2.1-4.96,3.61-8" fill="currentColor"/>
-        <path class="cls-1" d="M8.47,59.27c-.71-.01-1-.01-1.4-.01h-1.73c-1.73,0-3.45.04-5.17.08,0,0-.17-.02-.17-.18.13-.87.12-1.77.16-2.66.08-2.69,0-5.41-.04-8.13,0-.06.02-.14.11-.15l3.21-.1c.09,0,.17.12.17.19-.05.84-.05,1.72-.06,2.59-.04,2.14-.05,4.3-.04,6.45,1.64.05,3.35.05,4.96,0,.09,0,.25.05.24.17l-.06,1.62c0,.05-.07.11-.19.11" fill="currentColor"/>
-        <path class="cls-1" d="M33.05,49.02c-.26.64-.28.8-.48,1.46-.02.08-.13.05-.23.02-1.15-.42-2.15-.6-3.34-.6-1.39,0-2.24.46-2.11,1.03.33,1.51,6.41,1.85,7.1,5,.19.9-.06,1.66-.73,2.3-1.08.99-2.99,1.21-4.72,1.21-1.52,0-3.65-.32-5.31-.97-.07-.03-.1-.09-.08-.18.12-.58.14-.76.27-1.54.02-.1.11-.12.19-.08,1.36.61,3.36.93,4.47.93,1.82,0,2.74-.54,2.55-1.38-.39-1.8-6.33-1.98-6.96-4.89-.49-2.26,1.8-3.29,4.85-3.29,1.52,0,2.8.21,4.42.8.1.03.13.1.1.17" fill="currentColor"/>
-        <path class="cls-1" d="M35.19,59.19c.88-1.41,1.63-2.82,2.29-4.23,1.27-2.7,3.07-6.58,3.07-6.58.04-.08.08-.15.18-.15l3.15-.1c.16,0,.19.13.19.13,1.45,3.48,3.2,7.25,4.88,10.85.03.07,0,.09-.14.1-.1,0-3.37.13-3.37.13-.1,0-.12-.09-.12-.09l-1.2-3.01c-.92-.02-2.45-.04-3.36-.04h-1.19l-1.36,2.97s-.04.1-.19.11l-2.71.07c-.11,0-.15-.1-.12-.15M41.93,50.71l-1.71,3.94c.4.01.8.01,1.09.01h.82c.29,0,.83,0,1.37-.01l-1.57-3.94Z" fill="currentColor"/>
-        <path class="cls-1" d="M79.22,59.26l-3.14.12c-.13,0-.18-.1-.16-.18.12-.88.11-1.77.15-2.67.08-2.69,0-5.41-.04-8.13,0-.08.02-.14.12-.14,1.98,0,3.73-.09,5.71-.09,2.14,0,4.17.61,4.61,2.6.41,1.92-1.12,3.49-3.44,3.76,2.25,2.48,3.13,3.55,5,5.19.08.16-.12.18-.21.18-3.93-.09-8.1-5.24-8.1-5.24h-.36s0,2.95.03,4.43c0,.08-.08.15-.18.15M80.6,49.86c-.36,0-.66.02-1.18.03l-.05,3.16c1.27-.05,4.18.03,3.75-1.93-.19-.87-.99-1.27-2.53-1.27" fill="currentColor"/>
-        <path class="cls-1" d="M14.85,54.46c2.14-.04,4.7-.52,5.09-1.19.06-.1.08-.4.08-.4,0-.06,0-.14-.16-.15-1.67.02-3.42.02-5.07-.03,0-.89.01-2.62.01-2.62h1.19c1.56,0,3.11.01,4.67.03.13,0,.2-.05.2-.12v-1.64c0-.06-.03-.18-.17-.18-3.02.11-6.05.05-9.1.07-.14,0-.11.12-.11.14.05,2.71.12,5.43.04,8.12-.04.89-.03,1.79-.15,2.66,0,.16.16.18.16.18.15,0,.31,0,.45,0,4.36-.07,3.36-.07,5.62-.07h1.55c.47,0,.79,0,1.55,0,.08,0,.2-.02.2-.1v-1.61c0-.1-.04-.19-.18-.18-2.22.07-1.26.05-5.89.05-.03-.99-.02-2.01-.04-2.97h.05Z" fill="currentColor"/>
-        <path class="cls-1" d="M54.9,54.58c2.14-.03,4.61-.52,5-1.2.06-.1.08-.39.08-.39,0-.06,0-.14-.15-.14-1.65.02-3.38.02-5.02-.03v-2.75h1.01c1.63,0,3.03.02,4.65.03.12,0,.21-.05.21-.11l.02-1.64c0-.11-.04-.18-.16-.18-3.11.1-5.91.05-9.04.06-.08,0-.11.05-.11.15.05,2.71.11,5.43.03,8.12-.03.89-.03,1.79-.15,2.67-.01.1.06.18.16.18l3.18-.13c.11,0,.18-.05.18-.15v-1.91c0,.13.01.27.02.4v-1.18s0-1.79,0-1.79h.09Z" fill="currentColor"/>
-      </svg>
-      LESAFFRE
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#visao-geral">Visão Geral</a></li>
-      <li><a href="#antes">Antes do Tour</a></li>
-      <li><a href="#estacoes">As 6 Estações</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#checklist">Checklist</a></li>
-    </ul>
-    <button class="nav-burger" id="navBurger" aria-label="Menu">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero-bg"></div>
-  <svg class="hero-swallow" viewBox="0 0 99.74 59.92" aria-hidden="true">
-    <path d="M80.7,12.55c-.91,3.22-2.5,6.55-9.93,10.63-7.63,4.2-20.09,4.73-20.09,4.73-1.84.17-1.74-.03-.09-.58,8.41-2.7,10.89-4.35,16.27-7.51,6.01-3.54,12.14-8.33,12.14-8.33,0,0,2.72-2.45,1.69,1.06M85.91,5.33c.88-1.82,2.34-3.64,2.34-3.64l-2.79.59S84.68.08,81.85,0c-3.73-.12-5.4,4.94-5.4,4.94-.37.93-1.05.63-1.05.63-5.35-6.02-26.72-.43-42.57,19.83l.13.11s15.11-12.17,27.82-10.32c.78.12,3.89.38,1.18,2.85-1.18,1.06-7.59,6.06-14.58,8.48-7.15,2.5-12.92,2.38-12.92,2.38-7.85.59-23.29-3.33-23.29-3.33l-.18.12c6.05,3.57,23.54,4.63,23.54,4.63.23,0,.1.25.1.25-11.06,6.46-14.61,12.72-14.61,12.72l.21.14s10.23-11.47,21.48-13.14c17.95-2.66,16.52-1.87,23.57-3.73.54-.14.45.2.04.71-4.76,6.27-16.7,9.21-22.39,10.34l.02.13s11.42-.22,23.92-5.04c12.52-4.8,16.19-10.73,16.82-14.12.46-2.61-.81-3.95-1.34-4.52-.11-.09-.27-.29-.07-.71,0,0,2.1-4.96,3.61-8" fill="currentColor"/>
-  </svg>
-
-  <div class="hero-inner">
-    <span class="hero-eyebrow">Playbook do Tour · Treinamento Interno</span>
-    <h1>
-      uma <span class="script">nova era</span><br>
-      da panificação<br>
-      <span class="outlined">chegou.</span>
-    </h1>
-    <p class="lead">
-      Você foi escolhido para guiar clientes e parceiros pela nossa nova fábrica em Narandiba. Este playbook te prepara, passo a passo, para transformar cada visita em uma experiência que traduz <strong style="font-weight:700">170 anos de fermentação, ciência e paixão.</strong>
-    </p>
-
-    <a href="#visao-geral" class="hero-cta">
-      Começar o treinamento
-      <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-    </a>
-
-    <div class="hero-meta">
-      <div class="hero-meta-item">
-        <span class="hero-meta-label">Inauguração</span>
-        <span class="hero-meta-value">18 de junho de 2026</span>
-      </div>
-      <div class="hero-meta-item">
-        <span class="hero-meta-label">Estações</span>
-        <span class="hero-meta-value">6 pontos guiados</span>
-      </div>
-      <div class="hero-meta-item">
-        <span class="hero-meta-label">Duração</span>
-        <span class="hero-meta-value">~ 45 min por grupo</span>
-      </div>
-      <div class="hero-meta-item">
-        <span class="hero-meta-label">Grupo</span>
-        <span class="hero-meta-value">15 pessoas</span>
-      </div>
+<!-- ============ BUILDER ============ -->
+<section class="view show" id="view-builder">
+  <div class="wrap">
+    <div class="hero">
+      <div class="kick">monte do seu jeito</div>
+      <h1>Configure a visita guiada</h1>
+      <p>Escolha os departamentos, ordene o roteiro e defina a profundidade do conteúdo. O sistema gera o playbook de campo na hora — e você pode salvar para cada cliente ou data.</p>
     </div>
-  </div>
-</section>
 
-<!-- WHY IT MATTERS / 4 PILLARS -->
-<section class="section" id="visao-geral">
-  <div class="section-inner">
-    <div class="section-eyebrow">01 · por que este tour importa</div>
-    <h2 class="section-title">
-      você não está só mostrando uma fábrica.<br>
-      está contando <span class="accent">a história</span> que <br>define o futuro da Lesaffre.
-    </h2>
-    <p class="section-intro">
-      Cada cliente que entra em Narandiba vai embora com uma impressão. Este tour existe para garantir que essa impressão seja a certa: a de que a Lesaffre é <em>a</em> referência em fermentação no Brasil — próxima, confiável, moderna e pronta para crescer junto com o cliente. São quatro pilares que você deve reforçar durante todo o tour:
-    </p>
-
-    <div class="pillars reveal">
-      <div class="pillar">
-        <div class="pillar-num">01</div>
-        <div class="pillar-title">proximidade</div>
-        <div class="pillar-desc">Fábrica local. CRM, app "Lesaffre e Você", equipe comercial dedicada, massa madre e fermento fresco produzidos aqui no Brasil.</div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-num">02</div>
-        <div class="pillar-title">qualidade</div>
-        <div class="pillar-desc">Produção padronizada, automatizada e com o mais moderno parque tecnológico do mundo Lesaffre. Sem dependência de fator humano.</div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-num">03</div>
-        <div class="pillar-title">serviço</div>
-        <div class="pillar-desc">Logística com torre de controle, novo Baking Center, equipe técnica especializada atendendo o Brasil inteiro.</div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-num">04</div>
-        <div class="pillar-title">inovação</div>
-        <div class="pillar-desc">Desenvolvimento de novos produtos e projetos <em>tailor made</em> — soluções feitas sob medida para cada cliente.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BRIEFING / BEFORE YOU START -->
-<section class="briefing" id="antes">
-  <div class="section-inner">
-    <div class="section-eyebrow">02 · antes do tour começar</div>
-    <h2 class="section-title">o que você precisa saber<br>antes do ônibus chegar.</h2>
-    <p class="section-intro">
-      Um bom tour começa muito antes da primeira palavra. Este é o enquadramento que você precisa ter na cabeça ao receber o grupo.
-    </p>
-
-    <div class="briefing-grid">
-      <div class="briefing-card reveal">
-        <div class="briefing-card-icon">1</div>
-        <div class="briefing-card-title">quem é o grupo</div>
-        <div class="briefing-card-text">
-          15 pessoas: <strong style="color:#f0efe5">12 clientes</strong> (donos de distribuidoras, indústrias, diretores) + você (guia) + 1 segurança + 1 comercial que conhece aquele grupo. Peça ao comercial um briefing de <em>quem</em> são antes de começar.
+    <div class="config-row">
+      <div class="panel">
+        <h3>Identificação da visita</h3>
+        <div class="field"><label>Nome / Cliente</label><input id="cfgName" placeholder="Ex.: Visita Distribuidora ABC"></div>
+        <div class="two">
+          <div class="field"><label>Data</label><input id="cfgDate" type="date"></div>
+          <div class="field"><label>Anfitrião</label><input id="cfgHost" placeholder="Quem conduz"></div>
         </div>
+        <div class="field"><label>Público (opcional)</label><input id="cfgAudience" placeholder="Ex.: Donos de padaria · diretores"></div>
       </div>
-      <div class="briefing-card reveal">
-        <div class="briefing-card-icon">2</div>
-        <div class="briefing-card-title">seu papel</div>
-        <div class="briefing-card-text">
-          Você é o <strong style="color:#f0efe5">condutor técnico</strong> do tour inteiro. Vai explicar cada estação com conhecimento de causa, mantendo o fio condutor da "vida da levedura". Você cuida do tempo, garante segurança e mantém a energia do grupo em todas as 6 estações.
-        </div>
-      </div>
-      <div class="briefing-card reveal">
-        <div class="briefing-card-icon">3</div>
-        <div class="briefing-card-title">o fio condutor</div>
-        <div class="briefing-card-text">
-          Uma frase atravessa tudo: <em style="color:#f08a00;font-style:normal;font-weight:700">"tradição de 170 anos, tecnologia de ponta, feita aqui para você."</em> Volte a ela sempre que sentir que o grupo se perdeu em detalhes técnicos.
+      <div class="panel">
+        <h3>Profundidade do conteúdo</h3>
+        <div class="depth-opts" id="depthOpts">
+          <div class="depth" data-depth="min"><div class="bars"><i></i><i></i><i></i></div><div class="dt"><b>Mínimo</b><small>Só narrativa e benefício — leve e comercial</small></div></div>
+          <div class="depth on" data-depth="eq"><div class="bars"><i></i><i></i><i></i></div><div class="dt"><b>Equilibrado</b><small>Narrativa + alguns dados "uau"</small></div></div>
+          <div class="depth" data-depth="tec"><div class="bars"><i></i><i></i><i></i></div><div class="dt"><b>Técnico</b><small>Para público que quer entender o processo</small></div></div>
         </div>
       </div>
     </div>
 
-    <!-- Preparation checklist -->
-    <h3 style="margin-top:72px; margin-bottom:24px; font-size:14px; font-weight:900; letter-spacing:0.2em; text-transform:uppercase; color:rgba(247,239,229,0.7)">Preparação técnica essencial</h3>
-    <div class="briefing-grid" style="grid-template-columns:repeat(2, 1fr)">
-      <div class="briefing-card" style="padding:24px">
-        <div style="font-size:18px; font-weight:900; color:#f08a00; margin-bottom:12px">Dominar o processo</div>
-        <div style="font-size:13px; color:rgba(247,239,229,0.9); line-height:1.5">Melaço → tratamento → fermentação → separação → empacotamento. Cada estação é um passo dessa jornada. Estude o fluxo antes do primeiro tour.</div>
-      </div>
-      <div class="briefing-card" style="padding:24px">
-        <div style="font-size:18px; font-weight:900; color:#f08a00; margin-bottom:12px">Conhecer os materiais</div>
-        <div style="font-size:13px; color:rgba(247,239,229,0.9); line-height:1.5">TV na estação 3, mesa de amostras, vidros de efluente na 5, CCTV na 6. Chegue cedo para conferir se está tudo funcionando.</div>
-      </div>
-    </div>
-
-    <!-- Safety -->
-    <div class="safety">
-      <div class="safety-icon">!</div>
-      <div class="safety-content">
-        <h3>safety first — inegociável</h3>
-        <p>
-          Todo visitante recebe <strong>sapatos de segurança</strong> na porta do ônibus ao sair do hotel e assiste ao <strong>vídeo de segurança via QR Code</strong> antes de entrar na planta. Antes de passar pela porta da câmara fria, há <strong>sanitizante para calçado</strong> e <strong>lavagem de mãos</strong>. Se algo sair do script — pare. Ninguém entra em área restrita, ninguém toca em equipamento. Segurança não é negociada para manter o ritmo do tour.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TOUR OVERVIEW MAP -->
-<section class="section">
-  <div class="section-inner">
-    <div class="section-eyebrow">03 · o percurso</div>
-    <h2 class="section-title">seis estações.<br>um fio condutor: <span class="accent">a vida da levedura.</span></h2>
-    <p class="section-intro">
-      O tour não é uma sequência de salas — é a história de uma célula de levedura, do melaço bruto ao bloquinho que o padeiro recebe. Use esse fio em cada transição: "agora que vocês viram <em>X</em>, vamos ver para onde a levedura vai em seguida." Os pontos 1 e 2 são a chegada e a tenda (sem fala técnica). O tour começa de fato na estação 3.
-    </p>
-
-    <div class="tour-map reveal">
-      <a href="#estacao-1" class="map-station">
-        <span class="map-station-num">01</span>
-        <span class="map-station-label">Chegada · Passarela</span>
-      </a>
-      <a href="#estacao-2" class="map-station">
-        <span class="map-station-num">02</span>
-        <span class="map-station-label">Tenda · Coffee & Discursos</span>
-      </a>
-      <a href="#estacao-3" class="map-station">
-        <span class="map-station-time">10 min</span>
-        <span class="map-station-num">03</span>
-        <span class="map-station-label">Sala de Controle · Fermentação</span>
-      </a>
-      <a href="#estacao-4" class="map-station">
-        <span class="map-station-time">5 min</span>
-        <span class="map-station-num">04</span>
-        <span class="map-station-label">Laboratório · Cultura Pura</span>
-      </a>
-      <a href="#estacao-5" class="map-station">
-        <span class="map-station-time">5 min</span>
-        <span class="map-station-num">05</span>
-        <span class="map-station-label">CIP · Limpeza & Economia Circular</span>
-      </a>
-      <a href="#estacao-6" class="map-station">
-        <span class="map-station-time">5 min</span>
-        <span class="map-station-num">06</span>
-        <span class="map-station-label">Empacotamento · Câmara Fria</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ======================================================= -->
-<!-- ESTAÇÕES DETALHADAS                                      -->
-<!-- ======================================================= -->
-<section class="section station" id="estacoes">
-  <div class="section-inner">
-    <div class="section-eyebrow">04 · estação por estação</div>
-    <h2 class="section-title">agora, <span class="tunic">o que fazer</span><br>em cada ponto.</h2>
-    <p class="section-intro">
-      Cada estação abaixo tem: o script do especialista, os pontos-chave que você (guia) deve reforçar, o que fazer e o que evitar, e um quiz curto para fixar. Leia tudo. Depois releia antes do seu primeiro tour.
-    </p>
-  </div>
-</section>
-
-<!-- ESTAÇÃO 1 -->
-<article class="station" id="estacao-1">
-  <div class="station-inner">
-    <div class="station-sidebar">
-      <div class="station-number">01</div>
-      <div class="station-number-total">/ 6 estações</div>
-      <div class="station-meta">
-        <div class="station-meta-item">
-          <span class="station-meta-label">Onde</span>
-          <span class="station-meta-value">Estacionamento → Portaria → Passarela</span>
-        </div>
-        <div class="station-meta-item">
-          <span class="station-meta-label">Duração</span>
-          <span class="station-meta-value">~ 5 min</span>
-        </div>
-        <div class="station-meta-item">
-          <span class="station-meta-label">Quem fala</span>
-          <span class="station-meta-value">Você (guia) + Segurança</span>
-        </div>
-      </div>
-    </div>
-    <div class="station-content">
-      <h2>chegada <span class="accent">& primeira impressão</span></h2>
-      <p class="station-tagline">A experiência começa antes do tour. A primeira caminhada pela passarela define o tom para os próximos 45 minutos.</p>
-
-      <div class="station-section">
-        <div class="station-section-title">o roteiro</div>
-        <div class="script-block">
-          <span class="script-label">fala do guia</span>
-          <p>"Bem-vindos à nossa casa em Narandiba. Sejam muito bem-vindos à Lesaffre.</p>
-          <p>Antes de começarmos, três coisas rápidas: todos já estão com <strong>sapatos de segurança</strong>, todos já assistiram ao <strong>vídeo de segurança</strong>, e todos estão com <strong>crachá visível</strong>. Se algo precisar ser ajustado, me avisem agora.</p>
-          <p>Daqui vamos caminhar pela passarela até a tenda onde tomaremos um café e ouviremos as boas-vindas oficiais. Em seguida, vamos em grupos até o coração da operação — e é aí que a levedura começa a contar sua história para vocês."</p>
-        </div>
-      </div>
-
-      <div class="station-section">
-        <div class="station-section-title">pontos-chave</div>
-        <ul class="keypoints">
-          <li><span><strong>Receba pelo nome quando possível</strong> — peça ao comercial do grupo os nomes dos principais clientes. Chamar pelo nome muda tudo.</span></li>
-          <li><span><strong>Check de segurança sem alarme</strong> — confira calçado e crachá com naturalidade, como quem acolhe.</span></li>
-          <li><span><strong>Crie expectativa</strong> — antecipe que o melhor do tour está por vir, sem entregar spoilers.</span></li>
-          <li><span><strong>Cuide do tempo</strong> — 5 minutos. Não trave conversa longa aqui; o coffee é o momento certo para isso.</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</article>
-
-<!-- ESTAÇÃO 2 -->
-<article class="station" id="estacao-2">
-  <div class="station-inner">
-    <div class="station-sidebar">
-      <div class="station-number">02</div>
-      <div class="station-number-total">/ 6 estações</div>
-      <div class="station-meta">
-        <div class="station-meta-item">
-          <span class="station-meta-label">Onde</span>
-          <span class="station-meta-value">Tenda em frente ao restaurante</span>
-        </div>
-        <div class="station-meta-item">
-          <span class="station-meta-label">Duração</span>
-          <span class="station-meta-value">Variável (coffee + discursos)</span>
-        </div>
-        <div class="station-meta-item">
-          <span class="station-meta-label">Quem fala</span>
-          <span class="station-meta-value">Lideranças Lesaffre</span>
-        </div>
-      </div>
-    </div>
-    <div class="station-content">
-      <h2>tenda <span class="accent">— coffee & boas-vindas</span></h2>
-      <p class="station-tagline">Aqui acontecem os discursos oficiais. Seu papel é "posicionar o grupo" para o tour que vem em seguida.</p>
-
-      <div class="station-section">
-        <div class="station-section-title">o que acontece</div>
-        <div class="script-block">
-          <span class="script-label">sequência</span>
-          <p><strong>Coffee</strong> → Discursos das lideranças (Brice-Audren, Dominique, Alain, André) → <strong>Divisão em grupos de 15</strong> → Início do tour pela estação 3.</p>
-          <p>Antes da divisão, um vídeo curto ("tour virtual") mostra ao grupo o que eles vão ver. Você <em>não</em> fala durante os discursos. Você escuta junto e fica atento ao grupo.</p>
-        </div>
-      </div>
-
-      <div class="station-section">
-        <div class="station-section-title">pontos-chave</div>
-        <ul class="keypoints">
-          <li><span><strong>Ancore sua mensagem no discurso</strong> — se um diretor mencionou "170 anos", retome isso na estação 3. Crie continuidade.</span></li>
-          <li><span><strong>Identifique o "cliente curioso"</strong> — aquele que faz perguntas durante o discurso tende a fazer mais no tour. Antecipe-se.</span></li>
-          <li><span><strong>Monte o grupo com calma</strong> — conte até 12 clientes antes de sair. Confirme o segurança e o comercial estão presentes.</span></li>
-          <li><span><strong>Abra o tour com energia</strong> — ao sair da tenda: "pessoal, agora vamos ao coração da fábrica. Me acompanhem."</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</article>
-
-<!-- ESTAÇÃO 3 -->
-<article class="station" id="estacao-3">
-  <div class="station-inner">
-    <div class="station-sidebar">
-      <div class="station-number">03</div>
-      <div class="station-number-total">/ 6 estações</div>
-      <div class="station-meta">
-        <div class="station-meta-item">
-          <span class="station-meta-label">Onde</span>
-          <span class="station-meta-value">Sala de Controle da Fermentação</span>
-        </div>
-        <div class="station-meta-item">
-          <span class="station-meta-label">Duração</span>
-          <span class="station-meta-value">10 min — a mais longa</span>
-        </div>
-        <div class="station-meta-item">
-          <span class="station-meta-label">Apoio visual</span>
-          <span class="station-meta-value">TV com vídeo do ciclo da levedura + mesa expositora com amostras</span>
-        </div>
-        <div class="station-meta-item">
-          <span class="station-meta-label">Conceito-chave</span>
-          <span class="station-meta-value">Automação = qualidade constante</span>
-        </div>
-      </div>
-    </div>
-    <div class="station-content">
-      <h2>sala de controle <span class="accent">— o cérebro</span></h2>
-      <p class="station-tagline">Esta é a estação mais importante do tour. É aqui que o cliente entende o que é, de fato, a Lesaffre: ciência + automação + 170 anos de know-how.</p>
-
-      <div class="station-section">
-        <div class="station-section-title">o que você vai explicar</div>
-        <div class="script-block">
-          <span class="script-label">seu roteiro técnico</span>
-          <p>"Vocês estão no <strong>coração da operação</strong>. Daqui controlamos e monitoramos todo o processo de fermentação. Temos um alto nível de automação com sistemas de segurança <em>interlock</em>, o que garante qualidade do produto e segurança das pessoas — <strong>não dependemos de fator humano</strong>.</p>
-          <p>Na mesa à sua frente vocês veem a jornada completa da matéria-prima. Começa com o <strong>melaço</strong>, que vem da <strong>Cocal</strong> — nosso parceiro local, numa relação de economia circular que vou explicar mais adiante. O melaço passa por tratamento térmico, é diluído, e alimenta os fermentadores.</p>
-          <p>Fazemos primeiro a fermentação de um <em>creme-mãe</em>. Esse creme alimenta a fermentação comercial. Depois, separamos: o creme de levedura pode ir direto para o cliente como <strong>levedura líquida</strong>, ou seguir para o empacotamento como <strong>fermento fresco em bloquinhos</strong>.</p>
-          <p>E um detalhe importante: <strong>não olhamos a qualidade só no produto final</strong>. Monitoramos variáveis de qualidade <em>desde o início do processo</em>. Aqui, qualidade é parâmetro em tempo real, não laudo depois do fato."</p>
-        </div>
-      </div>
-
-      <div class="station-section">
-        <div class="station-section-title">conhecimento técnico que você precisa dominar</div>
-        <ul class="keypoints">
-          <li><span><strong>Sistema interlock:</strong> Equipamentos só funcionam quando todas as condições estão corretas. É automação de segurança.</span></li>
-          <li><span><strong>Creme-mãe:</strong> Primeira fase da fermentação, com concentração menor. Não detalhe pH/temperatura — foque no conceito.</span></li>
-          <li><span><strong>Fermentação industrial vs. padaria:</strong> Cliente panificador conhece fermentação artesanal. Explique que aqui é escala industrial — controle diferente.</span></li>
-          <li><span><strong>Monitoramento em tempo real:</strong> Diferença crucial — parâmetros acompanhados durante, não análise posterior.</span></li>
-        </ul>
-      </div>
-
-      <div class="station-section">
-        <div class="station-section-title">as amostras na mesa (o que o cliente vê)</div>
-        <div class="samples">
-          <div class="sample s-melaco-bruto"><span class="sample-stage">01 · entrada</span><span class="sample-name">Melaço bruto</span></div>
-          <div class="sample s-melaco-diluido"><span class="sample-stage">02 · preparo</span><span class="sample-name">Melaço diluído</span></div>
-          <div class="sample s-lodo"><span class="sample-stage">03 · preparo</span><span class="sample-name">Lodo do melaço</span></div>
-          <div class="sample s-mosto"><span class="sample-stage">04 · fermentação</span><span class="sample-name">Mosto com levedura</span></div>
-          <div class="sample s-creme"><span class="sample-stage">05 · separação</span><span class="sample-name">Creme de levedura</span></div>
-          <div class="sample s-fermento"><span class="sample-stage">06 · produto</span><span class="sample-name">Fermento fresco</span></div>
-          <div class="sample s-efluente-leve"><span class="sample-stage">extra · limpeza</span><span class="sample-name">Efluente leve</span></div>
-          <div class="sample s-efluente-pesado"><span class="sample-stage">extra · limpeza</span><span class="sample-name">Efluente pesado</span></div>
-        </div>
-      </div>
-
-      <div class="station-section">
-        <div class="station-section-title">pontos-chave para você (guia) reforçar</div>
-        <ul class="keypoints">
-          <li><span><strong>"Coração da operação"</strong> — use essa expressão. Ela gruda.</span></li>
-          <li><span><strong>Economia circular com a Cocal</strong> — matéria-prima local + devolução do efluente como biofertilizante. Cite sem pressa.</span></li>
-          <li><span><strong>Diferente da padaria</strong> — o cliente panificador vai pensar em "fermentação" como a que ele faz. Explique que a <em>nossa</em> fermentação é industrial, em escala e controle diferentes.</span></li>
-          <li><span><strong>Qualidade em tempo real</strong> — repita: não é laudo depois, é parâmetro durante.</span></li>
-          <li><span><strong>Aqui você tem 10 min</strong> — é a estação mais longa do tour. Aproveite para deixar o cliente fazer perguntas.</span></li>
-        </ul>
-      </div>
-
-      <div class="station-section">
-        <div class="station-section-title">atenção</div>
-        <div class="dodont">
-          <div class="dodont-card do">
-            <div class="dodont-header"><span class="dodont-badge">✓</span> diga</div>
-            <ul class="dodont-list">
-              <li>"Cepa de levedura" sem detalhar qual — é segredo industrial Lesaffre.</li>
-              <li>"Parceria local com a Cocal" — reforça proximidade.</li>
-              <li>"Automação garante que a qualidade não depende da pessoa que está de plantão."</li>
-              <li>"Nosso primeiro controle de qualidade é da matéria-prima, não do produto final."</li>
-            </ul>
-          </div>
-          <div class="dodont-card dont">
-            <div class="dodont-header"><span class="dodont-badge">×</span> evite</div>
-            <ul class="dodont-list">
-              <li>Dar nome da cepa específica (<em>Saccharomyces</em> isto, <em>Carlsberg</em> aquilo). Segredo industrial.</li>
-              <li>Entrar em detalhe de temperatura, pH, tempo exato de fermentação.</li>
-              <li>Comparar diretamente com concorrentes pelo nome.</li>
-              <li>Deixar o grupo "se perder" nas telas da sala de controle — elas são pano de fundo, não o conteúdo.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- QUIZ -->
-      <div class="quiz" data-quiz="q3">
-        <p class="quiz-question">1. Um cliente pergunta qual cepa de levedura vocês usam. Como você responde?</p>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false">
-            <span class="quiz-option-letter">A</span>
-            <span>"Usamos a cepa Saccharomyces cerevisiae Carlsberg, linhagem proprietária 2024."</span>
-          </button>
-          <button class="quiz-option" data-correct="true">
-            <span class="quiz-option-letter">B</span>
-            <span>"Nossa cepa é parte do know-how Lesaffre construído em 170 anos — trabalhamos com linhagens proprietárias desenvolvidas para entregar consistência e desempenho, mas os detalhes são confidenciais."</span>
-          </button>
-          <button class="quiz-option" data-correct="false">
-            <span class="quiz-option-letter">C</span>
-            <span>"Não posso responder, é segredo."</span>
-          </button>
-        </div>
-        <div class="quiz-feedback" data-feedback>
-          <strong>Resposta: B.</strong> Você protege o segredo industrial sem "fechar a porta" para o cliente. Conectar a confidencialidade aos 170 anos transforma um "não" em um argumento de valor. A opção C é tecnicamente correta, mas seca. A A entrega informação sigilosa.
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-
-<!-- ESTAÇÃO 4 -->
-<article class="station" id="estacao-4">
-  <div class="station-inner">
-    <div class="station-sidebar">
-      <div class="station-number">04</div>
-      <div class="station-number-total">/ 6 estações</div>
-      <div class="station-meta">
-        <div class="station-meta-item">
-          <span class="station-meta-label">Onde</span>
-          <span class="station-meta-value">Sala do cliente (vidro para a cultura pura)</span>
-        </div>
-        <div class="station-meta-item">
-          <span class="station-meta-label">Duração</span>
-          <span class="station-meta-value">5 min</span>
-        </div>
-        <div class="station-meta-item">
-          <span class="station-meta-label">Apoio visual</span>
-          <span class="station-meta-value">3 balões: tubo da cepa, Vanilar, Carlsberg (visíveis pelo vidro)</span>
-        </div>
-        <div class="station-meta-item">
-          <span class="station-meta-label">Conceito-chave</span>
-          <span class="station-meta-value">Pureza microbiológica</span>
-        </div>
-      </div>
-    </div>
-    <div class="station-content">
-      <h2>laboratório <span class="accent">— cultura pura</span></h2>
-      <p class="station-tagline">Onde tudo começa. Uma única célula. Ambiente estéril. Este é o ponto mais "delicado" do tour — e por isso, o mais impressionante.</p>
-
-      <div class="station-section">
-        <div class="station-section-title">o que você vai explicar</div>
-        <div class="script-block">
-          <span class="script-label">seu roteiro técnico</span>
-          <p>"Vocês estão olhando pela janela para a <strong>sala de cultura pura</strong>. Ninguém entra ali sem procedimento rigoroso — e é por isso que vocês estão vendo pelo vidro.</p>
-          <p>Aqui começa a propagação da levedura, em <strong>ambiente estéril, sem nenhuma bactéria</strong>. Os balões que vocês estão vendo são os primeiros recipientes da propagação. A partir de uma quantidade mínima, a gente multiplica até chegar no volume que alimenta a fermentação industrial que vocês viram na estação anterior.</p>
-          <p>A razão de ser tão rigoroso é simples: <strong>qualidade microbiológica</strong>. Se entra um contaminante aqui, ele se multiplica junto com a levedura. Por isso, esse é um dos controles mais importantes da operação.</p>
-          <p>E como tudo na Lesaffre, isso não é novo — é uma prática que a gente aperfeiçoa há <strong>170 anos</strong>. O que é novo aqui é a tecnologia de controle; a disciplina, a gente já tinha."</p>
-        </div>
-      </div>
-
-      <div class="station-section">
-        <div class="station-section-title">conhecimento técnico que você precisa dominar</div>
-        <ul class="keypoints">
-          <li><span><strong>Ambiente estéril:</strong> Zero bactérias. Diferente de "limpo" — é esterilização completa.</span></li>
-          <li><span><strong>Propagação:</strong> Multiplicação controlada da levedura. De poucos gramas para toneladas.</span></li>
-          <li><span><strong>Por que o vidro existe:</strong> Não é só visual — é barreira física que protege o ambiente estéril.</span></li>
-          <li><span><strong>170 anos:</strong> Use sempre. Conecta tradição + tecnologia nova.</span></li>
-        </ul>
-      </div>
-
-      <div class="station-section">
-        <div class="station-section-title">pontos-chave para você (guia) reforçar</div>
-        <ul class="keypoints">
-          <li><span><strong>Foque no "porquê", não no "como"</strong> — não é importante explicar os processos do laboratório. É importante explicar <em>por que</em> eles agregam valor para o cliente.</span></li>
-          <li><span><strong>"Daqui tudo começa"</strong> — use essa frase. Dá a dimensão do quanto esse ponto pequeno sustenta tudo o resto.</span></li>
-          <li><span><strong>O vidro é parte do argumento</strong> — "nem nós entramos" é um ativo de credibilidade. Reforce.</span></li>
-          <li><span><strong>Conecte com 170 anos</strong> — o cliente compra tradição. Você mostra ciência. A combinação é o pitch.</span></li>
-        </ul>
-      </div>
-
-      <div class="station-section">
-        <div class="station-section-title">atenção</div>
-        <div class="dodont">
-          <div class="dodont-card do">
-            <div class="dodont-header"><span class="dodont-badge">✓</span> diga</div>
-            <ul class="dodont-list">
-              <li>"Qualidade microbiológica é o que garante que seu produto seja sempre igual."</li>
-              <li>"Estéril" e "ambiente controlado" — palavras que transmitem cuidado.</li>
-              <li>"170 anos de prática." Sempre.</li>
-            </ul>
-          </div>
-          <div class="dodont-card dont">
-            <div class="dodont-header"><span class="dodont-badge">×</span> evite</div>
-            <ul class="dodont-list">
-              <li>Detalhar os exames específicos que o laboratório faz.</li>
-              <li>Termos técnicos como "UFC", "CFU", "biorreator" sem explicação.</li>
-              <li>Deixar o grupo tentar entrar na sala — nem encostar no vidro com força.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- QUIZ -->
-      <div class="quiz" data-quiz="q4">
-        <p class="quiz-question">2. Qual é a melhor forma de apresentar o laboratório de cultura pura para um grupo de donos de distribuidora?</p>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false">
-            <span class="quiz-option-letter">A</span>
-            <span>Explicar em detalhe os procedimentos de esterilização, os meios de cultura usados e os protocolos de biossegurança nível 2.</span>
-          </button>
-          <button class="quiz-option" data-correct="false">
-            <span class="quiz-option-letter">B</span>
-            <span>Apenas dizer que é "onde a levedura é produzida" e passar para a próxima estação.</span>
-          </button>
-          <button class="quiz-option" data-correct="true">
-            <span class="quiz-option-letter">C</span>
-            <span>Focar no porquê esse ponto importa para o cliente: daqui sai a consistência do produto que ele recebe, em um ambiente tão rigoroso que nem nós entramos — só vemos pelo vidro.</span>
-          </button>
-        </div>
-        <div class="quiz-feedback" data-feedback>
-          <strong>Resposta: C.</strong> O ponto 4 é sobre <em>valor para o cliente</em>, não sobre processos de laboratório. A opção A perde o grupo em 30 segundos; a B subestima a estação mais simbólica do tour.
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-
-<!-- ESTAÇÃO 5 -->
-<article class="station" id="estacao-5">
-  <div class="station-inner">
-    <div class="station-sidebar">
-      <div class="station-number">05</div>
-      <div class="station-number-total">/ 6 estações</div>
-      <div class="station-meta">
-        <div class="station-meta-item">
-          <span class="station-meta-label">Onde</span>
-          <span class="station-meta-value">Estação do CIP</span>
-        </div>
-        <div class="station-meta-item">
-          <span class="station-meta-label">Duração</span>
-          <span class="station-meta-value">5 min</span>
-        </div>
-        <div class="station-meta-item">
-          <span class="station-meta-label">Apoio visual</span>
-          <span class="station-meta-value">Os dois vidros de água — efluente leve e pesado</span>
-        </div>
-        <div class="station-meta-item">
-          <span class="station-meta-label">Conceito-chave</span>
-          <span class="station-meta-value">Economia circular + automação</span>
-        </div>
-      </div>
-    </div>
-    <div class="station-content">
-      <h2>CIP <span class="accent">— limpeza & economia circular</span></h2>
-      <p class="station-tagline">Aqui se conecta <em>qualidade</em> (a fábrica é limpa) com <em>sustentabilidade</em> (nada volta para a natureza sem valor). Dois argumentos que todo dono de negócio gosta.</p>
-
-      <div class="station-section">
-        <div class="station-section-title">o que você vai explicar</div>
-        <div class="script-block">
-          <span class="script-label">seu roteiro técnico</span>
-          <p>"CIP é sigla para <strong>Cleaning In Place</strong> — limpeza no lugar. O que vocês estão vendo é uma estação <strong>100% automatizada</strong>: todos os equipamentos da fábrica são limpos a partir daqui, sem intervenção manual.</p>
-          <p>Usamos uma sequência controlada de <strong>detergente, desincrustante e desinfetante</strong>, com água quente. A ordem da limpeza é programada na sala de controle — ou seja, o CIP está conectado direto aos processos de fermentação. Quando um tanque termina o ciclo, ele já sabe que pode entrar em limpeza.</p>
-          <p>Isso garante o que a gente chama de <strong>inocuidade do produto</strong>: a certeza de que o que chega ao cliente não tem nenhum resíduo da batelada anterior.</p>
-          <p>E aqui entra um ponto que a gente tem muito orgulho — a <strong>economia circular</strong>. Os dois frascos na mesa mostram o que sai do CIP: o <strong>efluente leve</strong>, com menor carga orgânica, vai para uma das nossas lagoas e depois volta para a <strong>Cocal</strong> para uso em biofertilização. Fecha o ciclo: o melaço vem da Cocal, e o resíduo de limpeza volta para a Cocal para adubar a cana. Mesmo cliente, mesmo parceiro, dois lados."</p>
-        </div>
-      </div>
-
-      <div class="station-section">
-        <div class="station-section-title">conhecimento técnico que você precisa dominar</div>
-        <ul class="keypoints">
-          <li><span><strong>CIP significa Cleaning In Place:</strong> Nunca precisa desmontar equipamento para limpar.</span></li>
-          <li><span><strong>100% automatizado:</strong> Sequência programada, não depende de operador lembrar.</span></li>
-          <li><span><strong>Inocuidade:</strong> Palavra técnica importante — significa ausência total de contaminação.</span></li>
-          <li><span><strong>Só efluente LEVE volta à Cocal:</strong> O pesado tem outro tratamento. Seja preciso.</span></li>
-        </ul>
-      </div>
-
-      <div class="station-section">
-        <div class="station-section-title">pontos-chave para você (guia) reforçar</div>
-        <ul class="keypoints">
-          <li><span><strong>"100% automatizado"</strong> — palavra-chave. O cliente quer ouvir que a limpeza não depende de alguém lembrar de fazer.</span></li>
-          <li><span><strong>Inocuidade</strong> — traduza como "segurança de que o produto chega limpo, sempre".</span></li>
-          <li><span><strong>Economia circular com a Cocal</strong> — mostre os dois vidros. A imagem fecha o argumento melhor que qualquer palavra.</span></li>
-          <li><span><strong>Tecnologia de ponta do grupo</strong> — essa é a fábrica Lesaffre <em>com os equipamentos mais novos do mundo</em>. Não tenha pudor de dizer.</span></li>
-        </ul>
-      </div>
-
-      <div class="station-section">
-        <div class="station-section-title">atenção</div>
-        <div class="dodont">
-          <div class="dodont-card do">
-            <div class="dodont-header"><span class="dodont-badge">✓</span> diga</div>
-            <ul class="dodont-list">
-              <li>"Economia circular" + "parceiro local" na mesma frase.</li>
-              <li>"A limpeza é conectada à fermentação — tudo conversa."</li>
-              <li>"A fábrica mais moderna do grupo Lesaffre no mundo."</li>
-            </ul>
-          </div>
-          <div class="dodont-card dont">
-            <div class="dodont-header"><span class="dodont-badge">×</span> evite</div>
-            <ul class="dodont-list">
-              <li>Entrar nos nomes químicos específicos dos detergentes.</li>
-              <li>Comprometer-se com números ambientais que você não tem (redução de X% de água etc.) — se o cliente quiser, busque depois com a equipe.</li>
-              <li>Falar de "sustentabilidade" de forma genérica. A economia circular com a Cocal é <em>concreta</em>. Use o concreto.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- QUIZ -->
-      <div class="quiz" data-quiz="q5">
-        <p class="quiz-question">3. Um cliente olha os dois vidros de efluente e pergunta: "mas isso aí vai para onde?" Qual é a melhor resposta?</p>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false">
-            <span class="quiz-option-letter">A</span>
-            <span>"Vai para o tratamento de efluentes e depois para o rio, dentro das normas ambientais."</span>
-          </button>
-          <button class="quiz-option" data-correct="true">
-            <span class="quiz-option-letter">B</span>
-            <span>"O efluente leve vai para uma das nossas lagoas e depois volta para a Cocal, nosso fornecedor de melaço, para biofertilização da cana. A matéria-prima vem da Cocal, o resíduo volta para a Cocal — economia circular real, não de discurso."</span>
-          </button>
-          <button class="quiz-option" data-correct="false">
-            <span class="quiz-option-letter">C</span>
-            <span>"Isso aí é descartado conforme a legislação."</span>
-          </button>
-        </div>
-        <div class="quiz-feedback" data-feedback>
-          <strong>Resposta: B.</strong> O ciclo Cocal → Lesaffre → Cocal é o ativo mais diferenciado da fábrica em sustentabilidade. É <em>concreto</em>, verificável, e conecta proximidade com economia circular. As outras respostas entregam conformidade; só B entrega diferenciação.
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-
-<!-- ESTAÇÃO 6 -->
-<article class="station" id="estacao-6">
-  <div class="station-inner">
-    <div class="station-sidebar">
-      <div class="station-number">06</div>
-      <div class="station-number-total">/ 6 estações</div>
-      <div class="station-meta">
-        <div class="station-meta-item">
-          <span class="station-meta-label">Onde</span>
-          <span class="station-meta-value">Sala do robô + vista da câmara fria</span>
-        </div>
-        <div class="station-meta-item">
-          <span class="station-meta-label">Duração</span>
-          <span class="station-meta-value">5 min</span>
-        </div>
-        <div class="station-meta-item">
-          <span class="station-meta-label">Apoio visual</span>
-          <span class="station-meta-value">CCTV mostrando o processo de perto + esteira + robô paletizador</span>
-        </div>
-        <div class="station-meta-item">
-          <span class="station-meta-label">Conceito-chave</span>
-          <span class="station-meta-value">Automação + controle de temperatura</span>
-        </div>
-      </div>
-    </div>
-    <div class="station-content">
-      <h2>empacotamento <span class="accent">— onde vira produto</span></h2>
-      <p class="station-tagline">O fechamento do tour. O cliente vê, literalmente, o bloquinho de fermento sair pronto para a caixa. É o <em>hand-off</em> simbólico da fábrica para o mercado.</p>
-
-      <div class="station-section">
-        <div class="station-section-title">o que você vai explicar</div>
-        <div class="script-block">
-          <span class="script-label">seu roteiro técnico</span>
-          <p>"Vocês agora veem o fim da jornada. O creme de levedura que saiu da fermentação chega aqui já <strong>desidratado</strong>. Entra no <strong>extrusor</strong>, que dá o formato de bloco. O bloco é embalado, passa pela esteira, pela encaixotadora e chega ao <strong>robô paletizador</strong>.</p>
-          <p>Esse robô tem uma capacidade que vale destacar: com código de barras e esteira automatizada, ele consegue <strong>paletizar duas marcas ou produtos diferentes ao mesmo tempo</strong> — ele identifica o que é cada caixa e monta os pallets separadamente. Ganho grande em flexibilidade e velocidade.</p>
-          <p>Depois do pallet montado, o produto entra na <strong>câmara fria</strong>. A gente controla a temperatura com sensores e acompanhamos em tempo real. A ideia é que o fermento chegue ao cliente exatamente como saiu daqui."</p>
-          <p><em>Se a porta da câmara for aberta para mostrar:</em> atenção ao sanitizante de calçado e à lavagem de mãos antes.</p>
-        </div>
-      </div>
-
-      <div class="station-section">
-        <div class="station-section-title">conhecimento técnico que você precisa dominar</div>
-        <ul class="keypoints">
-          <li><span><strong>Extrusor:</strong> Máquina que forma o bloquinho. Força o creme através de molde.</span></li>
-          <li><span><strong>Paletização dupla:</strong> Dois produtos ao mesmo tempo — destaque único da operação.</span></li>
-          <li><span><strong>Controle de temperatura:</strong> Em tempo real, não batch. Cliente recebe como saiu daqui.</span></li>
-          <li><span><strong>Fechamento emocional:</strong> Use sempre. 170 anos, tradição + tecnologia.</span></li>
-        </ul>
-      </div>
-
-      <div class="station-section">
-        <div class="station-section-title">pontos-chave para você (guia) reforçar</div>
-        <ul class="keypoints">
-          <li><span><strong>"Duas marcas ao mesmo tempo"</strong> — esse é o tipo de dado que o cliente vai repetir quando sair daqui. Faça-o destacar.</span></li>
-          <li><span><strong>Robô + câmara fria = padrão mundial</strong> — a última geração de envasadoras, sopradores e paletizadores do grupo Lesaffre.</span></li>
-          <li><span><strong>Feche o círculo</strong> — "vocês começaram vendo o melaço bruto na mesa, e agora estão vendo o bloquinho pronto para viajar até a padaria. A Lesaffre inteira está nesse caminho."</span></li>
-          <li><span><strong>Encerre o tour</strong> — agradeça, aponte para o próximo momento (volta à tenda, almoço, etc.), pergunte se há dúvidas.</span></li>
-        </ul>
-      </div>
-
-      <div class="station-section">
-        <div class="station-section-title">atenção</div>
-        <div class="dodont">
-          <div class="dodont-card do">
-            <div class="dodont-header"><span class="dodont-badge">✓</span> diga</div>
-            <ul class="dodont-list">
-              <li>"Última geração" — a fábrica tem os equipamentos mais modernos disponíveis do grupo hoje.</li>
-              <li>"Paletização simultânea de duas marcas" — fato único, diferenciador.</li>
-              <li>Uma frase de fechamento emocional: "vocês viram hoje 170 anos de história condensados em 45 minutos."</li>
-            </ul>
-          </div>
-          <div class="dodont-card dont">
-            <div class="dodont-header"><span class="dodont-badge">×</span> evite</div>
-            <ul class="dodont-list">
-              <li>Abrir a porta da câmara fria sem sinal verde do Renato ou do Sandro — é sensível por boas práticas de fabricação.</li>
-              <li>Deixar o grupo se aglomerar próximo à esteira em funcionamento.</li>
-              <li>Terminar o tour com "... e é isso, gente." Feche com intenção.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- QUIZ -->
-      <div class="quiz" data-quiz="q6">
-        <p class="quiz-question">4. Você chega na câmara fria e está com tempo apertado (já passou dos 5 min). O que você faz?</p>
-        <div class="quiz-options">
-          <button class="quiz-option" data-correct="false">
-            <span class="quiz-option-letter">A</span>
-            <span>Abre a porta da câmara rapidamente, sem o sanitizante de calçado, para poupar tempo.</span>
-          </button>
-          <button class="quiz-option" data-correct="false">
-            <span class="quiz-option-letter">B</span>
-            <span>Pula a abertura da câmara e encerra o tour ali mesmo, sem explicar o motivo.</span>
-          </button>
-          <button class="quiz-option" data-correct="true">
-            <span class="quiz-option-letter">C</span>
-            <span>Explica que a abertura da câmara depende do procedimento de sanitização e, se não der tempo, segue o tour normalmente — sem criar expectativa do que não vai entregar. Fecha o tour com a frase de síntese.</span>
-          </button>
-        </div>
-        <div class="quiz-feedback" data-feedback>
-          <strong>Resposta: C.</strong> Nunca pule um procedimento de segurança para ganhar tempo — isso vale mais que qualquer experiência. E nunca encerre abruptamente sem fechar a narrativa: o último minuto é o que o cliente leva embora.
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-
-<!-- FAQ -->
-<section class="section" id="faq">
-  <div class="section-inner">
-    <div class="section-eyebrow">05 · e se o cliente perguntar…</div>
-    <h2 class="section-title">as 10 perguntas que <span class="ruby">sempre voltam.</span></h2>
-    <p class="section-intro">
-      Todo guia ouve essas perguntas. Respostas prontas, validadas pela equipe técnica. Leia com calma antes do primeiro tour. Quando não souber a resposta de uma pergunta fora daqui: <strong>prometa responder por e-mail</strong>. Nunca invente.
-    </p>
-
-    <div class="faq-grid reveal">
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>"Qual a diferença entre a levedura de vocês e a de um concorrente X?"</span>
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <p>Não compare com concorrentes pelo nome. Responda pelo <strong>valor Lesaffre</strong>: "nossa diferença está em 170 anos de pesquisa em linhagens próprias, controle de qualidade desde o processo (não só do produto), fábrica local com economia circular, e o time técnico do Baking Center para apoiar o cliente no campo."</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>"Quanto custa o produto?"</span>
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <p>Você não fala preço. Redirecione para o comercial que está no grupo: <em>"essa conversa a Fulana já pode continuar com você aqui, ela conhece exatamente o seu cenário."</em> Preço é conversa personalizada — fora do tour.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>"Quantos litros/toneladas por dia vocês produzem aqui?"</span>
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <p>Responda por ordem de grandeza / capacidade aprovada pela equipe antes do evento — nunca invente. Se não tiver o número oficial memorizado: <em>"prefiro te passar o dado exato por e-mail, com a equipe operacional, para não arredondar nada aqui."</em> Isso constrói mais confiança do que um número errado.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>"Vocês usam OGM? A levedura é transgênica?"</span>
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <p>Pergunta sensível. Resposta padrão: <em>"as linhagens que a gente usa na planta são linhagens tradicionais, selecionadas ao longo de décadas por características de desempenho. Posso pedir ao nosso time de qualidade o detalhe técnico para você, se quiser ver em documento."</em> Não arrisque.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>"E o efluente pesado? Aquele não volta pra Cocal?"</span>
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <p>Correto: o que vai para a Cocal na biofertilização é o <strong>efluente leve</strong>, de menor carga orgânica. O efluente pesado segue tratamento específico conforme normas ambientais. A economia circular é sobre o leve.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>"Posso tirar foto da sala de controle / do laboratório?"</span>
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <p>Verifique a regra <strong>antes do evento</strong> com o time de comunicação. Como padrão: fotos do grupo/ambiente <strong>sim</strong>, fotos de telas, painéis de controle e detalhes do laboratório <strong>não</strong>. Se surgir a pergunta no momento e você não tiver a instrução: "prefiro confirmar antes de liberar. Me dá um instante."</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>"Essa fábrica está atendendo só o Brasil ou exporta também?"</span>
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <p>Use a mensagem oficial do briefing: "Narandiba é parte da nossa estratégia de <strong>fábrica local, atendimento Brasil</strong>, com capacidade de escala para acompanhar o crescimento da panificação brasileira. Detalhes de exportação, a equipe comercial pode abrir com você." Não entre em rotas específicas.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>"Vocês fazem massa madre aqui também?"</span>
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <p>Sim. Um dos pilares da nova era é ter <strong>fábrica local de massa madre e fermento fresco</strong>. Aproveite a pergunta para reforçar o pilar de <em>proximidade</em> — é exatamente o ponto do briefing.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>"Como funciona o app Lesaffre e Você?"</span>
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <p>Não detalhe funcionalidades — você não é o time do app. Diga: <em>"É o canal digital que a gente construiu para aproximar cliente e Lesaffre — CRM, relacionamento, suporte técnico. A Fulana (do comercial) já pode te apresentar em detalhe."</em></p>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>"E se eu tiver um problema técnico com a levedura no meu processo?"</span>
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            <p>Essa é a hora de vender o <strong>Baking Center + equipe técnica especializada</strong>. "A Lesaffre tem equipe técnica dedicada para ir na sua padaria/indústria, entender o seu processo, e ajustar junto com você. É um dos pilares do nosso serviço — você não fica sozinho depois da compra."</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CHECKLIST -->
-<section class="checklist-section" id="checklist">
-  <div class="section-inner">
-    <div class="section-eyebrow">06 · pronto para guiar?</div>
-    <h2 class="section-title">checklist do guia.<br><span style="color:#f08a00">antes, durante e depois.</span></h2>
-    <p class="section-intro">
-      Marque conforme avança. Seu progresso fica salvo neste navegador. Imprima antes do evento se preferir ter em mãos.
-    </p>
-
-    <div class="checklist">
-      <div class="checklist-group">
-        <div class="checklist-group-title">24h antes do tour</div>
-        <div class="checklist-item" data-check="c1"><span class="checklist-check"></span><span class="checklist-label">Reler este playbook por completo — especialmente as estações que você vai conduzir.</span></div>
-        <div class="checklist-item" data-check="c2"><span class="checklist-check"></span><span class="checklist-label">Alinhar com o comercial quem é o grupo de clientes — nomes, empresas, perfil.</span></div>
-        <div class="checklist-item" data-check="c3"><span class="checklist-check"></span><span class="checklist-label">Estudar o conteúdo técnico de cada estação — você vai explicar todas as 6 estações.</span></div>
-        <div class="checklist-item" data-check="c4"><span class="checklist-check"></span><span class="checklist-label">Verificar que todos os materiais visuais estão prontos: amostras na sala de controle, vidros de efluente na estação 5, TV ligada.</span></div>
-      </div>
-
-      <div class="checklist-group">
-        <div class="checklist-group-title">no dia, antes do grupo chegar</div>
-        <div class="checklist-item" data-check="c5"><span class="checklist-check"></span><span class="checklist-label">Sapatos de segurança conferidos e disponíveis na porta do ônibus.</span></div>
-        <div class="checklist-item" data-check="c6"><span class="checklist-check"></span><span class="checklist-label">Crachás prontos, com nome de cada participante.</span></div>
-        <div class="checklist-item" data-check="c7"><span class="checklist-check"></span><span class="checklist-label">QR Code do vídeo de segurança testado no celular.</span></div>
-        <div class="checklist-item" data-check="c8"><span class="checklist-check"></span><span class="checklist-label">Percurso feito por você a pé — sem grupo — para conferir tempo de deslocamento.</span></div>
-      </div>
-
-      <div class="checklist-group">
-        <div class="checklist-group-title">durante o tour</div>
-        <div class="checklist-item" data-check="c9"><span class="checklist-check"></span><span class="checklist-label">Contagem periódica: todos os 15 estão juntos?</span></div>
-        <div class="checklist-item" data-check="c10"><span class="checklist-check"></span><span class="checklist-label">Tempo por estação respeitado — 10 min (3), 5 min (4, 5, 6).</span></div>
-        <div class="checklist-item" data-check="c11"><span class="checklist-check"></span><span class="checklist-label">Frase-chave dita pelo menos 2 vezes: "tradição de 170 anos, tecnologia de ponta, feita aqui para você."</span></div>
-        <div class="checklist-item" data-check="c12"><span class="checklist-check"></span><span class="checklist-label">Economia circular (Cocal) mencionada nas estações 3 e 5.</span></div>
-        <div class="checklist-item" data-check="c13"><span class="checklist-check"></span><span class="checklist-label">Procedimento de sanitização antes da câmara fria feito corretamente.</span></div>
-      </div>
-
-      <div class="checklist-group">
-        <div class="checklist-group-title">depois do tour</div>
-        <div class="checklist-item" data-check="c14"><span class="checklist-check"></span><span class="checklist-label">Passar para o comercial: perguntas que ficaram em aberto (preço, volume, OGM, dados técnicos específicos).</span></div>
-        <div class="checklist-item" data-check="c15"><span class="checklist-check"></span><span class="checklist-label">Breve feedback com o time: o que funcionou? O que ajustar para o próximo grupo?</span></div>
-        <div class="checklist-item" data-check="c16"><span class="checklist-check"></span><span class="checklist-label">Anotar perguntas novas que apareceram e ainda não estão no FAQ.</span></div>
-      </div>
-
-      <div class="checklist-actions">
-        <button class="btn btn-primary" onclick="window.print()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-          imprimir checklist
-        </button>
-        <button class="btn" id="resetCheck">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-          resetar marcação
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-top">
+    <div class="builder">
       <div>
-        <div class="footer-brand">
-          <svg class="swallow" viewBox="0 0 99.74 59.92" aria-hidden="true">
-            <path d="M80.7,12.55c-.91,3.22-2.5,6.55-9.93,10.63-7.63,4.2-20.09,4.73-20.09,4.73-1.84.17-1.74-.03-.09-.58,8.41-2.7,10.89-4.35,16.27-7.51,6.01-3.54,12.14-8.33,12.14-8.33,0,0,2.72-2.45,1.69,1.06M85.91,5.33c.88-1.82,2.34-3.64,2.34-3.64l-2.79.59S84.68.08,81.85,0c-3.73-.12-5.4,4.94-5.4,4.94-.37.93-1.05.63-1.05.63-5.35-6.02-26.72-.43-42.57,19.83l.13.11s15.11-12.17,27.82-10.32c.78.12,3.89.38,1.18,2.85-1.18,1.06-7.59,6.06-14.58,8.48-7.15,2.5-12.92,2.38-12.92,2.38-7.85.59-23.29-3.33-23.29-3.33l-.18.12c6.05,3.57,23.54,4.63,23.54,4.63.23,0,.1.25.1.25-11.06,6.46-14.61,12.72-14.61,12.72l.21.14s10.23-11.47,21.48-13.14c17.95-2.66,16.52-1.87,23.57-3.73.54-.14.45.2.04.71-4.76,6.27-16.7,9.21-22.39,10.34l.02.13s11.42-.22,23.92-5.04c12.52-4.8,16.19-10.73,16.82-14.12.46-2.61-.81-3.95-1.34-4.52-.11-.09-.27-.29-.07-.71,0,0,2.1-4.96,3.61-8" fill="currentColor"/>
-          </svg>
-          <span class="footer-brand-text">LESAFFRE</span>
-        </div>
-        <div class="footer-tagline">working together to nourish and protect the planet.</div>
-        <div class="footer-sub">Este playbook é um material interno de treinamento. Não distribua externamente. Para sugestões, correções ou perguntas não cobertas, fale com a equipe de Comunicação da Lesaffre Brasil.</div>
+        <div class="col-head"><h2>Departamentos disponíveis</h2><span class="hint">arraste &rarr; ou toque em +</span></div>
+        <div class="palette" id="palette"></div>
       </div>
-      <div class="footer-meta">
-        <div class="footer-meta-title">Referências</div>
-        <ul>
-          <li>Briefing Inauguração Narandiba</li>
-          <li>Tour Planta Narandiba · PPT (Alinhamento 01/04/2026)</li>
-          <li>Lesaffre Brand Guidelines 2025</li>
-          <li>Reunião de Alinhamento com Diretor da Fábrica</li>
-        </ul>
+      <div>
+        <div class="col-head"><h2>Roteiro da visita</h2><span class="hint">arraste para reordenar</span></div>
+        <div class="route" id="route"></div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© Lesaffre · Playbook do Tour Narandiba · v1.0</span>
-      <span>inauguração · 18 · 06 · 2026</span>
+
+    <div class="summary">
+      <div class="stat"><b id="sumStations">0</b><span>estações</span></div>
+      <div class="stat"><b id="sumTime">0 min</b><span>duração est.</span></div>
+      <div class="stat"><b id="sumDepth">Equilibrado</b><span>profundidade</span></div>
+      <div class="sp"></div>
+      <button class="btn btn-ghost" id="btnSave">💾 Salvar visita</button>
+      <button class="btn btn-go" id="btnGenerate">Gerar playbook →</button>
     </div>
   </div>
-</footer>
+</section>
 
-<!-- ======================================================= -->
-<!-- MODO COLA (FIELD MODE) — uso durante o tour               -->
-<!-- ======================================================= -->
-<button class="fieldmode-trigger" id="fmTrigger" aria-label="Abrir modo cola">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M9 11H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-5"/>
-    <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
-  </svg>
-  modo cola
-</button>
-
-<div class="fieldmode" id="fieldmode" aria-hidden="true">
-  <div class="fm-header">
-    <div class="fm-header-left">
-      <svg class="swallow" viewBox="0 0 99.74 59.92" aria-hidden="true">
-        <path d="M80.7,12.55c-.91,3.22-2.5,6.55-9.93,10.63-7.63,4.2-20.09,4.73-20.09,4.73-1.84.17-1.74-.03-.09-.58,8.41-2.7,10.89-4.35,16.27-7.51,6.01-3.54,12.14-8.33,12.14-8.33,0,0,2.72-2.45,1.69,1.06M85.91,5.33c.88-1.82,2.34-3.64,2.34-3.64l-2.79.59S84.68.08,81.85,0c-3.73-.12-5.4,4.94-5.4,4.94-.37.93-1.05.63-1.05.63-5.35-6.02-26.72-.43-42.57,19.83l.13.11s15.11-12.17,27.82-10.32c.78.12,3.89.38,1.18,2.85-1.18,1.06-7.59,6.06-14.58,8.48-7.15,2.5-12.92,2.38-12.92,2.38-7.85.59-23.29-3.33-23.29-3.33l-.18.12c6.05,3.57,23.54,4.63,23.54,4.63.23,0,.1.25.1.25-11.06,6.46-14.61,12.72-14.61,12.72l.21.14s10.23-11.47,21.48-13.14c17.95-2.66,16.52-1.87,23.57-3.73.54-.14.45.2.04.71-4.76,6.27-16.7,9.21-22.39,10.34l.02.13s11.42-.22,23.92-5.04c12.52-4.8,16.19-10.73,16.82-14.12.46-2.61-.81-3.95-1.34-4.52-.11-.09-.27-.29-.07-.71,0,0,2.1-4.96,3.61-8" fill="currentColor"/>
-      </svg>
-      <span class="fm-header-title">modo cola · tour narandiba</span>
-    </div>
-    <button class="fm-close" id="fmClose" aria-label="Fechar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
+<!-- ============ SAVED ============ -->
+<section class="view" id="view-saved">
+  <div class="wrap" style="padding-top:36px">
+    <div class="kick" style="font-size:1.6rem">suas visitas</div>
+    <h1 style="font-size:1.9rem;color:var(--blue);font-weight:900;margin:.1em 0 .4em">Visitas salvas</h1>
+    <div id="savedGrid"></div>
   </div>
+</section>
 
-  <div class="fm-tabs" id="fmTabs">
-    <button class="fm-tab active" data-panel="fm-intro"><span class="fm-tab-num">·</span>início</button>
-    <button class="fm-tab" data-panel="fm-s3"><span class="fm-tab-num">3</span>controle</button>
-    <button class="fm-tab" data-panel="fm-s4"><span class="fm-tab-num">4</span>laboratório</button>
-    <button class="fm-tab" data-panel="fm-s5"><span class="fm-tab-num">5</span>CIP</button>
-    <button class="fm-tab" data-panel="fm-s6"><span class="fm-tab-num">6</span>empacotamento</button>
-    <button class="fm-tab" data-panel="fm-faq"><span class="fm-tab-num">?</span>faq</button>
+<!-- ============ PLAYBOOK ============ -->
+<section class="view" id="view-playbook">
+  <div class="pb-head">
+    <div class="wrap">
+      <div class="kick">playbook de campo</div>
+      <h1 id="pbTitle">Visita guiada</h1>
+      <div class="pbmeta" id="pbMeta"></div>
+    </div>
   </div>
-
-  <div class="fm-body">
-
-    <!-- INÍCIO / FRASES-ÂNCORA -->
-    <div class="fm-panel active" id="fm-intro">
-      <div class="fm-anchor">
-        "tradição de 170 anos, tecnologia de ponta, feita aqui para você."
+  <div class="wrap">
+    <div class="pb-tools">
+      <span class="lbl">Profundidade</span>
+      <div class="seg" id="pbDepth">
+        <button data-depth="min">Mínimo</button>
+        <button data-depth="eq" class="on">Equilibrado</button>
+        <button data-depth="tec">Técnico</button>
       </div>
-
-      <div class="fm-sec-title">os 4 pilares</div>
-      <ul class="fm-bullets">
-        <li><span><strong>Proximidade</strong> — fábrica local, CRM, app Lesaffre e Você, massa madre e fermento fresco no Brasil.</span></li>
-        <li><span><strong>Qualidade</strong> — produção padronizada, automatizada, parque tecnológico mais moderno do mundo Lesaffre.</span></li>
-        <li><span><strong>Serviço</strong> — torre de controle logística, novo Baking Center, equipe técnica para todo o Brasil.</span></li>
-        <li><span><strong>Inovação</strong> — novos produtos e projetos <em>tailor made</em>.</span></li>
-      </ul>
-
-      <div class="fm-sec-title">duração de cada estação</div>
-      <ul class="fm-bullets">
-        <li><span><strong>3 · Sala de Controle</strong> (10 min)</span></li>
-        <li><span><strong>4 · Laboratório</strong> (5 min)</span></li>
-        <li><span><strong>5 · CIP / Limpeza</strong> (5 min)</span></li>
-        <li><span><strong>6 · Empacotamento</strong> (5 min)</span></li>
-      </ul>
-
-      <div class="fm-sec-title">safety — antes de entrar</div>
-      <ul class="fm-bullets">
-        <li><span>Sapatos de segurança · crachá visível · vídeo de segurança via QR Code</span></li>
-        <li><span>Antes da câmara fria: <strong>sanitizante de calçado</strong> + lavagem de mãos</span></li>
-        <li><span>Se algo sair do script — <strong>pare</strong>. Segurança vale mais que ritmo.</span></li>
-      </ul>
+      <div class="progress" title="Progresso da visita"><i id="pbProg"></i></div>
     </div>
-
-    <!-- ESTAÇÃO 3 -->
-    <div class="fm-panel" id="fm-s3">
-      <div class="fm-station-header">
-        <div class="fm-station-num">03</div>
-        <div class="fm-station-title">sala de controle</div>
-        <div class="fm-station-meta">
-          <span><strong>10 min</strong></span>
-          <span>apoio: TV + mesa de amostras</span>
-        </div>
-      </div>
-
-      <div class="fm-anchor">
-        "vocês estão no coração da operação."
-      </div>
-
-      <div class="fm-sec-title">o que você vai dizer</div>
-      <div class="fm-block">
-        <div class="fm-block-label">resumo</div>
-        <p>Melaço vem da <strong>Cocal</strong> (parceiro local) → tratamento térmico → alimenta fermentadores. Primeiro o <strong>creme-mãe</strong>, depois a fermentação comercial. Separação: creme de levedura vai para o cliente como <strong>levedura líquida</strong> ou segue para empacotamento em <strong>bloquinhos</strong>.</p>
-        <p><strong>Automação + interlock</strong> → qualidade não depende de fator humano. Monitoramento <strong>em tempo real, desde o processo</strong> — não só no produto final.</p>
-      </div>
-
-      <div class="fm-sec-title">você reforça</div>
-      <ul class="fm-bullets">
-        <li><span><strong>"Coração da operação"</strong> — use essa expressão.</span></li>
-        <li><span><strong>Economia circular com a Cocal</strong> — parceria local, matéria-prima + efluente voltam.</span></li>
-        <li><span><strong>Diferente da padaria</strong> — é fermentação industrial, outra escala.</span></li>
-        <li><span><strong>Qualidade em tempo real</strong> — não é laudo depois, é parâmetro durante.</span></li>
-      </ul>
-
-      <div class="fm-sec-title">atenção</div>
-      <div class="fm-dodont">
-        <div class="fm-dd fm-dd-do">
-          <div class="fm-dd-label">diga</div>
-          <ul>
-            <li>"Cepa de levedura" sem detalhar</li>
-            <li>"Parceria local com a Cocal"</li>
-            <li>"Automação = qualidade consistente"</li>
-          </ul>
-        </div>
-        <div class="fm-dd fm-dd-dont">
-          <div class="fm-dd-label">evite</div>
-          <ul>
-            <li>Nome da cepa (segredo)</li>
-            <li>pH, temperatura, tempos exatos</li>
-            <li>Comparar com concorrente</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="fm-nav">
-        <button class="fm-nav-btn" data-prev>← anterior</button>
-        <button class="fm-nav-btn" data-next>próxima →</button>
-      </div>
+    <div id="stations"></div>
+    <div class="pb-actions">
+      <button class="btn btn-blue" onclick="window.print()">🖨️ Imprimir / PDF</button>
+      <button class="btn btn-line" id="btnEdit">← Editar roteiro</button>
     </div>
-
-    <!-- ESTAÇÃO 4 -->
-    <div class="fm-panel" id="fm-s4">
-      <div class="fm-station-header">
-        <div class="fm-station-num">04</div>
-        <div class="fm-station-title">laboratório · cultura pura</div>
-        <div class="fm-station-meta">
-          <span><strong>5 min</strong></span>
-          <span>apoio: 3 balões atrás do vidro</span>
-        </div>
-      </div>
-
-      <div class="fm-anchor">
-        "daqui tudo começa. nem nós entramos."
-      </div>
-
-      <div class="fm-sec-title">o que você vai dizer</div>
-      <div class="fm-block">
-        <div class="fm-block-label">resumo</div>
-        <p>Ambiente <strong>estéril, sem bactérias</strong>. A propagação começa com uma quantidade mínima em balões. <strong>Qualidade microbiológica</strong> é um dos controles mais críticos da operação.</p>
-        <p>Prática aperfeiçoada há <strong>170 anos</strong>. O que é novo é a tecnologia; a disciplina, a gente já tinha.</p>
-      </div>
-
-      <div class="fm-sec-title">você reforça</div>
-      <ul class="fm-bullets">
-        <li><span>Foco no <strong>porquê</strong>, não no <em>como</em>. O cliente quer saber por que isso importa para ele.</span></li>
-        <li><span><strong>"Daqui tudo começa"</strong> — dá dimensão.</span></li>
-        <li><span>O vidro é parte do argumento — "nem nós entramos".</span></li>
-        <li><span>Conecte com os <strong>170 anos</strong>.</span></li>
-      </ul>
-
-      <div class="fm-sec-title">atenção</div>
-      <div class="fm-dodont">
-        <div class="fm-dd fm-dd-do">
-          <div class="fm-dd-label">diga</div>
-          <ul>
-            <li>"Qualidade microbiológica"</li>
-            <li>"Estéril", "controlado"</li>
-            <li>"170 anos de prática"</li>
-          </ul>
-        </div>
-        <div class="fm-dd fm-dd-dont">
-          <div class="fm-dd-label">evite</div>
-          <ul>
-            <li>Exames específicos do lab</li>
-            <li>Jargão (UFC, CFU, biorreator)</li>
-            <li>Deixar o grupo encostar no vidro</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="fm-nav">
-        <button class="fm-nav-btn" data-prev>← anterior</button>
-        <button class="fm-nav-btn" data-next>próxima →</button>
-      </div>
-    </div>
-
-    <!-- ESTAÇÃO 5 -->
-    <div class="fm-panel" id="fm-s5">
-      <div class="fm-station-header">
-        <div class="fm-station-num">05</div>
-        <div class="fm-station-title">CIP · limpeza & economia circular</div>
-        <div class="fm-station-meta">
-          <span><strong>5 min</strong></span>
-          <span>apoio: 2 vidros de efluente</span>
-        </div>
-      </div>
-
-      <div class="fm-anchor">
-        "o resíduo volta para o mesmo parceiro que nos vendeu o melaço."
-      </div>
-
-      <div class="fm-sec-title">o que você vai dizer</div>
-      <div class="fm-block">
-        <div class="fm-block-label">resumo</div>
-        <p><strong>CIP = Cleaning In Place</strong>. Estação <strong>100% automatizada</strong>. Sequência: detergente → desincrustante → desinfetante + água quente. Comandada da sala de controle.</p>
-        <p><strong>Inocuidade</strong>: nada do ciclo anterior chega ao produto seguinte.</p>
-        <p><strong>Economia circular</strong>: efluente leve → lagoa → volta para a <strong>Cocal</strong> para biofertilização da cana. Melaço vem da Cocal, resíduo volta para a Cocal.</p>
-      </div>
-
-      <div class="fm-sec-title">você reforça</div>
-      <ul class="fm-bullets">
-        <li><span><strong>"100% automatizado"</strong> — a limpeza não depende de alguém lembrar.</span></li>
-        <li><span><strong>Inocuidade</strong> = "chega limpo, sempre".</span></li>
-        <li><span>Mostre <strong>os dois vidros</strong> — a imagem fecha o argumento.</span></li>
-        <li><span>"A fábrica mais moderna do grupo Lesaffre no mundo."</span></li>
-      </ul>
-
-      <div class="fm-sec-title">atenção</div>
-      <div class="fm-dodont">
-        <div class="fm-dd fm-dd-do">
-          <div class="fm-dd-label">diga</div>
-          <ul>
-            <li>"Economia circular + local"</li>
-            <li>"Limpeza conectada à fermentação"</li>
-            <li>"Tecnologia de ponta"</li>
-          </ul>
-        </div>
-        <div class="fm-dd fm-dd-dont">
-          <div class="fm-dd-label">evite</div>
-          <ul>
-            <li>Nomes químicos dos detergentes</li>
-            <li>Números ambientais sem base</li>
-            <li>"Sustentabilidade" genérica</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="fm-nav">
-        <button class="fm-nav-btn" data-prev>← anterior</button>
-        <button class="fm-nav-btn" data-next>próxima →</button>
-      </div>
-    </div>
-
-    <!-- ESTAÇÃO 6 -->
-    <div class="fm-panel" id="fm-s6">
-      <div class="fm-station-header">
-        <div class="fm-station-num">06</div>
-        <div class="fm-station-title">empacotamento · câmara fria</div>
-        <div class="fm-station-meta">
-          <span><strong>5 min</strong></span>
-          <span>apoio: CCTV + esteira + robô</span>
-        </div>
-      </div>
-
-      <div class="fm-anchor">
-        "vocês viram hoje 170 anos condensados em 45 minutos."
-      </div>
-
-      <div class="fm-sec-title">o que você vai dizer</div>
-      <div class="fm-block">
-        <div class="fm-block-label">resumo</div>
-        <p>Creme desidratado → <strong>extrusor</strong> (forma o bloco) → embalagem → esteira → encaixotadora → <strong>robô paletizador</strong> → câmara fria.</p>
-        <p>O robô identifica código de barras e <strong>paletiza duas marcas ao mesmo tempo</strong> — flexibilidade + velocidade.</p>
-        <p>Câmara fria com <strong>controle de temperatura em tempo real</strong>. Produto chega ao cliente como saiu daqui.</p>
-      </div>
-
-      <div class="fm-sec-title">você reforça</div>
-      <ul class="fm-bullets">
-        <li><span><strong>"Duas marcas ao mesmo tempo"</strong> — fato único, o cliente vai repetir.</span></li>
-        <li><span>Equipamentos de <strong>última geração</strong> do grupo Lesaffre.</span></li>
-        <li><span><strong>Feche o círculo</strong>: "começamos no melaço bruto, terminamos no bloquinho".</span></li>
-        <li><span>Encerre com intenção — nunca com "é isso, gente".</span></li>
-      </ul>
-
-      <div class="fm-sec-title">atenção</div>
-      <div class="fm-dodont">
-        <div class="fm-dd fm-dd-do">
-          <div class="fm-dd-label">diga</div>
-          <ul>
-            <li>"Última geração"</li>
-            <li>"Paletização simultânea"</li>
-            <li>Frase de fechamento emocional</li>
-          </ul>
-        </div>
-        <div class="fm-dd fm-dd-dont">
-          <div class="fm-dd-label">evite</div>
-          <ul>
-            <li>Abrir câmara sem sinal verde</li>
-            <li>Aglomerar perto da esteira</li>
-            <li>Terminar sem síntese</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="fm-nav">
-        <button class="fm-nav-btn" data-prev>← anterior</button>
-        <button class="fm-nav-btn" data-next disabled>fim do tour</button>
-      </div>
-    </div>
-
-    <!-- FAQ RÁPIDO -->
-    <div class="fm-panel" id="fm-faq">
-      <div class="fm-sec-title">respostas rápidas</div>
-
-      <div class="fm-block">
-        <div class="fm-block-label">preço do produto</div>
-        <p>Redirecione para o comercial do grupo. Preço é conversa personalizada — <em>fora</em> do tour.</p>
-      </div>
-
-      <div class="fm-block">
-        <div class="fm-block-label">qual cepa usam</div>
-        <p>"Linhagem proprietária desenvolvida pela Lesaffre em 170 anos — os detalhes são <strong>confidenciais</strong>."</p>
-      </div>
-
-      <div class="fm-block">
-        <div class="fm-block-label">volume / capacidade</div>
-        <p>Só fale números se tiver o dado <strong>oficial</strong> memorizado. Se não: "prefiro te passar o exato por e-mail, com a equipe operacional."</p>
-      </div>
-
-      <div class="fm-block">
-        <div class="fm-block-label">é OGM?</div>
-        <p>"Linhagens tradicionais, selecionadas ao longo de décadas. Posso pedir ao time de qualidade o detalhe técnico em documento."</p>
-      </div>
-
-      <div class="fm-block">
-        <div class="fm-block-label">comparar com concorrente</div>
-        <p>Não compare pelo nome. Responda pelo <strong>valor Lesaffre</strong>: 170 anos, economia circular, Baking Center, equipe técnica no campo.</p>
-      </div>
-
-      <div class="fm-block">
-        <div class="fm-block-label">posso tirar foto?</div>
-        <p>Ambiente <strong>sim</strong>. Telas, painéis, laboratório <strong>não</strong>. Se em dúvida no momento: "prefiro confirmar antes de liberar."</p>
-      </div>
-
-      <div class="fm-block">
-        <div class="fm-block-label">atende só Brasil?</div>
-        <p>"Fábrica local, atendimento Brasil, com capacidade de escala. Detalhes de exportação, o comercial pode abrir."</p>
-      </div>
-
-      <div class="fm-block">
-        <div class="fm-block-label">efluente pesado volta pra Cocal?</div>
-        <p>Não. Só o <strong>efluente leve</strong> (menor carga orgânica) vai para biofertilização. O pesado segue tratamento específico.</p>
-      </div>
-
-      <div class="fm-block">
-        <div class="fm-block-label">problema técnico na minha padaria/indústria?</div>
-        <p>"A Lesaffre tem equipe técnica dedicada para ir no seu processo. Você não fica sozinho depois da compra — é um dos pilares do serviço."</p>
-      </div>
-
-      <div class="fm-block">
-        <div class="fm-block-label">pergunta que eu não sei</div>
-        <p><strong>Nunca invente.</strong> "Deixa eu confirmar com a equipe e te mando por e-mail" vale mais que um número errado.</p>
-      </div>
-    </div>
-
   </div>
-</div>
+</section>
+
+<footer><div class="wrap">Material interno de treinamento · Lesaffre Brasil · Nova fábrica de fermento fresco — Narandiba · Inauguração 18/06/2026</div></footer>
+<div class="toast" id="toast"></div>
 
 <script>
-// =========================================================
-// LOGIN GATE
-// =========================================================
-(function(){
-  // SHA-256 hash of "TGTLES2026"
-  const PASS_HASH = '5b9447929a0e59a19b229844293bc0f60e2c8bdface05cd230e3bec407974a0b';
-  const STORAGE_KEY = 'lesaffre_auth_v1';
-  const SESSION_HOURS = 12;
-
-  const gate = document.getElementById('gate');
-  const form = document.getElementById('gateForm');
-  const input = document.getElementById('gateInput');
-  const err = document.getElementById('gateError');
-
-  // Web Crypto SHA-256
-  async function sha256(text) {
-    const buf = new TextEncoder().encode(text);
-    const hash = await crypto.subtle.digest('SHA-256', buf);
-    return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+/* ======================= STORAGE (claude.ai window.storage → localStorage → memory) ======================= */
+const _mem={};
+const Store={
+  async get(k){
+    try{ if(window.storage&&window.storage.get){const r=await window.storage.get(k);return r&&r.value!=null?r.value:null;} }catch(e){}
+    try{ const v=localStorage.getItem(k); if(v!=null)return v; }catch(e){}
+    return k in _mem?_mem[k]:null;
+  },
+  async set(k,v){
+    try{ if(window.storage&&window.storage.set){await window.storage.set(k,v);return;} }catch(e){}
+    try{ localStorage.setItem(k,v);return; }catch(e){}
+    _mem[k]=v;
   }
+};
+const VISITS_KEY='lesaffre_visitas_v1';
 
-  function unlock() {
-    document.body.classList.remove('gated');
-    gate.style.display = 'none';
+/* ======================= CONTENT MODEL =======================
+   Consolidado das 20 transcrições da visita (29-30/04/2026), filtrado para público
+   cliente/distribuidor. Cada módulo: 3 níveis (min/eq/tec), pontos-chave, curiosidade, segurança. */
+const PILLARS={prox:'Proximidade',qual:'Qualidade',serv:'Serviço',inov:'Inovação',all:'Pilares'};
+const MODULES=[
+ {id:'abertura',ic:'👋',pill:'all',name:'Abertura — Nova Era',dur:5,
+  min:'Sejam muito bem-vindos à nova fábrica de fermento fresco da Lesaffre. Hoje vocês vão ver de perto onde nasce o fermento que chega às suas padarias.',
+  eq:'Sejam muito bem-vindos. Esta planta nasceu para ficar mais perto de vocês — produção nacional, com a tecnologia global da Lesaffre. Em cerca de 45 minutos vamos percorrer todo o caminho: da cana ao bloquinho pronto. É o começo de uma nova era da panificação.',
+  tec:'Bem-vindos. Esta é uma operação integrada: do preparo do substrato (melaço) à embalagem, com sala de controle automatizada e laboratório próprio de qualidade. Vamos seguir o fluxo completo do processo, com grupos de cerca de 15 pessoas.',
+  keys:['Reforçar os 4 pilares: Proximidade, Qualidade, Serviço, Inovação','Instruções de segurança e EPI antes de entrar','Grupo de ~15 pessoas — manter o grupo unido'],
+  curio:'A levedura é um organismo vivo — vocês vão acompanhar literalmente o ciclo de vida dela hoje.',
+  safety:'Confirmar EPIs e regras de circulação antes de iniciar.'},
+
+ {id:'materia',ic:'🌾',pill:'prox',name:'Matéria-prima (Melaço)',dur:5,
+  min:'Tudo começa aqui, com o melaço — um derivado da cana brasileira. É a "comida" da nossa levedura.',
+  eq:'Tudo começa com o melaço, derivado da cana brasileira, abundante aqui na região. Ele é diluído, clarificado e esterilizado antes de alimentar a fermentação. Matéria-prima nacional, base de todo o processo.',
+  tec:'Nos tanques de preparo o melaço bruto é diluído e clarificado; o clarificado é esterilizado e segue para os tanques externos que abastecem os fermentadores. O melaço é a fonte principal de carbono da fermentação.',
+  keys:['Origem na cana — matéria-prima nacional e regional','É a base que alimenta toda a fermentação','Conecta com o pilar Proximidade'],
+  curio:'Sem açúcar não há fermento: a levedura se alimenta do melaço para se multiplicar.',
+  safety:'Área externa — atenção a piso e tubulações.'},
+
+ {id:'fermentacao',ic:'🫧',pill:'inov',name:'Fermentação & Propagação',dur:8,
+  min:'Este é o coração da fábrica. Aqui a levedura nasce e se multiplica nestes grandes tanques.',
+  eq:'Este é o coração da fábrica. A levedura cresce em etapas: começa pequena no pré-fermentador e vai ganhando volume até os grandes fermentadores. Leva cerca de um dia para chegar ao ponto certo.',
+  tec:'São três estágios: pré-fermentador → G1 (propagação) → G2 (fermentação principal, em torno de 110 m³), com alimentação contínua de melaço esterilizado e nutrientes. A passagem entre etapas é controlada pelo teor de álcool. No G2 a levedura é separada por centrífugas.',
+  keys:['Escala industrial — destacar o porte dos tanques','Processo vivo e contínuo, com precisão','Conecta com Inovação e Qualidade'],
+  curio:'De alguns litros a mais de 100 mil litros: a levedura se multiplica milhões de vezes em pouco mais de um dia.',
+  safety:'Não tocar tubulações e válvulas. Ambiente com ruído.'},
+
+ {id:'controle',ic:'🖥️',pill:'inov',name:'Sala de Controle',dur:5,
+  min:'Esta é a sala de controle — o cérebro da fábrica. Daqui se acompanha tudo em tempo real.',
+  eq:'Esta é a sala de controle, o cérebro da fábrica. Cada etapa da fermentação é monitorada e ajustada por aqui, de forma automatizada. É o que garante o mesmo padrão em todo lote.',
+  tec:'A planta opera por sequências automáticas (fermentação e CIP de limpeza). Daqui se controlam pH, dosagens e se fazem as análises de processo — álcool, pH, condutividade — por amostragem de cada área.',
+  keys:['Automação e rastreabilidade','Consistência lote a lote','Conecta com Inovação'],
+  curio:'Nada acontece no escuro: cada tanque tem "sinais vitais" acompanhados o tempo todo.',
+  safety:'Retirar óculos ao entrar (ambiente limpo). Não mexer nas telas.'},
+
+ {id:'separacao',ic:'🌀',pill:'serv',name:'Separação & Creme',dur:5,
+  min:'Aqui a levedura é separada do líquido e vira o "creme" — a base do produto.',
+  eq:'Centrífugas separam a levedura, que vira o creme-mãe. É também aqui que definimos se o lote será para massa salgada ou massa doce — com o mesmo poder fermentativo.',
+  tec:'Após o G2, duas centrífugas separam o creme, armazenado como creme-mãe (que vira o creme comercial, "G3"). Na inoculação escolhe-se a cepa: uma linha para massa salgada, outra para massa doce. O mesmo creme atende às duas, conforme o planejamento de demanda.',
+  keys:['Flexibilidade massa doce × salgada','Mesmo desempenho fermentativo','Produto sob medida — conecta com Serviço'],
+  curio:'Doce ou salgada? A "personalidade" do fermento é decidida bem aqui, no início.',
+  safety:'Piso pode estar úmido.'},
+
+ {id:'desidratacao',ic:'💧',pill:'qual',name:'Desidratação & Salmoura',dur:6,
+  min:'Agora tiramos o excesso de água do creme para ele ganhar consistência.',
+  eq:'Usamos salmoura e filtros a vácuo para concentrar o creme até o ponto certo de prensagem. É o que dá firmeza ao bloquinho.',
+  tec:'Tanques-pulmão recebem o creme (cerca de 18–22% de matéria seca). A salmoura retira água por pressão osmótica, controlada por condutividade; os filtros rotativos a vácuo elevam a matéria seca até a faixa de prensagem (em torno de 32–34%).',
+  keys:['Concentração e padronização','Define a firmeza do bloco','Conecta com Qualidade'],
+  curio:'O sal "puxa" a água para fora da levedura — pura física a serviço do produto.',
+  safety:'Bombas e equipamento em movimento.'},
+
+ {id:'extrusao',ic:'🧱',pill:'inov',name:'Extrusão (formação do bloco)',dur:5,
+  min:'Olhem só: é aqui que o creme vira o bloquinho de fermento, na frente de vocês.',
+  eq:'Aqui acontece o momento mais visual: a massa é homogeneizada e empurrada contra a extrusora, saindo em tiras contínuas que são cortadas no formato do bloco.',
+  tec:'A misturadora homogeneíza a pasta; uma rosca sem fim a empurra contra o cone da extrusora; os bloquinhos contínuos saem e são cortados. O formato atual é o bloco — apresentado em conjunto de 6 bloquinhos.',
+  keys:['Momento "uau" — o produto nascendo','Boa parada para fotos','Conecta com Inovação'],
+  curio:'Tirem uma foto com zoom: dá para ver a rosca sem fim moldando o fermento.',
+  safety:'Equipamento em movimento — manter distância.'},
+
+ {id:'embalagem',ic:'📦',pill:'qual',name:'Embalagem & Food Safety',dur:5,
+  min:'Aqui o produto é embalado e passa por várias checagens antes de chegar até vocês.',
+  eq:'Cada bloco é embalado, agrupado em caixas, pesado e passa por detector de metais. Só sai o que está dentro do padrão.',
+  tec:'O bloco em celofane segue para a encaixotadora (uma por linha), impressão, balança de aferição de peso e detector de metais. Um aplicador de cola dá aderência às caixas no pallet, dispensando o stretch.',
+  keys:['Food safety visível: detector de metais + balança','Peso garantido e rastreabilidade','Conecta com Qualidade e Serviço'],
+  curio:'Detector de metais + balança: dois "porteiros" que todo produto precisa passar.',
+  safety:'Esteiras em movimento.'},
+
+ {id:'laboratorio',ic:'🔬',pill:'qual',name:'Laboratório & Força Fermentativa',dur:6,
+  min:'Por fim, o laboratório: é onde garantimos que o fermento realmente faz o pão crescer.',
+  eq:'No laboratório testamos a força fermentativa de cada lote e fazemos o controle microbiológico. É a garantia de desempenho que chega na padaria.',
+  tec:'O laboratório reúne descontaminação/autoclave, preparo e esterilização de meios, incubadora e a sala de força fermentativa — um ensaio com farinha e açúcar que mede o gás gerado. A microbiologia é coletada em embalagem asséptica.',
+  keys:['Prova de desempenho do produto','A ciência por trás da confiança','Geralmente visto pelo vidro — conecta com Qualidade'],
+  curio:'Medimos o gás que a levedura produz — é, literalmente, medir a força do seu pão crescer.',
+  safety:'Área controlada — em geral observada pelo vidro.'},
+
+ {id:'encerramento',ic:'🤝',pill:'all',name:'Encerramento',dur:5,
+  min:'Vocês acabaram de ver, do início ao fim, como nasce o fermento fresco Lesaffre. Obrigado pela visita.',
+  eq:'Vocês acompanharam o ciclo completo, da cana ao bloquinho. Mais perto, com mais qualidade e tecnologia, prontos para atender vocês. Fico à disposição para perguntas.',
+  tec:'Recapitulando o fluxo: melaço → fermentação → separação → concentração → bloco → controle de qualidade. Tudo nacional, tudo rastreado. Aberto para perguntas e próximos passos.',
+  keys:['Reforçar os 4 pilares no fechamento','Abrir para perguntas','Encaminhar próximos passos comerciais'],
+  curio:'Da cana ao bloquinho: vocês acompanharam o ciclo completo hoje.',
+  safety:''},
+];
+const MOD_BY_ID=Object.fromEntries(MODULES.map(m=>[m.id,m]));
+const DEPTH_LABEL={min:'Mínimo',eq:'Equilibrado',tec:'Técnico'};
+
+/* ======================= STATE ======================= */
+let route=['abertura','materia','fermentacao','controle','separacao','desidratacao','extrusao','embalagem','laboratorio','encerramento'];
+let depth='eq';
+let currentVisitId=null;
+
+/* ======================= BUILDER RENDER ======================= */
+const $=s=>document.querySelector(s);
+const palette=$('#palette'), routeEl=$('#route');
+
+function pillClass(p){return 'pill p-'+p}
+function paletteCard(m){
+  return `<div class="mod" draggable="true" data-id="${m.id}">
+    <div class="ic">${m.ic}</div>
+    <div class="mt"><b>${m.name}</b><small>${m.dur} min · ${PILLARS[m.pill]}</small></div>
+    <span class="${pillClass(m.pill)}">${PILLARS[m.pill]}</span>
+    <button class="add" title="Adicionar">+</button>
+  </div>`;
+}
+function routeCard(m,i){
+  return `<div class="mod in-route" draggable="true" data-id="${m.id}">
+    <div class="num">${i+1}</div>
+    <div class="ic">${m.ic}</div>
+    <div class="mt"><b>${m.name}</b><small>${m.dur} min</small></div>
+    <div class="ctrls">
+      <button class="up" title="Subir">▲</button>
+      <button class="down" title="Descer">▼</button>
+      <button class="rm" title="Remover">✕</button>
+    </div>
+  </div>`;
+}
+function renderBuilder(){
+  const inRoute=new Set(route);
+  palette.innerHTML=MODULES.filter(m=>!inRoute.has(m.id)).map(paletteCard).join('')
+    || '<div class="route-empty" style="border:none">Todos os departamentos já estão no roteiro.</div>';
+  if(route.length){
+    routeEl.innerHTML=route.map((id,i)=>routeCard(MOD_BY_ID[id],i)).join('');
+  }else{
+    routeEl.innerHTML='<div class="route-empty"><b>Roteiro vazio</b>Arraste departamentos para cá ou toque no + para montar a visita.</div>';
   }
+  updateSummary();
+  bindBuilderEvents();
+}
+function updateSummary(){
+  const t=route.reduce((s,id)=>s+MOD_BY_ID[id].dur,0);
+  $('#sumStations').textContent=route.length;
+  $('#sumTime').textContent=t+' min';
+  $('#sumDepth').textContent=DEPTH_LABEL[depth];
+  $('#btnGenerate').disabled=route.length===0;
+}
+function bindBuilderEvents(){
+  palette.querySelectorAll('.add').forEach(b=>b.onclick=e=>{e.stopPropagation();addToRoute(b.closest('.mod').dataset.id)});
+  routeEl.querySelectorAll('.rm').forEach(b=>b.onclick=e=>{e.stopPropagation();route=route.filter(x=>x!==b.closest('.mod').dataset.id);renderBuilder()});
+  routeEl.querySelectorAll('.up').forEach(b=>b.onclick=e=>{e.stopPropagation();move(b.closest('.mod').dataset.id,-1)});
+  routeEl.querySelectorAll('.down').forEach(b=>b.onclick=e=>{e.stopPropagation();move(b.closest('.mod').dataset.id,1)});
+  enableDnD();
+}
+function addToRoute(id){if(!route.includes(id)){route.push(id);renderBuilder()}}
+function move(id,d){const i=route.indexOf(id),j=i+d;if(j<0||j>=route.length)return;[route[i],route[j]]=[route[j],route[i]];renderBuilder()}
 
-  function checkSession() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return false;
-      const { ts } = JSON.parse(raw);
-      const ageH = (Date.now() - ts) / 36e5;
-      return ageH < SESSION_HOURS;
-    } catch(_) { return false; }
-  }
-
-  // Auto-unlock if valid session
-  if (checkSession()) {
-    unlock();
-    return;
-  }
-
-  // Auto-focus the input
-  setTimeout(() => input && input.focus(), 100);
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const pw = input.value.trim();
-    if (!pw) return;
-    err.textContent = '';
-    try {
-      const hash = await sha256(pw);
-      if (hash === PASS_HASH) {
-        try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify({ ts: Date.now() }));
-        } catch(_) {}
-        unlock();
-      } else {
-        err.textContent = 'senha incorreta. tente novamente.';
-        input.value = '';
-        input.focus();
-      }
-    } catch (_) {
-      err.textContent = 'não foi possível validar. atualize a página.';
+/* drag & drop */
+let dragId=null;
+function enableDnD(){
+  document.querySelectorAll('.mod[draggable]').forEach(el=>{
+    el.addEventListener('dragstart',e=>{dragId=el.dataset.id;el.classList.add('dragging');e.dataTransfer.effectAllowed='move'});
+    el.addEventListener('dragend',()=>{dragId=null;el.classList.remove('dragging');routeEl.classList.remove('drag-over')});
+  });
+  routeEl.addEventListener('dragover',e=>{e.preventDefault();routeEl.classList.add('drag-over');
+    const after=afterEl(routeEl,e.clientY);const dragging=routeEl.querySelector('.dragging');
+    if(dragging){after==null?routeEl.appendChild(dragging):routeEl.insertBefore(dragging,after)}
+  });
+  routeEl.addEventListener('dragleave',e=>{if(!routeEl.contains(e.relatedTarget))routeEl.classList.remove('drag-over')});
+  routeEl.addEventListener('drop',e=>{e.preventDefault();routeEl.classList.remove('drag-over');
+    if(dragId && !route.includes(dragId)){ // dropped from palette
+      const order=[...routeEl.querySelectorAll('.mod')].map(x=>x.dataset.id);
+      const idx=order.indexOf(dragId); route.splice(idx<0?route.length:idx,0,dragId);
+    }else{ // reorder
+      route=[...routeEl.querySelectorAll('.mod')].map(x=>x.dataset.id).filter(id=>MOD_BY_ID[id]);
     }
+    renderBuilder();
   });
-})();
+}
+function afterEl(c,y){
+  const els=[...c.querySelectorAll('.mod:not(.dragging)')];
+  return els.reduce((closest,child)=>{const box=child.getBoundingClientRect();const off=y-box.top-box.height/2;
+    return off<0&&off>closest.offset?{offset:off,element:child}:closest},{offset:-Infinity}).element||null;
+}
 
-// =========================================================
-// Progress bar
-// =========================================================
-(function(){
-  const bar = document.getElementById('progressBar');
-  if (!bar) return;
-  window.addEventListener('scroll', () => {
-    const h = document.documentElement;
-    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-    bar.style.width = pct + '%';
-  }, { passive: true });
-})();
+/* depth selector */
+$('#depthOpts').addEventListener('click',e=>{const d=e.target.closest('.depth');if(!d)return;
+  depth=d.dataset.depth;document.querySelectorAll('#depthOpts .depth').forEach(x=>x.classList.toggle('on',x===d));updateSummary()});
 
-// =========================================================
-// Nav mobile
-// =========================================================
-(function(){
-  const burger = document.getElementById('navBurger');
-  const links = document.getElementById('navLinks');
-  burger.addEventListener('click', () => links.classList.toggle('open'));
-  links.addEventListener('click', (e) => {
-    if (e.target.tagName === 'A') links.classList.remove('open');
+/* ======================= VIEWS NAV ======================= */
+document.querySelectorAll('.top-nav button').forEach(b=>b.onclick=()=>{if(!b.disabled)showView(b.dataset.view)});
+function showView(v){
+  document.querySelectorAll('.view').forEach(s=>s.classList.remove('show'));
+  $('#view-'+v).classList.add('show');
+  document.querySelectorAll('.top-nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
+  if(v==='saved')renderSaved();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ======================= PLAYBOOK ======================= */
+$('#btnGenerate').onclick=()=>{if(route.length){buildPlaybook();showView('playbook')}};
+$('#btnEdit').onclick=()=>showView('builder');
+$('#navPlaybook').onclick=function(){if(!this.disabled){buildPlaybook();showView('playbook')}};
+
+function buildPlaybook(){
+  $('#navPlaybook').disabled=false;$('#navPlaybook').style.opacity=1;
+  const name=$('#cfgName').value.trim()||'Visita guiada';
+  const date=$('#cfgDate').value, host=$('#cfgHost').value.trim(), aud=$('#cfgAudience').value.trim();
+  $('#pbTitle').textContent=name;
+  const t=route.reduce((s,id)=>s+MOD_BY_ID[id].dur,0);
+  let meta=[];
+  if(date)meta.push('📅 <b>'+date.split('-').reverse().join('/')+'</b>');
+  meta.push('📍 <b>'+route.length+'</b> estações');
+  meta.push('⏱️ ~<b>'+t+' min</b>');
+  if(host)meta.push('🎙️ <b>'+host+'</b>');
+  if(aud)meta.push('👥 '+aud);
+  $('#pbMeta').innerHTML=meta.join('<span style="opacity:.4">·</span> ');
+  // depth segment sync
+  document.querySelectorAll('#pbDepth button').forEach(b=>b.classList.toggle('on',b.dataset.depth===depth));
+  renderStations();
+}
+function renderStations(){
+  const c=$('#stations');
+  c.innerHTML=route.map((id,i)=>{const m=MOD_BY_ID[id];
+    return `<div class="station ${i===0?'open':''}" data-id="${id}">
+      <div class="st-head" onclick="toggleSt(this)">
+        <div class="ic">${m.ic}</div>
+        <div class="stt"><div class="n">Estação ${i+1} · ${m.dur} min</div><h3>${m.name}</h3><small>${PILLARS[m.pill]}</small></div>
+        <div class="chev">▾</div>
+      </div>
+      <div class="st-body"><div class="st-inner">
+        <div class="script"><span class="qq">&ldquo;</span><span class="script-text">${m[depth]}</span></div>
+        <div class="block-title">✓ Pontos para reforçar</div>
+        <ul class="keys">${m.keys.map((k,ki)=>`<li onclick="this.classList.toggle('done');updateProg()" data-k="${id}-${ki}"><span class="ck">✓</span><span>${k}</span></li>`).join('')}</ul>
+        ${m.curio?`<div style="margin-top:14px"><button class="reveal" onclick="this.nextElementSibling.classList.toggle('show')">💡 Curiosidade para soltar</button><div class="curio">${m.curio}</div></div>`:''}
+        ${m.safety?`<div class="safety">⚠️ <span>${m.safety}</span></div>`:''}
+      </div></div>
+    </div>`;
+  }).join('');
+  // open first body height
+  c.querySelectorAll('.station.open .st-body').forEach(b=>b.style.maxHeight=b.scrollHeight+'px');
+  updateProg();
+}
+function toggleSt(h){const st=h.closest('.station'),b=st.querySelector('.st-body');
+  st.classList.toggle('open');b.style.maxHeight=st.classList.contains('open')?b.scrollHeight+'px':0}
+function updateProg(){const all=document.querySelectorAll('#stations .keys li');
+  const done=document.querySelectorAll('#stations .keys li.done').length;
+  $('#pbProg').style.width=all.length?(done/all.length*100)+'%':'0'}
+$('#pbDepth').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  depth=b.dataset.depth;document.querySelectorAll('#pbDepth button').forEach(x=>x.classList.toggle('on',x===b));
+  // update scripts in place + reopen heights
+  document.querySelectorAll('#stations .station').forEach(st=>{
+    st.querySelector('.script-text').textContent=MOD_BY_ID[st.dataset.id][depth];
+    if(st.classList.contains('open')){const bd=st.querySelector('.st-body');bd.style.maxHeight=bd.scrollHeight+'px'}
   });
-})();
+});
 
-// =========================================================
-// Reveal on scroll
-// =========================================================
-(function(){
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-})();
+/* ======================= SAVE / LOAD VISITS ======================= */
+async function getVisits(){const raw=await Store.get(VISITS_KEY);try{return raw?JSON.parse(raw):[]}catch(e){return[]}}
+async function saveVisits(v){await Store.set(VISITS_KEY,JSON.stringify(v))}
 
-// =========================================================
-// Quiz logic
-// =========================================================
-(function(){
-  document.querySelectorAll('.quiz').forEach(quiz => {
-    const options = quiz.querySelectorAll('.quiz-option');
-    const feedback = quiz.querySelector('[data-feedback]');
-    options.forEach(opt => {
-      opt.addEventListener('click', () => {
-        const isCorrect = opt.getAttribute('data-correct') === 'true';
-        options.forEach(o => {
-          o.disabled = true;
-          if (o.getAttribute('data-correct') === 'true') o.classList.add('correct');
-          else if (o === opt) o.classList.add('incorrect');
-        });
-        feedback.classList.add('show');
-        if (!isCorrect) feedback.classList.add('error');
-      });
-    });
+$('#btnSave').onclick=async()=>{
+  if(!route.length){toast('Adicione ao menos um departamento.');return}
+  const name=$('#cfgName').value.trim()||'Visita sem nome';
+  const visits=await getVisits();
+  const obj={id:currentVisitId||('v'+Date.now()),name,date:$('#cfgDate').value,host:$('#cfgHost').value.trim(),
+    audience:$('#cfgAudience').value.trim(),route:[...route],depth,updated:Date.now()};
+  const idx=visits.findIndex(x=>x.id===obj.id);
+  if(idx>=0)visits[idx]=obj;else visits.push(obj);
+  currentVisitId=obj.id;
+  await saveVisits(visits);
+  toast('✓ Visita salva: '+name);
+};
+
+async function renderSaved(){
+  const visits=(await getVisits()).sort((a,b)=>b.updated-a.updated);
+  const g=$('#savedGrid');
+  if(!visits.length){g.innerHTML='<div class="empty-state"><div class="big">🗂️</div><b>Nenhuma visita salva ainda.</b><br>Monte um roteiro e clique em "Salvar visita".</div>';return}
+  g.className='saved-grid';
+  g.innerHTML=visits.map(v=>`<div class="sv" data-id="${v.id}">
+    <div class="tag">visita</div>
+    <h4>${v.name}</h4>
+    <div class="meta">${v.date?v.date.split('-').reverse().join('/'):'sem data'} · ${v.route.length} estações · ${DEPTH_LABEL[v.depth]||''}</div>
+    <div class="chips">${v.route.slice(0,5).map(id=>`<span class="chip">${MOD_BY_ID[id]?MOD_BY_ID[id].ic+' '+MOD_BY_ID[id].name.split('—')[0].split('(')[0].trim():id}</span>`).join('')}${v.route.length>5?`<span class="chip">+${v.route.length-5}</span>`:''}</div>
+    <div class="acts"><button class="open">Abrir</button><button class="dup">Duplicar</button><button class="del">Excluir</button></div>
+  </div>`).join('');
+  g.querySelectorAll('.sv').forEach(card=>{
+    const id=card.dataset.id, v=visits.find(x=>x.id===id);
+    card.querySelector('.open').onclick=()=>loadVisit(v);
+    card.querySelector('.dup').onclick=async()=>{const c={...v,id:'v'+Date.now(),name:v.name+' (cópia)',updated:Date.now()};const all=await getVisits();all.push(c);await saveVisits(all);renderSaved();toast('Visita duplicada.')};
+    card.querySelector('.del').onclick=async()=>{const all=(await getVisits()).filter(x=>x.id!==id);await saveVisits(all);renderSaved();toast('Visita excluída.')};
   });
-})();
+}
+function loadVisit(v){
+  currentVisitId=v.id;
+  $('#cfgName').value=v.name||'';$('#cfgDate').value=v.date||'';$('#cfgHost').value=v.host||'';$('#cfgAudience').value=v.audience||'';
+  route=v.route.filter(id=>MOD_BY_ID[id]);depth=v.depth||'eq';
+  document.querySelectorAll('#depthOpts .depth').forEach(x=>x.classList.toggle('on',x.dataset.depth===depth));
+  renderBuilder();buildPlaybook();showView('playbook');
+}
 
-// =========================================================
-// FAQ accordion
-// =========================================================
-(function(){
-  document.querySelectorAll('.faq-item').forEach(item => {
-    const q = item.querySelector('.faq-question');
-    q.addEventListener('click', () => item.classList.toggle('open'));
-  });
-})();
+/* ======================= TOAST ======================= */
+let toastT;function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2400)}
 
-// =========================================================
-// Checklist with persistence
-// =========================================================
-(function(){
-  const items = document.querySelectorAll('.checklist-item');
-  const state = {};
-  // Load
-  items.forEach(item => {
-    const k = item.getAttribute('data-check');
-    try {
-      if (window.localStorage && localStorage.getItem('lesaffre_' + k) === '1') {
-        item.classList.add('checked');
-        state[k] = true;
-      }
-    } catch(_) {}
-    item.addEventListener('click', () => {
-      item.classList.toggle('checked');
-      state[k] = item.classList.contains('checked');
-      try { if (window.localStorage) localStorage.setItem('lesaffre_' + k, state[k] ? '1' : '0'); } catch(_) {}
-    });
-  });
-  // Reset
-  const reset = document.getElementById('resetCheck');
-  if (reset) reset.addEventListener('click', () => {
-    items.forEach(item => {
-      item.classList.remove('checked');
-      const k = item.getAttribute('data-check');
-      try { if (window.localStorage) localStorage.removeItem('lesaffre_' + k); } catch(_) {}
-    });
-  });
-})();
-
-// =========================================================
-// Active station highlight on tour map
-// =========================================================
-(function(){
-  const stations = document.querySelectorAll('.station[id^="estacao-"]');
-  const mapItems = document.querySelectorAll('.map-station');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const id = e.target.id;
-        mapItems.forEach(m => m.classList.remove('focus'));
-        const active = document.querySelector('.map-station[href="#' + id + '"]');
-        if (active) active.classList.add('focus');
-      }
-    });
-  }, { rootMargin: '-40% 0px -55% 0px' });
-  stations.forEach(s => io.observe(s));
-})();
-
-// =========================================================
-// FIELD MODE (Modo Cola)
-// =========================================================
-(function(){
-  const trigger = document.getElementById('fmTrigger');
-  const panel = document.getElementById('fieldmode');
-  const closeBtn = document.getElementById('fmClose');
-  const tabs = document.querySelectorAll('.fm-tab');
-  const panels = document.querySelectorAll('.fm-panel');
-  const body = document.getElementById('fmBody') || panel.querySelector('.fm-body');
-
-  if (!trigger || !panel) return;
-
-  const order = ['fm-intro', 'fm-s3', 'fm-s4', 'fm-s5', 'fm-s6', 'fm-faq'];
-
-  function open(){
-    panel.classList.add('open');
-    panel.setAttribute('aria-hidden','false');
-    document.body.style.overflow = 'hidden';
-  }
-  function close(){
-    panel.classList.remove('open');
-    panel.setAttribute('aria-hidden','true');
-    document.body.style.overflow = '';
-  }
-  function activate(id){
-    tabs.forEach(t => t.classList.toggle('active', t.getAttribute('data-panel') === id));
-    panels.forEach(p => p.classList.toggle('active', p.id === id));
-    // Scroll tab into view (mobile)
-    const activeTab = Array.from(tabs).find(t => t.getAttribute('data-panel') === id);
-    if (activeTab && activeTab.scrollIntoView) {
-      activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-    }
-    // Scroll body to top inside field mode
-    if (body) body.scrollTop = 0;
-  }
-
-  trigger.addEventListener('click', open);
-  closeBtn.addEventListener('click', close);
-
-  // Tab click
-  tabs.forEach(t => {
-    t.addEventListener('click', () => activate(t.getAttribute('data-panel')));
-  });
-
-  // Prev/Next buttons
-  panels.forEach(p => {
-    const prev = p.querySelector('[data-prev]');
-    const next = p.querySelector('[data-next]');
-    if (prev) prev.addEventListener('click', () => {
-      const idx = order.indexOf(p.id);
-      if (idx > 0) activate(order[idx - 1]);
-    });
-    if (next) next.addEventListener('click', () => {
-      const idx = order.indexOf(p.id);
-      if (idx >= 0 && idx < order.length - 1) activate(order[idx + 1]);
-    });
-  });
-
-  // ESC closes
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && panel.classList.contains('open')) close();
-  });
-})();
+/* ======================= INIT ======================= */
+renderBuilder();
 </script>
-
 </body>
 </html>
