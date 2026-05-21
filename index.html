@@ -180,6 +180,26 @@
   .reveal:hover{filter:brightness(1.05);transform:translateY(-1px)}
   .curio{display:none;margin-top:10px;padding:14px 16px;background:linear-gradient(135deg,rgba(238,125,49,.12),rgba(111,165,57,.10));border:1px dashed var(--orange);border-radius:12px;font-size:.95rem;font-style:italic}.curio.show{display:block;animation:fade .4s both}
   .safety{margin-top:14px;font-size:.84rem;color:var(--ruby);background:rgba(200,40,42,.06);border:1px solid rgba(200,40,42,.2);border-radius:11px;padding:10px 14px;display:flex;gap:9px;align-items:flex-start}
+  .faqs{margin-top:14px}
+  .faq-item{border:1px solid var(--line);border-radius:11px;margin-bottom:7px;overflow:hidden;background:#fff}
+  .faq-q{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 13px;cursor:pointer;font-weight:700;font-size:.92rem;color:var(--blue)}
+  .faq-tg{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--cream-2);display:grid;place-items:center;color:var(--muted);font-weight:900;transition:.2s}
+  .faq-item.open .faq-tg{transform:rotate(45deg);background:var(--blue);color:#fff}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 13px;font-size:.92rem;color:var(--ink)}
+  .faq-item.open .faq-a{max-height:400px;padding:0 13px 12px}
+  /* COLA (só impressão) */
+  #cola{display:none}
+  #cola{font-family:var(--f-body);color:#111;font-size:11pt;line-height:1.42}
+  .cola-head{background:#0A3B93;color:#fff;padding:8pt 10pt;border-radius:6pt;margin-bottom:10pt}
+  .cola-head b{font-size:13pt;font-weight:900;display:block}.cola-head span{font-size:9pt;opacity:.92}
+  .cola-st{break-inside:avoid;border-left:3pt solid #0A3B93;padding:1pt 0 6pt 8pt;margin-bottom:9pt}
+  .cola-st.art{border-left-color:#C9A227}
+  .cola-n{font-weight:900;color:#0A3B93;font-size:10.5pt;margin-bottom:2pt}.cola-st.art .cola-n{color:#8a6f12}
+  .cola-say{font-size:10.5pt;margin:2pt 0 3pt;font-style:italic}
+  .cola-lbl{font-size:8pt;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:#EE7D31;margin-top:4pt}
+  .cola-ul{margin:1pt 0 0 13pt;padding:0}.cola-ul li{font-size:9.5pt;margin-bottom:1pt}
+  .cola-curio{font-size:9.5pt;font-style:italic;margin-top:3pt;color:#444}
+  .cola-q{font-size:9.5pt;margin-top:2pt}.cola-q b{color:#0A3B93}
   .st-btns{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
   .st-btns button{font-family:var(--f-body);font-weight:700;font-size:.84rem;border-radius:11px;padding:10px 16px;cursor:pointer;transition:.14s;border:1.5px solid var(--line);background:var(--cream-2);color:var(--blue)}
   .st-btns .moreb:hover{border-color:var(--blue);background:var(--blue);color:#fff}
@@ -211,8 +231,15 @@
   .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:13px 22px;border-radius:999px;font-size:.88rem;font-weight:700;opacity:0;pointer-events:none;transition:.3s;z-index:400;box-shadow:0 10px 30px rgba(0,0,0,.3)}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
   @media print{
-    header.top,.summary,.pb-tools,.pb-actions,.top-nav,.reveal,.login-wrap,.st-btns,.modal-bg{display:none!important}
-    .st-body{max-height:none!important}.curio{display:block!important}body{background:#fff}.station{break-inside:avoid;box-shadow:none}
+    header.top,.summary,.pb-tools,.pb-actions,.top-nav,.reveal,.login-wrap,.st-btns,.modal-bg,.faq-tg{display:none!important}
+    body:not(.printing-cola){background:#fff}
+    body:not(.printing-cola) .st-body{max-height:none!important}
+    body:not(.printing-cola) .curio{display:block!important;max-height:none!important}
+    body:not(.printing-cola) .faq-a{max-height:none!important;padding:0 13px 12px!important}
+    body:not(.printing-cola) .station{break-inside:avoid;box-shadow:none}
+    body.printing-cola .view,body.printing-cola header,body.printing-cola footer{display:none!important}
+    body.printing-cola #cola{display:block!important}
+    body.printing-cola{background:#fff}
   }
 </style>
 </head>
@@ -302,11 +329,14 @@
       <div class="progress" title="Progresso da visita"><i id="pbProg"></i></div>
     </div>
     <div id="stations"></div>
-    <div class="pb-actions"><button class="btn btn-blue" onclick="window.print()">🖨️ Imprimir / PDF</button><button class="btn btn-line" id="btnEdit">← Editar roteiro</button></div>
+    <div class="pb-actions"><button class="btn btn-blue" onclick="doPrint('cola')">📱 Gerar Cola (PDF mobile)</button><button class="btn btn-line" onclick="doPrint('full')">🖨️ Playbook completo</button><button class="btn btn-line" id="btnEdit">← Editar roteiro</button></div>
   </div>
 </section>
 
 <footer><div class="wrap">Material interno de treinamento · Lesaffre Brasil · Nova fábrica de fermento fresco — Narandiba · Inauguração 18/06/2026</div></footer>
+
+<!-- COLA (gerada sob demanda, só p/ impressão) -->
+<div id="cola"></div>
 
 <!-- MODAL -->
 <div class="modal-bg" id="modal"><div class="modal"><button class="modal-x" id="modalX">✕</button><div id="modalBody"></div></div></div>
@@ -518,6 +548,48 @@ const MOD_BY_ID=Object.fromEntries(MODULES.map(m=>[m.id,m]));
 const DEPTH_LABEL={min:'Mínimo',eq:'Equilibrado',tec:'Técnico'};
 const PROF_LABEL={cliente:'Cliente',distrib:'Distribuidor',colab:'Novo colaborador'};
 const ART_IDS=['arte_origami','arte_mural'];
+/* Perguntas & respostas possíveis por estação (ancoradas nas transcrições + propósito da marca) */
+const FAQ={
+ abertura:[
+  {q:'Quanto tempo dura a visita?',a:'Cerca de 45 minutos, em grupos de aproximadamente 15 pessoas.'},
+  {q:'A fábrica já está produzindo?',a:'Sim — o abastecimento começou antes mesmo da inauguração oficial.'}],
+ materia:[
+  {q:'De onde vem o melaço?',a:'É um derivado da cana-de-açúcar, matéria-prima nacional e abundante na região.'},
+  {q:'O melaço passa por algum tratamento antes?',a:'Sim: é diluído, clarificado (limpo de impurezas) e esterilizado antes de entrar na fermentação.'}],
+ fermentacao:[
+  {q:'Quanto tempo leva a fermentação?',a:'O processo de propagação e fermentação leva pouco mais de um dia.'},
+  {q:'Que tamanho têm os tanques?',a:'Os maiores chegam à ordem de 100 a 110 mil litros.'},
+  {q:'Do que a levedura se alimenta?',a:'Principalmente do melaço (fonte de carbono), além de nutrientes adicionados ao processo.'}],
+ controle:[
+  {q:'É tudo automatizado?',a:'Sim. A planta opera por sequências automáticas e a sala de controle acompanha tudo em tempo real.'},
+  {q:'Como garantem que um lote é igual ao outro?',a:'Pelo controle contínuo de parâmetros e por análises de processo por amostragem em cada área.'}],
+ separacao:[
+  {q:'A mesma fábrica faz fermento para massa doce e salgada?',a:'Sim. A definição acontece na inoculação, com o mesmo poder fermentativo nas duas linhas.'},
+  {q:'O que é o creme-mãe?',a:'É o creme de levedura concentrado, armazenado antes de virar o produto comercial.'}],
+ desidratacao:[
+  {q:'Por que usar salmoura?',a:'O sal retira a água do creme por pressão osmótica, ajudando a concentrá-lo até o ponto do bloco.'},
+  {q:'O bloco sai sempre igual?',a:'Sim — a concentração é controlada para dar firmeza e padrão ao produto.'}],
+ extrusao:[
+  {q:'Posso fotografar aqui?',a:'Sim, é uma ótima parada para fotos — respeitando a distância de segurança do equipamento.'},
+  {q:'Que formato vocês produzem?',a:'Nesta unidade, o fermento fresco em bloco, apresentado em conjunto de seis bloquinhos.'}],
+ embalagem:[
+  {q:'Como garantem que não há contaminação física?',a:'Cada caixa passa por aferição de peso e por detector de metais antes de sair.'},
+  {q:'Por que não usam stretch nos pallets?',a:'Uma cola aplicada entre as caixas garante a estabilidade durante o transporte.'}],
+ laboratorio:[
+  {q:'O que é "força fermentativa"?',a:'É o quanto o fermento faz o pão crescer — medido por um ensaio com farinha e açúcar que avalia o gás gerado.'},
+  {q:'Vocês testam cada lote?',a:'O laboratório faz o controle de desempenho e o microbiológico para assegurar qualidade e segurança.'}],
+ encerramento:[
+  {q:'Vocês produzem fermento seco e líquido aqui?',a:'Esta unidade é dedicada ao fresco; seco e líquido a granel envolvem outras instalações do mesmo complexo.'},
+  {q:'Qual a vantagem de a fábrica ser no Brasil?',a:'Logística simplificada frente ao importado, lead times menores e melhor aproveitamento do shelf-life.'}],
+ arte_origami:[
+  {q:'Quem é o artista?',a:'Beto Deodato, designer e artista visual brasileiro.'},
+  {q:'Por que andorinhas?',a:'A andorinha é o ícone da Lesaffre; a revoada simboliza boas-vindas, a boa safra e o trabalho conjunto.'},
+  {q:'Posso tirar foto?',a:'Sim! A obra foi pensada como espaço de interação e de foto.'}],
+ arte_mural:[
+  {q:'O que a imagem representa?',a:'A mão que nutre segurando uma andorinha com um grão de trigo — o ciclo da nutrição, da produção ao uso.'},
+  {q:'Quem assina a obra?',a:'Beto Deodato, designer e artista visual brasileiro.'}],
+};
+MODULES.forEach(m=>{ if(!m.faq) m.faq=FAQ[m.id]||[]; });
 
 /* ========= OVERRIDES (ADM) ========= */
 let overrides={};
@@ -616,7 +688,8 @@ function renderStations(){
         ${profileBlock(m)}
         <div class="block-title">✓ Pontos para reforçar</div>
         <ul class="keys">${m.keys.map(k=>`<li onclick="this.classList.toggle('done');updateProg()"><span class="ck">✓</span><span>${k}</span></li>`).join('')}</ul>
-        ${m.curio?`<div style="margin-top:14px"><button class="reveal" onclick="this.nextElementSibling.classList.toggle('show')">💡 Curiosidade para soltar</button><div class="curio">${m.curio}</div></div>`:''}
+        ${m.faq&&m.faq.length?`<div class="faqs"><div class="block-title">❓ Perguntas &amp; respostas</div>${m.faq.map(f=>`<div class="faq-item" onclick="this.classList.toggle('open');relayout(this)"><div class="faq-q"><span>${f.q}</span><span class="faq-tg">+</span></div><div class="faq-a">${f.a}</div></div>`).join('')}</div>`:''}
+        ${m.curio?`<div style="margin-top:14px"><button class="reveal" onclick="this.nextElementSibling.classList.toggle('show');relayout(this)">💡 Curiosidade para soltar</button><div class="curio">${m.curio}</div></div>`:''}
         ${m.safety?`<div class="safety">⚠️ <span>${m.safety}</span></div>`:''}
         <div class="st-btns"><button class="moreb" onclick="openSaber('${id}')">📖 Saber mais</button>${isAdm?`<button class="editb" onclick="openEditor('${id}')">✏️ Editar conteúdo</button>`:''}</div>
       </div></div></div>`;
@@ -625,6 +698,7 @@ function renderStations(){
   updateProg();
 }
 function toggleSt(h){const st=h.closest('.station'),b=st.querySelector('.st-body');st.classList.toggle('open');b.style.maxHeight=st.classList.contains('open')?b.scrollHeight+'px':0}
+function relayout(el){const b=el.closest('.st-body');if(b&&b.style.maxHeight&&b.style.maxHeight!=='0px')b.style.maxHeight=b.scrollHeight+'px'}
 function updateProg(){const all=document.querySelectorAll('#stations .keys li'),done=document.querySelectorAll('#stations .keys li.done').length;$('#pbProg').style.width=all.length?(done/all.length*100)+'%':'0'}
 $('#pbProf').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;profile=b.dataset.prof;document.querySelectorAll('#pbProf button').forEach(x=>x.classList.toggle('on',x===b));renderStations()});
 $('#pbDepth').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;depth=b.dataset.depth;document.querySelectorAll('#pbDepth button').forEach(x=>x.classList.toggle('on',x===b));renderStations()});
@@ -641,13 +715,14 @@ function openSaber(id){const m=MOD_BY_ID[id];
     <div class="msec"><h4>Tópicos</h4>${listHtml(m.topicos)}</div>
     <div class="msec"><h4>Curiosidades</h4>${listHtml(m.curiosidades)}</div>
     <div class="msec"><h4>Dicas para o guia</h4>${listHtml(m.dicas)}</div>
+    ${m.faq&&m.faq.length?`<div class="msec"><h4>Perguntas &amp; respostas</h4>${m.faq.map(f=>`<p style="margin-bottom:8px"><b style="color:var(--blue)">${f.q}</b><br>${f.a}</p>`).join('')}</div>`:''}
     <div class="msec"><h4>Conteúdo completo</h4><p>${m.completo}</p></div>
     ${role==='adm'?`<div class="modal-actions"><button class="btn btn-line" onclick="openEditor('${id}')">✏️ Editar este conteúdo</button></div>`:''}`;
   modal.classList.add('show');
 }
 function ta(id,label,val,rows,hint){return `<div class="msec"><label>${label}</label>${hint?`<div class="hint">${hint}</div>`:''}<textarea id="ed_${id}" rows="${rows}">${esc(val)}</textarea></div>`}
 function openEditor(id){if(role!=='adm')return;const m=MOD_BY_ID[id];
-  modalBody.innerHTML=`<h2>✏️ Editar — ${m.name}</h2><div class="msub">Modo ADM · as alterações ficam salvas no navegador</div>
+  modalBody.innerHTML=`<h2>✏️ Editar — ${m.name}</h2><div class="msub">Modo ADM · edição da <b>base geral</b> (vale para todas as visitas) · salva no navegador</div>
     ${ta('min','Roteiro — Mínimo',m.min,3)}
     ${ta('eq','Roteiro — Equilibrado',m.eq,4)}
     ${ta('tec','Roteiro — Técnico',m.tec,4)}
@@ -655,12 +730,14 @@ function openEditor(id){if(role!=='adm')return;const m=MOD_BY_ID[id];
     ${ta('topicos','Tópicos',( m.topicos||[]).join('\n'),4,'um por linha')}
     ${ta('curiosidades','Curiosidades',(m.curiosidades||[]).join('\n'),4,'uma por linha')}
     ${ta('dicas','Dicas para o guia',(m.dicas||[]).join('\n'),4,'uma por linha')}
+    ${ta('faq','Perguntas &amp; respostas',(m.faq||[]).map(f=>f.q+' | '+f.a).join('\n'),5,'uma por linha, no formato: Pergunta | Resposta')}
     ${ta('completo','Conteúdo completo',m.completo,7)}
     <div class="modal-actions"><button class="btn btn-line" onclick="closeModal()">Cancelar</button><button class="btn btn-go" onclick="saveEditor('${id}')">Salvar conteúdo</button></div>`;
   modal.classList.add('show');
 }
 function saveEditor(id){const g=f=>$('#ed_'+f).value;const lines=v=>v.split('\n').map(s=>s.trim()).filter(Boolean);
-  const upd={min:g('min'),eq:g('eq'),tec:g('tec'),curio:g('curio'),topicos:lines(g('topicos')),curiosidades:lines(g('curiosidades')),dicas:lines(g('dicas')),completo:g('completo')};
+  const faq=lines(g('faq')).map(l=>{const i=l.indexOf('|');return i<0?{q:l,a:''}:{q:l.slice(0,i).trim(),a:l.slice(i+1).trim()}});
+  const upd={min:g('min'),eq:g('eq'),tec:g('tec'),curio:g('curio'),topicos:lines(g('topicos')),curiosidades:lines(g('curiosidades')),dicas:lines(g('dicas')),faq,completo:g('completo')};
   Object.assign(MOD_BY_ID[id],upd);overrides[id]={...(overrides[id]||{}),...upd};
   Store.set(CONTENT_KEY,JSON.stringify(overrides));closeModal();renderStations();toast('✓ Conteúdo atualizado e salvo.');
 }
@@ -690,6 +767,29 @@ function loadVisit(v){currentVisitId=v.id;
   document.querySelectorAll('#profOpts .opt').forEach(x=>x.classList.toggle('on',x.dataset.prof===profile));
   document.querySelectorAll('#depthOpts .opt').forEach(x=>x.classList.toggle('on',x.dataset.depth===depth));
   renderBuilder();buildPlaybook();showView('playbook');
+}
+
+/* ========= COLA / PDF ========= */
+function buildCola(){
+  const name=$('#cfgName').value.trim()||'Visita guiada',date=$('#cfgDate').value,host=$('#cfgHost').value.trim();
+  const head=`<div class="cola-head"><b>${esc(name)}</b><span>${PROF_LABEL[profile]} · nível ${DEPTH_LABEL[depth]}${date?' · '+date.split('-').reverse().join('/'):''}${host?' · '+esc(host):''}</span></div>`;
+  const body=route.map((id,i)=>{const m=MOD_BY_ID[id];const art=m.pill==='art';
+    return `<div class="cola-st ${art?'art':''}">
+      <div class="cola-n">${art?'★':(i+1)+'.'} ${m.name} · ${m.dur}min</div>
+      <div class="cola-say">${m[depth]}</div>
+      <div class="cola-lbl">Reforçar</div><ul class="cola-ul">${m.keys.map(k=>`<li>${k}</li>`).join('')}</ul>
+      ${m.faq&&m.faq.length?`<div class="cola-lbl">Se perguntarem</div>${m.faq.map(f=>`<div class="cola-q"><b>${f.q}</b> ${f.a}</div>`).join('')}`:''}
+      ${m.curio?`<div class="cola-curio">💡 ${m.curio}</div>`:''}</div>`;}).join('');
+  $('#cola').innerHTML=head+body;
+}
+function doPrint(mode){
+  const style=document.createElement('style');style.id='printpage';
+  if(mode==='cola'){style.textContent='@page{size:96mm 200mm;margin:7mm 6mm}';buildCola();document.body.classList.add('printing-cola')}
+  else{style.textContent='@page{size:A4 portrait;margin:13mm}'}
+  document.head.appendChild(style);
+  const cleanup=()=>{document.body.classList.remove('printing-cola');const s=document.getElementById('printpage');if(s)s.remove();window.removeEventListener('afterprint',cleanup)};
+  window.addEventListener('afterprint',cleanup);
+  setTimeout(()=>window.print(),90);
 }
 
 /* ========= TOAST + INIT ========= */
