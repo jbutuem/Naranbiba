@@ -198,19 +198,21 @@
   .faq-item.open .faq-tg{transform:rotate(45deg);background:var(--blue);color:#fff}
   .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 13px;font-size:.92rem;color:var(--ink)}
   .faq-item.open .faq-a{max-height:400px;padding:0 13px 12px}
-  /* COLA (só impressão) */
+  /* COLA 1080x1920 (só impressão) */
   #cola{display:none}
-  #cola{font-family:var(--f-body);color:#111;font-size:11pt;line-height:1.42}
-  .cola-head{background:#0A3B93;color:#fff;padding:8pt 10pt;border-radius:6pt;margin-bottom:10pt}
-  .cola-head b{font-size:13pt;font-weight:900;display:block}.cola-head span{font-size:9pt;opacity:.92}
-  .cola-st{break-inside:avoid;border-left:3pt solid #0A3B93;padding:1pt 0 6pt 8pt;margin-bottom:9pt}
+  #cola{font-family:var(--f-body);color:#111;line-height:1.4}
+  body.printing-cola #cola{width:1080px;padding:64px 64px 56px;box-sizing:border-box}
+  .cola-head{background:#0A3B93;color:#fff;padding:30px 36px;border-radius:20px;margin-bottom:34px}
+  .cola-head b{font-size:46px;font-weight:900;display:block;line-height:1.05}
+  .cola-head span{font-size:25px;opacity:.92}
+  .cola-st{break-inside:avoid;border-left:8px solid #0A3B93;padding:4px 0 20px 26px;margin-bottom:30px}
   .cola-st.art{border-left-color:#C9A227}
-  .cola-n{font-weight:900;color:#0A3B93;font-size:10.5pt;margin-bottom:2pt}.cola-st.art .cola-n{color:#8a6f12}
-  .cola-say{font-size:10.5pt;margin:2pt 0 3pt;font-style:italic}
-  .cola-lbl{font-size:8pt;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:#EE7D31;margin-top:4pt}
-  .cola-ul{margin:1pt 0 0 13pt;padding:0}.cola-ul li{font-size:9.5pt;margin-bottom:1pt}
-  .cola-curio{font-size:9.5pt;font-style:italic;margin-top:3pt;color:#444}
-  .cola-q{font-size:9.5pt;margin-top:2pt}.cola-q b{color:#0A3B93}
+  .cola-n{font-weight:900;color:#0A3B93;font-size:31px;margin-bottom:8px}.cola-st.art .cola-n{color:#8a6f12}
+  .cola-say{font-size:29px;margin:6px 0 10px;font-style:italic;line-height:1.4}
+  .cola-lbl{font-size:19px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:#EE7D31;margin-top:16px;margin-bottom:4px}
+  .cola-ul{margin:2px 0 0 26px;padding:0}.cola-ul li{font-size:26px;margin-bottom:5px;line-height:1.32}
+  .cola-curio{font-size:26px;font-style:italic;margin-top:12px;color:#444;line-height:1.35}
+  .cola-q{font-size:26px;margin-top:8px;line-height:1.35}.cola-q b{color:#0A3B93}
   .st-btns{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
   .st-btns button{font-family:var(--f-body);font-weight:700;font-size:.84rem;border-radius:11px;padding:10px 16px;cursor:pointer;transition:.14s;border:1.5px solid var(--line);background:var(--cream-2);color:var(--blue)}
   .st-btns .moreb:hover{border-color:var(--blue);background:var(--blue);color:#fff}
@@ -340,7 +342,7 @@
       <div class="progress" title="Progresso da visita"><i id="pbProg"></i></div>
     </div>
     <div id="stations"></div>
-    <div class="pb-actions"><button class="btn btn-blue" onclick="doPrint('cola')">📱 Gerar Cola (PDF mobile)</button><button class="btn btn-line" onclick="doPrint('full')">🖨️ Playbook completo</button><button class="btn btn-line" id="btnEdit">← Editar roteiro</button></div>
+    <div class="pb-actions"><button class="btn btn-blue" onclick="doPrint('cola')">📱 Gerar Cola (PDF 1080×1920)</button><button class="btn btn-line" onclick="doPrint('full')">🖨️ Playbook completo</button><button class="btn btn-line" id="btnEdit">← Editar roteiro</button></div>
   </div>
 </section>
 
@@ -797,12 +799,12 @@ function buildCola(){
       <div class="cola-lbl">Reforçar</div><ul class="cola-ul">${m.keys.map(k=>`<li>${k}</li>`).join('')}</ul>
       ${m.faq&&m.faq.length?`<div class="cola-lbl">Se perguntarem</div>${m.faq.map(f=>`<div class="cola-q"><b>${f.q}</b> ${f.a}</div>`).join('')}`:''}
       ${m.curio?`<div class="cola-curio">💡 ${m.curio}</div>`:''}</div>`;}).join('');
-  const credit='<div style="margin-top:10pt;border-top:1pt solid #ccc;padding-top:6pt;font-size:8pt;color:#666">Lesaffre Narandiba · 18/06/2026 — Desenvolvido por <b>TGT · MKT &amp; Strategy</b></div>';
+  const credit='<div style="margin-top:28px;border-top:2px solid #ccc;padding-top:14px;font-size:20px;color:#666">Lesaffre Narandiba · 18/06/2026 — Desenvolvido por <b>TGT · MKT &amp; Strategy</b></div>';
   $('#cola').innerHTML=head+body+credit;
 }
 function doPrint(mode){
   const style=document.createElement('style');style.id='printpage';
-  if(mode==='cola'){style.textContent='@page{size:96mm 200mm;margin:7mm 6mm}';buildCola();document.body.classList.add('printing-cola')}
+  if(mode==='cola'){style.textContent='@page{size:1080px 1920px;margin:0}';buildCola();document.body.classList.add('printing-cola')}
   else{style.textContent='@page{size:A4 portrait;margin:13mm}'}
   document.head.appendChild(style);
   const cleanup=()=>{document.body.classList.remove('printing-cola');const s=document.getElementById('printpage');if(s)s.remove();window.removeEventListener('afterprint',cleanup)};
