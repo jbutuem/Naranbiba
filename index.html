@@ -29,118 +29,120 @@
     min-height:100vh; -webkit-font-smoothing:antialiased; line-height:1.55;
   }
   .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+  .kick{font-family:var(--f-script);font-size:1.9rem;color:var(--orange);line-height:.8}
+  .swallow{display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--tunic));border-radius:12px;color:#fff}
+  .swallow svg{width:60%;height:60%}
+
+  /* ---------- LOGIN ---------- */
+  .login-wrap{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:24px;
+    background:var(--blue);
+    background-image:radial-gradient(circle at 20% 10%,rgba(62,111,183,.55),transparent 50%),
+                     radial-gradient(circle at 90% 90%,rgba(238,125,49,.30),transparent 45%);}
+  .login-wrap.hide{display:none}
+  .login-card{background:var(--cream);border-radius:24px;padding:38px 34px;max-width:380px;width:100%;
+    box-shadow:0 30px 80px rgba(0,0,0,.35);text-align:center;animation:pop .5s cubic-bezier(.2,.8,.3,1.2) both}
+  @keyframes pop{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:none}}
+  .login-card .swallow{width:58px;height:58px;margin:0 auto 14px}
+  .login-card .kick{font-size:1.5rem}
+  .login-card h2{color:var(--blue);font-weight:900;font-size:1.5rem;margin:.1em 0}
+  .login-card p{color:var(--muted);font-size:.82rem;margin-bottom:20px}
+  .field{margin-bottom:13px;text-align:left}
+  .field label{display:block;font-size:.74rem;font-weight:700;color:var(--ink);margin-bottom:5px;text-transform:uppercase;letter-spacing:.08em}
+  .field input{width:100%;font-family:var(--f-body);font-size:.95rem;padding:11px 13px;border:1.5px solid var(--line);
+    border-radius:11px;background:#fff;color:var(--ink);transition:.16s}
+  .field input:focus{outline:none;border-color:var(--tunic);box-shadow:0 0 0 3px rgba(62,111,183,.16)}
+  .login-card .btn{width:100%;justify-content:center;margin-top:6px}
+  .login-err{color:var(--ruby);font-size:.82rem;font-weight:700;min-height:18px;margin-top:10px}
+  .login-foot{font-size:.7rem;color:var(--muted);margin-top:16px}
 
   /* ---------- top bar ---------- */
-  header.top{
-    position:sticky;top:0;z-index:50;
-    background:rgba(247,239,229,.86);backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
+  header.top{position:sticky;top:0;z-index:50;background:rgba(247,239,229,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .top-in{display:flex;align-items:center;gap:16px;padding:14px 0}
   .brand{display:flex;align-items:center;gap:12px}
-  .swallow{width:40px;height:40px;flex:0 0 40px;display:grid;place-items:center;
-    background:linear-gradient(135deg,var(--blue),var(--tunic));border-radius:12px;color:#fff}
-  .swallow svg{width:24px;height:24px}
+  .brand .swallow{width:40px;height:40px;flex:0 0 40px}
   .brand b{font-weight:900;letter-spacing:.3px;color:var(--blue);font-size:1.05rem;display:block;line-height:1}
   .brand span{font-size:.72rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
-  .top-nav{margin-left:auto;display:flex;gap:6px}
-  .top-nav button{
-    font-family:var(--f-body);font-weight:700;font-size:.86rem;cursor:pointer;
-    border:1px solid transparent;background:transparent;color:var(--muted);
-    padding:9px 16px;border-radius:999px;transition:.18s;
-  }
+  .top-nav{margin-left:auto;display:flex;gap:6px;align-items:center}
+  .top-nav button{font-family:var(--f-body);font-weight:700;font-size:.86rem;cursor:pointer;border:1px solid transparent;
+    background:transparent;color:var(--muted);padding:9px 16px;border-radius:999px;transition:.18s}
   .top-nav button:hover{color:var(--blue)}
   .top-nav button.active{background:var(--blue);color:#fff;box-shadow:0 4px 14px rgba(10,59,147,.28)}
+  .who{font-size:.76rem;color:var(--muted);border-left:1px solid var(--line);padding-left:14px;margin-left:6px;display:flex;align-items:center;gap:8px}
+  .who b{color:var(--blue)}
+  .who .out{cursor:pointer;color:var(--ruby);font-weight:700;background:none;border:none;font-size:.76rem;padding:0}
 
   .view{display:none;animation:fade .45s ease both}
   .view.show{display:block}
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-  /* ---------- hero (builder) ---------- */
   .hero{padding:40px 0 18px}
-  .kick{font-family:var(--f-script);font-size:1.9rem;color:var(--orange);line-height:.8}
   .hero h1{font-size:clamp(1.8rem,4vw,2.7rem);font-weight:900;color:var(--blue);letter-spacing:-.5px;margin:.15em 0 .25em}
-  .hero p{max-width:640px;color:var(--muted);font-size:1.02rem}
+  .hero p{max-width:660px;color:var(--muted);font-size:1.02rem}
 
-  /* meta + depth controls */
   .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm)}
-  .config-row{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;margin:22px 0 30px}
-  @media(max-width:780px){.config-row{grid-template-columns:1fr}}
+  .config-row{display:grid;grid-template-columns:1.15fr 1fr;gap:18px;margin:22px 0 30px}
+  @media(max-width:820px){.config-row{grid-template-columns:1fr}}
   .config-row .panel{padding:20px 22px}
   .panel h3{font-size:.74rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:14px;font-weight:900}
-  .field{margin-bottom:12px}
-  .field:last-child{margin-bottom:0}
-  .field label{display:block;font-size:.78rem;font-weight:700;color:var(--ink);margin-bottom:5px}
-  .field input{width:100%;font-family:var(--f-body);font-size:.95rem;padding:10px 13px;border:1.5px solid var(--line);
-    border-radius:11px;background:var(--cream-2);color:var(--ink);transition:.16s}
-  .field input:focus{outline:none;border-color:var(--tunic);background:#fff;box-shadow:0 0 0 3px rgba(62,111,183,.14)}
+  .panel h3 .sep{margin-top:20px}
   .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .config-row .field input{background:var(--cream-2)}
 
-  /* depth meter (gamified) */
-  .depth-opts{display:flex;flex-direction:column;gap:9px}
-  .depth{display:flex;align-items:center;gap:13px;padding:11px 14px;border:1.5px solid var(--line);border-radius:13px;
+  /* option cards (depth + profile) */
+  .opts{display:flex;flex-direction:column;gap:8px}
+  .opt{display:flex;align-items:center;gap:13px;padding:10px 13px;border:1.5px solid var(--line);border-radius:13px;
     cursor:pointer;background:var(--cream-2);transition:.16s;position:relative;overflow:hidden}
-  .depth:hover{border-color:var(--tunic)}
-  .depth.on{border-color:var(--blue);background:#fff;box-shadow:0 4px 16px rgba(10,59,147,.12)}
-  .depth.on::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(var(--blue),var(--tunic))}
-  .bars{display:flex;gap:3px;align-items:flex-end;height:22px;flex:0 0 auto}
-  .bars i{width:6px;background:var(--line);border-radius:2px;transition:.2s}
-  .depth.on .bars i{background:var(--blue)}
-  .bars i:nth-child(1){height:9px}.bars i:nth-child(2){height:15px}.bars i:nth-child(3){height:22px}
-  .depth .dt{flex:1}
-  .depth .dt b{display:block;font-size:.92rem}
-  .depth .dt small{color:var(--muted);font-size:.76rem}
+  .opt:hover{border-color:var(--tunic)}
+  .opt.on{border-color:var(--blue);background:#fff;box-shadow:0 4px 16px rgba(10,59,147,.12)}
+  .opt.on::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(var(--blue),var(--tunic))}
+  .opt .em{font-size:1.3rem;flex:0 0 auto}
+  .bars{display:flex;gap:3px;align-items:flex-end;height:20px;flex:0 0 auto}
+  .bars i{width:5px;background:var(--line);border-radius:2px}
+  .opt.on .bars i{background:var(--blue)}
+  .bars i:nth-child(1){height:8px}.bars i:nth-child(2){height:14px}.bars i:nth-child(3){height:20px}
+  .opt .dt{flex:1}.opt .dt b{display:block;font-size:.9rem}.opt .dt small{color:var(--muted);font-size:.75rem}
 
-  /* ---------- builder columns ---------- */
+  /* builder */
   .builder{display:grid;grid-template-columns:1fr 1.05fr;gap:22px;align-items:start}
   @media(max-width:880px){.builder{grid-template-columns:1fr}}
   .col-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
   .col-head h2{font-size:1.05rem;font-weight:900;color:var(--blue)}
   .col-head .hint{font-size:.76rem;color:var(--muted)}
-
   .palette,.route{display:flex;flex-direction:column;gap:10px}
   .route{min-height:120px;padding:8px;border:2px dashed var(--line);border-radius:var(--radius);background:rgba(255,255,255,.4);transition:.18s}
   .route.drag-over{border-color:var(--tunic);background:rgba(62,111,183,.06)}
   .route-empty{text-align:center;color:var(--muted);font-size:.9rem;padding:34px 18px}
   .route-empty b{display:block;color:var(--blue);font-weight:900;margin-bottom:4px}
-
-  .mod{display:flex;align-items:center;gap:12px;padding:13px 14px;background:var(--card);
-    border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-sm);transition:.16s;cursor:grab}
+  .mod{display:flex;align-items:center;gap:12px;padding:13px 14px;background:var(--card);border:1px solid var(--line);
+    border-radius:14px;box-shadow:var(--shadow-sm);transition:.16s;cursor:grab}
   .mod:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
   .mod.dragging{opacity:.45}
   .mod .ic{width:42px;height:42px;flex:0 0 42px;border-radius:11px;display:grid;place-items:center;font-size:1.35rem;
     background:linear-gradient(135deg,rgba(10,59,147,.10),rgba(62,111,183,.16))}
-  .mod .mt{flex:1;min-width:0}
-  .mod .mt b{display:block;font-size:.95rem;font-weight:700;line-height:1.2}
-  .mod .mt small{color:var(--muted);font-size:.76rem}
-  .pill{font-size:.64rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;padding:3px 8px;border-radius:999px;color:#fff;white-space:nowrap}
+  .mod .mt{flex:1;min-width:0}.mod .mt b{display:block;font-size:.94rem;font-weight:700;line-height:1.2}.mod .mt small{color:var(--muted);font-size:.76rem}
+  .pill{font-size:.62rem;font-weight:900;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;border-radius:999px;color:#fff;white-space:nowrap}
   .p-prox{background:var(--green)}.p-qual{background:var(--blue)}.p-serv{background:var(--orange)}.p-inov{background:var(--tunic)}.p-all{background:var(--ruby)}
-  .mod .add{margin-left:2px;border:none;background:var(--blue);color:#fff;width:30px;height:30px;border-radius:9px;
-    font-size:1.2rem;cursor:pointer;flex:0 0 30px;transition:.15s;line-height:1}
+  .mod .add{margin-left:2px;border:none;background:var(--blue);color:#fff;width:30px;height:30px;border-radius:9px;font-size:1.2rem;cursor:pointer;flex:0 0 30px;transition:.15s;line-height:1}
   .mod .add:hover{background:var(--blue-deep)}
-  .mod.in-route{cursor:default}
-  .route .mod{border-left:4px solid var(--tunic)}
-  .route .mod .num{width:24px;height:24px;border-radius:50%;background:var(--blue);color:#fff;font-size:.78rem;
-    font-weight:900;display:grid;place-items:center;flex:0 0 24px}
+  .mod.in-route{cursor:default;border-left:4px solid var(--tunic)}
+  .route .mod .num{width:24px;height:24px;border-radius:50%;background:var(--blue);color:#fff;font-size:.78rem;font-weight:900;display:grid;place-items:center;flex:0 0 24px}
   .route .ctrls{display:flex;gap:4px;flex:0 0 auto}
-  .route .ctrls button{width:28px;height:28px;border:1px solid var(--line);background:var(--cream-2);border-radius:8px;
-    cursor:pointer;font-size:.82rem;color:var(--muted);transition:.14s;line-height:1}
+  .route .ctrls button{width:28px;height:28px;border:1px solid var(--line);background:var(--cream-2);border-radius:8px;cursor:pointer;font-size:.82rem;color:var(--muted);transition:.14s;line-height:1}
   .route .ctrls button:hover{border-color:var(--tunic);color:var(--blue)}
   .route .ctrls .rm:hover{border-color:var(--ruby);color:var(--ruby)}
 
-  /* summary bar */
-  .summary{position:sticky;bottom:0;margin-top:26px;background:var(--blue);color:#fff;border-radius:var(--radius);
-    padding:16px 22px;display:flex;align-items:center;gap:22px;flex-wrap:wrap;box-shadow:0 -6px 30px rgba(10,59,147,.25)}
+  .summary{position:sticky;bottom:0;margin-top:26px;background:var(--blue);color:#fff;border-radius:var(--radius);padding:16px 22px;
+    display:flex;align-items:center;gap:20px;flex-wrap:wrap;box-shadow:0 -6px 30px rgba(10,59,147,.25)}
   .summary .stat{display:flex;flex-direction:column;line-height:1.1}
-  .summary .stat b{font-size:1.45rem;font-weight:900}
-  .summary .stat span{font-size:.7rem;opacity:.8;text-transform:uppercase;letter-spacing:.1em}
+  .summary .stat b{font-size:1.35rem;font-weight:900}
+  .summary .stat span{font-size:.68rem;opacity:.8;text-transform:uppercase;letter-spacing:.08em}
   .summary .sp{flex:1}
   .btn{font-family:var(--f-body);font-weight:900;font-size:.92rem;border:none;border-radius:999px;padding:13px 26px;cursor:pointer;transition:.16s;display:inline-flex;align-items:center;gap:8px}
   .btn-go{background:var(--orange);color:#fff}.btn-go:hover{background:#d96d22;transform:translateY(-1px)}
   .btn-ghost{background:rgba(255,255,255,.16);color:#fff}.btn-ghost:hover{background:rgba(255,255,255,.26)}
   .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
 
-  /* ---------- saved visits ---------- */
+  /* saved */
   .saved-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:8px}
   .sv{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow-sm);transition:.16s}
   .sv:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
@@ -151,76 +153,98 @@
   .sv .chip{font-size:.66rem;background:var(--cream-2);border:1px solid var(--line);padding:3px 8px;border-radius:999px;color:var(--muted)}
   .sv .acts{display:flex;gap:8px}
   .sv .acts button{flex:1;font-family:var(--f-body);font-weight:700;font-size:.8rem;border-radius:10px;padding:8px;cursor:pointer;border:1px solid var(--line);background:var(--cream-2);transition:.14s}
-  .sv .acts .open{background:var(--blue);color:#fff;border-color:var(--blue)}
-  .sv .acts .open:hover{background:var(--blue-deep)}
+  .sv .acts .open{background:var(--blue);color:#fff;border-color:var(--blue)}.sv .acts .open:hover{background:var(--blue-deep)}
   .sv .acts .del:hover{border-color:var(--ruby);color:var(--ruby)}
-  .empty-state{text-align:center;padding:60px 20px;color:var(--muted)}
-  .empty-state .big{font-size:2.6rem;margin-bottom:10px}
+  .empty-state{text-align:center;padding:60px 20px;color:var(--muted)}.empty-state .big{font-size:2.6rem;margin-bottom:10px}
 
-  /* ---------- playbook ---------- */
+  /* playbook */
   .pb-head{background:linear-gradient(120deg,var(--blue),var(--tunic));color:#fff;border-radius:0 0 26px 26px;padding:28px 0 30px;margin-bottom:8px;position:relative;overflow:hidden}
   .pb-head::after{content:"";position:absolute;right:-40px;top:-40px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.07)}
   .pb-head .kick{color:rgba(255,255,255,.9)}
   .pb-head h1{color:#fff;font-size:clamp(1.5rem,3.5vw,2.2rem);margin:.1em 0}
-  .pb-head .pbmeta{display:flex;gap:18px;flex-wrap:wrap;font-size:.86rem;opacity:.92;margin-top:6px}
+  .pb-head .pbmeta{display:flex;gap:14px;flex-wrap:wrap;font-size:.86rem;opacity:.92;margin-top:6px}
   .pb-head .pbmeta b{font-weight:900}
-  .pb-tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0}
+  .pb-tools{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:18px 0}
+  .toolgrp{display:flex;align-items:center;gap:8px}
+  .toolgrp .lbl{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:900}
   .seg{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px;box-shadow:var(--shadow-sm)}
-  .seg button{border:none;background:transparent;font-family:var(--f-body);font-weight:700;font-size:.8rem;color:var(--muted);
-    padding:8px 16px;border-radius:999px;cursor:pointer;transition:.14s}
+  .seg button{border:none;background:transparent;font-family:var(--f-body);font-weight:700;font-size:.78rem;color:var(--muted);padding:7px 13px;border-radius:999px;cursor:pointer;transition:.14s;white-space:nowrap}
   .seg button.on{background:var(--blue);color:#fff}
-  .seg .lbl{align-self:center;font-size:.72rem;color:var(--muted);padding:0 10px 0 4px;text-transform:uppercase;letter-spacing:.1em}
-
-  .progress{flex:1;min-width:160px;height:10px;background:#e7ddcd;border-radius:999px;overflow:hidden}
+  .progress{flex:1;min-width:140px;height:10px;background:#e7ddcd;border-radius:999px;overflow:hidden}
   .progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--orange));transition:.4s;border-radius:999px}
 
-  .station{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);
-    margin-bottom:16px;overflow:hidden;scroll-margin-top:80px}
+  .station{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);margin-bottom:16px;overflow:hidden;scroll-margin-top:80px}
   .st-head{display:flex;align-items:center;gap:14px;padding:18px 22px;cursor:pointer;user-select:none}
-  .st-head .ic{width:50px;height:50px;flex:0 0 50px;border-radius:13px;display:grid;place-items:center;font-size:1.6rem;
-    background:linear-gradient(135deg,var(--blue),var(--tunic));color:#fff}
+  .st-head .ic{width:50px;height:50px;flex:0 0 50px;border-radius:13px;display:grid;place-items:center;font-size:1.6rem;background:linear-gradient(135deg,var(--blue),var(--tunic));color:#fff}
   .st-head .stt{flex:1;min-width:0}
   .st-head .stt .n{font-size:.7rem;font-weight:900;color:var(--orange);letter-spacing:.12em;text-transform:uppercase}
   .st-head .stt h3{font-size:1.2rem;color:var(--blue);font-weight:900;line-height:1.15}
   .st-head .stt small{color:var(--muted);font-size:.82rem}
   .st-head .chev{color:var(--muted);transition:.25s;font-size:1.1rem}
   .station.open .chev{transform:rotate(180deg)}
-  .st-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+  .st-body{max-height:0;overflow:hidden;transition:max-height .45s ease}
   .st-inner{padding:4px 22px 24px}
-  .script{background:var(--cream-2);border-left:4px solid var(--tunic);border-radius:0 12px 12px 0;padding:16px 18px;margin-bottom:16px;font-size:1.02rem}
+  .script{background:var(--cream-2);border-left:4px solid var(--tunic);border-radius:0 12px 12px 0;padding:16px 18px;margin-bottom:14px;font-size:1.02rem}
   .script .qq{font-family:var(--f-script);color:var(--orange);font-size:1.4rem;line-height:.6;display:block;margin-bottom:2px}
-  .block-title{font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:var(--blue);margin:14px 0 8px;display:flex;align-items:center;gap:7px}
+
+  .pblk{border-radius:13px;padding:14px 16px;margin-bottom:14px}
+  .pblk.cli{background:linear-gradient(135deg,rgba(10,59,147,.06),rgba(62,111,183,.10));border:1px solid rgba(62,111,183,.28)}
+  .pblk.col{background:linear-gradient(135deg,rgba(111,165,57,.08),rgba(111,165,57,.04));border:1px solid rgba(111,165,57,.35)}
+  .pblk .disc{font-style:italic;color:var(--ink);margin-bottom:9px;font-size:.96rem}
+  .pblk.cli .disc{color:var(--blue-deep)}
+  ul.mini{list-style:none;display:flex;flex-direction:column;gap:6px}
+  ul.mini li{font-size:.92rem;padding-left:20px;position:relative}
+  ul.mini li::before{content:"";position:absolute;left:2px;top:8px;width:8px;height:8px;border-radius:50%}
+  .pblk.cli ul.mini li::before{background:var(--blue)}
+  .pblk.col ul.mini li::before{background:var(--green)}
+  .termos{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+  .termos span{font-size:.7rem;font-weight:700;background:rgba(111,165,57,.14);color:#4d7325;border:1px solid rgba(111,165,57,.3);padding:3px 9px;border-radius:999px}
+
+  .block-title{font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:var(--blue);margin:0 0 9px;display:flex;align-items:center;gap:7px}
+  .pblk.col .block-title{color:#4d7325}
   .keys{list-style:none;display:flex;flex-direction:column;gap:7px}
   .keys li{display:flex;gap:10px;align-items:flex-start;font-size:.92rem;padding:9px 12px;background:#fff;border:1px solid var(--line);border-radius:11px;cursor:pointer;transition:.14s}
   .keys li:hover{border-color:var(--tunic)}
   .keys li .ck{width:20px;height:20px;flex:0 0 20px;border:2px solid var(--line);border-radius:6px;display:grid;place-items:center;font-size:.8rem;color:#fff;transition:.15s;margin-top:1px}
   .keys li.done .ck{background:var(--green);border-color:var(--green)}
-  .keys li.done span{color:var(--muted);text-decoration:line-through}
-  .reveal{border:none;background:linear-gradient(135deg,var(--orange),#f29d4f);color:#fff;font-family:var(--f-body);font-weight:900;
-    font-size:.86rem;padding:11px 18px;border-radius:12px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.16s}
+  .keys li.done span:last-child{color:var(--muted);text-decoration:line-through}
+  .reveal{border:none;background:linear-gradient(135deg,var(--orange),#f29d4f);color:#fff;font-family:var(--f-body);font-weight:900;font-size:.86rem;padding:11px 18px;border-radius:12px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.16s}
   .reveal:hover{filter:brightness(1.05);transform:translateY(-1px)}
-  .curio{display:none;margin-top:10px;padding:14px 16px;background:linear-gradient(135deg,rgba(238,125,49,.12),rgba(111,165,57,.10));
-    border:1px dashed var(--orange);border-radius:12px;font-size:.95rem;font-style:italic}
+  .curio{display:none;margin-top:10px;padding:14px 16px;background:linear-gradient(135deg,rgba(238,125,49,.12),rgba(111,165,57,.10));border:1px dashed var(--orange);border-radius:12px;font-size:.95rem;font-style:italic}
   .curio.show{display:block;animation:fade .4s both}
-  .safety{margin-top:14px;font-size:.84rem;color:var(--ruby);background:rgba(200,40,42,.06);border:1px solid rgba(200,40,42,.2);
-    border-radius:11px;padding:10px 14px;display:flex;gap:9px;align-items:flex-start}
+  .safety{margin-top:14px;font-size:.84rem;color:var(--ruby);background:rgba(200,40,42,.06);border:1px solid rgba(200,40,42,.2);border-radius:11px;padding:10px 14px;display:flex;gap:9px;align-items:flex-start}
   .pb-actions{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 50px}
   .btn-blue{background:var(--blue);color:#fff}.btn-blue:hover{background:var(--blue-deep)}
   .btn-line{background:transparent;border:1.5px solid var(--blue);color:var(--blue)}.btn-line:hover{background:var(--blue);color:#fff}
+  .sub{margin:14px 0 8px;font-weight:900;color:var(--blue)}
 
   footer{border-top:1px solid var(--line);padding:24px 0;text-align:center;color:var(--muted);font-size:.78rem}
-  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;
-    padding:13px 22px;border-radius:999px;font-size:.88rem;font-weight:700;opacity:0;pointer-events:none;transition:.3s;z-index:200;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:13px 22px;border-radius:999px;font-size:.88rem;font-weight:700;opacity:0;pointer-events:none;transition:.3s;z-index:200;box-shadow:0 10px 30px rgba(0,0,0,.3)}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
   @media print{
-    header.top,.summary,.pb-tools,.pb-actions,.top-nav,.reveal{display:none!important}
+    header.top,.summary,.pb-tools,.pb-actions,.top-nav,.reveal,.login-wrap{display:none!important}
     .st-body{max-height:none!important}.curio{display:block!important}
     body{background:#fff}.station{break-inside:avoid;box-shadow:none}
   }
 </style>
 </head>
 <body>
+
+<!-- ============ LOGIN ============ -->
+<div class="login-wrap" id="login">
+  <div class="login-card">
+    <div class="swallow"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 13c4-1 7-4 9-8 1 3 3 5 6 6-3 .5-5 2-6 5-1-2-3-3-9-3z"/></svg></div>
+    <div class="kick">acesso restrito</div>
+    <h2>Configurador de Visita</h2>
+    <p>Material interno · Lesaffre Narandiba</p>
+    <div class="field"><label>Login</label><input id="logUser" autocomplete="username" placeholder="login"></div>
+    <div class="field"><label>Senha</label><input id="logPass" type="password" autocomplete="current-password" placeholder="senha"></div>
+    <button class="btn btn-go" id="logBtn">Entrar →</button>
+    <div class="login-err" id="logErr"></div>
+    <div class="login-foot">Lesaffre Brasil · Nova fábrica de fermento fresco</div>
+  </div>
+</div>
 
 <header class="top">
   <div class="wrap top-in">
@@ -232,6 +256,7 @@
       <button data-view="builder" class="active">Montar visita</button>
       <button data-view="saved">Visitas salvas</button>
       <button data-view="playbook" id="navPlaybook" disabled style="opacity:.4">Playbook</button>
+      <span class="who"><span>Olá, <b id="whoName">—</b></span><button class="out" id="btnOut">sair</button></span>
     </nav>
   </div>
 </header>
@@ -242,7 +267,7 @@
     <div class="hero">
       <div class="kick">monte do seu jeito</div>
       <h1>Configure a visita guiada</h1>
-      <p>Escolha os departamentos, ordene o roteiro e defina a profundidade do conteúdo. O sistema gera o playbook de campo na hora — e você pode salvar para cada cliente ou data.</p>
+      <p>Escolha os departamentos, ordene o roteiro, defina o <b>perfil do público</b> (que muda o tom do discurso) e o <b>nível técnico</b>. O sistema gera o playbook de campo na hora — e você pode salvar para cada cliente ou data.</p>
     </div>
 
     <div class="config-row">
@@ -253,14 +278,20 @@
           <div class="field"><label>Data</label><input id="cfgDate" type="date"></div>
           <div class="field"><label>Anfitrião</label><input id="cfgHost" placeholder="Quem conduz"></div>
         </div>
-        <div class="field"><label>Público (opcional)</label><input id="cfgAudience" placeholder="Ex.: Donos de padaria · diretores"></div>
+        <div class="field"><label>Observações (opcional)</label><input id="cfgAudience" placeholder="Ex.: grupo de 12 · foco em massa doce"></div>
       </div>
       <div class="panel">
-        <h3>Profundidade do conteúdo</h3>
-        <div class="depth-opts" id="depthOpts">
-          <div class="depth" data-depth="min"><div class="bars"><i></i><i></i><i></i></div><div class="dt"><b>Mínimo</b><small>Só narrativa e benefício — leve e comercial</small></div></div>
-          <div class="depth on" data-depth="eq"><div class="bars"><i></i><i></i><i></i></div><div class="dt"><b>Equilibrado</b><small>Narrativa + alguns dados "uau"</small></div></div>
-          <div class="depth" data-depth="tec"><div class="bars"><i></i><i></i><i></i></div><div class="dt"><b>Técnico</b><small>Para público que quer entender o processo</small></div></div>
+        <h3>Perfil do público <span style="text-transform:none;letter-spacing:0;font-weight:400">(define o tom)</span></h3>
+        <div class="opts" id="profOpts">
+          <div class="opt on" data-prof="cliente"><span class="em">💼</span><div class="dt"><b>Cliente</b><small>Estratégico — vantagens para o negócio</small></div></div>
+          <div class="opt" data-prof="distrib"><span class="em">🚚</span><div class="dt"><b>Distribuidor</b><small>Parceria de canal — giro, logística, abastecimento</small></div></div>
+          <div class="opt" data-prof="colab"><span class="em">🎓</span><div class="dt"><b>Novo colaborador</b><small>Didático e técnico — para treinamento</small></div></div>
+        </div>
+        <h3 class="sep" style="margin-top:18px">Nível técnico do conteúdo</h3>
+        <div class="opts" id="depthOpts">
+          <div class="opt" data-depth="min"><div class="bars"><i></i><i></i><i></i></div><div class="dt"><b>Mínimo</b><small>Só o essencial, bem leve</small></div></div>
+          <div class="opt on" data-depth="eq"><div class="bars"><i></i><i></i><i></i></div><div class="dt"><b>Equilibrado</b><small>Narrativa + alguns dados</small></div></div>
+          <div class="opt" data-depth="tec"><div class="bars"><i></i><i></i><i></i></div><div class="dt"><b>Técnico</b><small>Detalhe do processo</small></div></div>
         </div>
       </div>
     </div>
@@ -278,10 +309,11 @@
 
     <div class="summary">
       <div class="stat"><b id="sumStations">0</b><span>estações</span></div>
-      <div class="stat"><b id="sumTime">0 min</b><span>duração est.</span></div>
-      <div class="stat"><b id="sumDepth">Equilibrado</b><span>profundidade</span></div>
+      <div class="stat"><b id="sumTime">0 min</b><span>duração</span></div>
+      <div class="stat"><b id="sumProf">Cliente</b><span>perfil</span></div>
+      <div class="stat"><b id="sumDepth">Equilibrado</b><span>nível</span></div>
       <div class="sp"></div>
-      <button class="btn btn-ghost" id="btnSave">💾 Salvar visita</button>
+      <button class="btn btn-ghost" id="btnSave">💾 Salvar</button>
       <button class="btn btn-go" id="btnGenerate">Gerar playbook →</button>
     </div>
   </div>
@@ -299,20 +331,14 @@
 <!-- ============ PLAYBOOK ============ -->
 <section class="view" id="view-playbook">
   <div class="pb-head">
-    <div class="wrap">
-      <div class="kick">playbook de campo</div>
-      <h1 id="pbTitle">Visita guiada</h1>
-      <div class="pbmeta" id="pbMeta"></div>
-    </div>
+    <div class="wrap"><div class="kick">playbook de campo</div><h1 id="pbTitle">Visita guiada</h1><div class="pbmeta" id="pbMeta"></div></div>
   </div>
   <div class="wrap">
     <div class="pb-tools">
-      <span class="lbl">Profundidade</span>
-      <div class="seg" id="pbDepth">
-        <button data-depth="min">Mínimo</button>
-        <button data-depth="eq" class="on">Equilibrado</button>
-        <button data-depth="tec">Técnico</button>
-      </div>
+      <div class="toolgrp"><span class="lbl">Perfil</span>
+        <div class="seg" id="pbProf"><button data-prof="cliente" class="on">Cliente</button><button data-prof="distrib">Distrib.</button><button data-prof="colab">Colaborador</button></div></div>
+      <div class="toolgrp"><span class="lbl">Nível</span>
+        <div class="seg" id="pbDepth"><button data-depth="min">Mín</button><button data-depth="eq" class="on">Equil.</button><button data-depth="tec">Téc</button></div></div>
       <div class="progress" title="Progresso da visita"><i id="pbProg"></i></div>
     </div>
     <div id="stations"></div>
@@ -327,159 +353,191 @@
 <div class="toast" id="toast"></div>
 
 <script>
-/* ======================= STORAGE (claude.ai window.storage → localStorage → memory) ======================= */
+/* ===================== STORAGE (window.storage → localStorage → memory) ===================== */
 const _mem={};
 const Store={
-  async get(k){
-    try{ if(window.storage&&window.storage.get){const r=await window.storage.get(k);return r&&r.value!=null?r.value:null;} }catch(e){}
-    try{ const v=localStorage.getItem(k); if(v!=null)return v; }catch(e){}
-    return k in _mem?_mem[k]:null;
-  },
-  async set(k,v){
-    try{ if(window.storage&&window.storage.set){await window.storage.set(k,v);return;} }catch(e){}
-    try{ localStorage.setItem(k,v);return; }catch(e){}
-    _mem[k]=v;
-  }
+  async get(k){try{if(window.storage&&window.storage.get){const r=await window.storage.get(k);return r&&r.value!=null?r.value:null}}catch(e){}
+    try{const v=localStorage.getItem(k);if(v!=null)return v}catch(e){}return k in _mem?_mem[k]:null},
+  async set(k,v){try{if(window.storage&&window.storage.set){await window.storage.set(k,v);return}}catch(e){}
+    try{localStorage.setItem(k,v);return}catch(e){}_mem[k]=v}
 };
-const VISITS_KEY='lesaffre_visitas_v1';
+const VISITS_KEY='lesaffre_visitas_v2', AUTH_KEY='lesaffre_auth';
+const $=s=>document.querySelector(s);
 
-/* ======================= CONTENT MODEL =======================
-   Consolidado das 20 transcrições da visita (29-30/04/2026), filtrado para público
-   cliente/distribuidor. Cada módulo: 3 níveis (min/eq/tec), pontos-chave, curiosidade, segurança. */
+/* ===================== LOGIN ===================== */
+const USERS={ lesaffre:'123' }; // credenciais simples (gate leve, não é segurança real)
+async function checkSession(){const u=await Store.get(AUTH_KEY);if(u&&USERS[u]!==undefined){grantAccess(u)}}
+function grantAccess(u){$('#login').classList.add('hide');$('#whoName').textContent=u;
+  if(!$('#cfgHost').value)$('#cfgHost').value=u.charAt(0).toUpperCase()+u.slice(1)}
+async function doLogin(){
+  const u=$('#logUser').value.trim().toLowerCase(), p=$('#logPass').value;
+  if(USERS[u]!==undefined && USERS[u]===p){await Store.set(AUTH_KEY,u);grantAccess(u);$('#logErr').textContent=''}
+  else{$('#logErr').textContent='Login ou senha incorretos.';$('#logPass').value=''}
+}
+$('#logBtn').onclick=doLogin;
+$('#logPass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin()});
+$('#logUser').addEventListener('keydown',e=>{if(e.key==='Enter')$('#logPass').focus()});
+$('#btnOut').onclick=async()=>{await Store.set(AUTH_KEY,'');$('#login').classList.remove('hide');$('#logUser').value='';$('#logPass').value=''};
+
+/* ===================== CONTENT (consolidado das 20 transcrições + briefing estratégico) ===================== */
 const PILLARS={prox:'Proximidade',qual:'Qualidade',serv:'Serviço',inov:'Inovação',all:'Pilares'};
 const MODULES=[
  {id:'abertura',ic:'👋',pill:'all',name:'Abertura — Nova Era',dur:5,
-  min:'Sejam muito bem-vindos à nova fábrica de fermento fresco da Lesaffre. Hoje vocês vão ver de perto onde nasce o fermento que chega às suas padarias.',
-  eq:'Sejam muito bem-vindos. Esta planta nasceu para ficar mais perto de vocês — produção nacional, com a tecnologia global da Lesaffre. Em cerca de 45 minutos vamos percorrer todo o caminho: da cana ao bloquinho pronto. É o começo de uma nova era da panificação.',
-  tec:'Bem-vindos. Esta é uma operação integrada: do preparo do substrato (melaço) à embalagem, com sala de controle automatizada e laboratório próprio de qualidade. Vamos seguir o fluxo completo do processo, com grupos de cerca de 15 pessoas.',
-  keys:['Reforçar os 4 pilares: Proximidade, Qualidade, Serviço, Inovação','Instruções de segurança e EPI antes de entrar','Grupo de ~15 pessoas — manter o grupo unido'],
-  curio:'A levedura é um organismo vivo — vocês vão acompanhar literalmente o ciclo de vida dela hoje.',
+  min:'Sejam muito bem-vindos à nova fábrica de fermento fresco da Lesaffre, em Narandiba. Hoje vocês vão ver de perto, do início ao fim, onde nasce o fermento que chega às suas padarias.',
+  eq:'Sejam muito bem-vindos a Narandiba. Esta é a nova fábrica de fermento fresco da Lesaffre — e ela representa uma nova era da panificação no Brasil. Em cerca de 45 minutos vamos percorrer todo o caminho do produto: da cana-de-açúcar ao bloquinho pronto, passando pela fermentação, pelo controle de qualidade e pela embalagem. Tudo aqui é guiado por quatro pilares: Proximidade, Qualidade, Serviço e Inovação.',
+  tec:'Bem-vindos a Narandiba. Esta é uma planta integrada de fermento fresco: do preparo do substrato (melaço) à embalagem final, com sala de controle automatizada e laboratório próprio de qualidade — o parque tecnológico mais moderno do mundo Lesaffre. Vamos seguir o fluxo completo do processo, em grupos de cerca de 15 pessoas, respeitando as áreas de acesso restrito.',
+  cli:{disc:'Esta fábrica foi construída para ficar perto de você: 170 anos de tradição Lesaffre, agora produzindo aqui, no Brasil, para o seu negócio.',
+       vant:['Produção nacional: menos dependência de importação e de câmbio.','Fábrica local significa atendimento e relacionamento mais próximos.','Antes mesmo da inauguração oficial, o abastecimento já começou — para a sua produção não parar.']},
+  col:{disc:'Antes de entrar, fixe o panorama: a visita segue a mesma ordem do processo produtivo, então é um ótimo mapa mental do que você vai operar.',
+       ap:['Os 4 pilares: Proximidade, Qualidade, Serviço, Inovação.','Fluxo macro: melaço → fermentação → separação → desidratação → extrusão → embalagem → qualidade.','Regras de EPI e áreas de acesso restrito antes de circular.'],
+       termos:['Fermento fresco','Fluxo de processo','EPI']},
+  keys:['Reforçar os 4 pilares logo na abertura','Instruções de segurança e EPI antes de entrar','Manter o grupo de ~15 pessoas unido'],
+  curio:'A levedura é um organismo vivo — vocês vão acompanhar, literalmente, o ciclo de vida dela hoje.',
   safety:'Confirmar EPIs e regras de circulação antes de iniciar.'},
 
  {id:'materia',ic:'🌾',pill:'prox',name:'Matéria-prima (Melaço)',dur:5,
-  min:'Tudo começa aqui, com o melaço — um derivado da cana brasileira. É a "comida" da nossa levedura.',
-  eq:'Tudo começa com o melaço, derivado da cana brasileira, abundante aqui na região. Ele é diluído, clarificado e esterilizado antes de alimentar a fermentação. Matéria-prima nacional, base de todo o processo.',
-  tec:'Nos tanques de preparo o melaço bruto é diluído e clarificado; o clarificado é esterilizado e segue para os tanques externos que abastecem os fermentadores. O melaço é a fonte principal de carbono da fermentação.',
-  keys:['Origem na cana — matéria-prima nacional e regional','É a base que alimenta toda a fermentação','Conecta com o pilar Proximidade'],
+  min:'Tudo começa aqui, com o melaço — um derivado da cana-de-açúcar brasileira. É a "comida" da nossa levedura.',
+  eq:'Tudo começa com o melaço, um derivado da cana-de-açúcar, abundante aqui na nossa região. Antes de alimentar a fermentação, ele é diluído, clarificado (para tirar impurezas) e esterilizado. Ou seja: a levedura só recebe um alimento limpo e seguro. São dois grandes tanques externos que guardam esse melaço já preparado e abastecem os fermentadores.',
+  tec:'Nos tanques de preparo, o melaço bruto é diluído e clarificado; o clarificado passa por esterilização e segue para dois tanques externos que abastecem os fermentadores, no andar de cima. O melaço é a fonte principal de carbono da fermentação — é dele que a levedura tira energia para se multiplicar.',
+  cli:{disc:'A matéria-prima nasce aqui do lado. Isso encurta toda a cadeia até você.',
+       vant:['Insumo nacional e regional: cadeia mais curta e previsível.','Menos exposição a frete internacional e a variação cambial.','Base de um produto consistente, lote após lote.']},
+  col:{disc:'Esta é a etapa de substrato. Sem um melaço bem preparado, a fermentação inteira sai do controle.',
+       ap:['Ordem: diluição → clarificação → esterilização.','Clarificar = remover impurezas; esterilizar = impedir contaminação.','Os tanques externos são o pulmão que abastece a fermentação.'],
+       termos:['Melaço','Clarificação','Esterilização','Substrato','Fonte de carbono']},
+  keys:['Origem na cana: matéria-prima nacional/regional','É a base que alimenta toda a fermentação','Gancho com o pilar Proximidade'],
   curio:'Sem açúcar não há fermento: a levedura se alimenta do melaço para se multiplicar.',
   safety:'Área externa — atenção a piso e tubulações.'},
 
  {id:'fermentacao',ic:'🫧',pill:'inov',name:'Fermentação & Propagação',dur:8,
   min:'Este é o coração da fábrica. Aqui a levedura nasce e se multiplica nestes grandes tanques.',
-  eq:'Este é o coração da fábrica. A levedura cresce em etapas: começa pequena no pré-fermentador e vai ganhando volume até os grandes fermentadores. Leva cerca de um dia para chegar ao ponto certo.',
-  tec:'São três estágios: pré-fermentador → G1 (propagação) → G2 (fermentação principal, em torno de 110 m³), com alimentação contínua de melaço esterilizado e nutrientes. A passagem entre etapas é controlada pelo teor de álcool. No G2 a levedura é separada por centrífugas.',
-  keys:['Escala industrial — destacar o porte dos tanques','Processo vivo e contínuo, com precisão','Conecta com Inovação e Qualidade'],
-  curio:'De alguns litros a mais de 100 mil litros: a levedura se multiplica milhões de vezes em pouco mais de um dia.',
+  eq:'Este é o coração da fábrica. A levedura cresce em etapas, como uma escada: começa pequena, num tanque menor (o pré-fermentador), e vai sendo transferida para tanques cada vez maiores, até os grandes fermentadores. Durante esse crescimento, ela é alimentada continuamente com o melaço já preparado. Em pouco mais de um dia, de poucos litros chegamos a mais de 100 mil litros de fermentação.',
+  tec:'São três estágios em escala crescente: pré-fermentador → G1 (propagação) → G2 (fermentação principal, em torno de 110 m³). A alimentação de melaço esterilizado é contínua ao longo do processo. O momento de transferir de uma etapa para a próxima é definido por um indicador do próprio processo — o teor de álcool produzido pela levedura. Ao final do G2, a levedura é separada do líquido por centrífugas.',
+  cli:{disc:'Aqui está a explicação de por que o produto é tão constante: o crescimento é controlado etapa a etapa.',
+       vant:['Processo padronizado e automatizado: consistência lote a lote.','Capacidade pensada para atender a demanda nacional.','Produção contínua e local = previsibilidade de abastecimento.']},
+  col:{disc:'Decore esta escada: pré-fermentador → G1 → G2. É a espinha dorsal da operação.',
+       ap:['Cada etapa tem volume e tempo próprios; o tanque seguinte já entra preparado.','A transferência é disparada por um parâmetro de processo (teor de álcool).','Alimentação contínua de melaço sustenta a multiplicação.'],
+       termos:['Pré-fermentador','Propagação (G1)','Fermentador (G2)','Mosto','Alimentação contínua']},
+  keys:['Destacar o porte/escala dos tanques','Processo vivo, contínuo e controlado','Gancho com Inovação e Qualidade'],
+  curio:'De poucos litros a mais de 100 mil litros: a levedura se multiplica milhões de vezes em pouco mais de um dia.',
   safety:'Não tocar tubulações e válvulas. Ambiente com ruído.'},
 
  {id:'controle',ic:'🖥️',pill:'inov',name:'Sala de Controle',dur:5,
   min:'Esta é a sala de controle — o cérebro da fábrica. Daqui se acompanha tudo em tempo real.',
-  eq:'Esta é a sala de controle, o cérebro da fábrica. Cada etapa da fermentação é monitorada e ajustada por aqui, de forma automatizada. É o que garante o mesmo padrão em todo lote.',
-  tec:'A planta opera por sequências automáticas (fermentação e CIP de limpeza). Daqui se controlam pH, dosagens e se fazem as análises de processo — álcool, pH, condutividade — por amostragem de cada área.',
-  keys:['Automação e rastreabilidade','Consistência lote a lote','Conecta com Inovação'],
-  curio:'Nada acontece no escuro: cada tanque tem "sinais vitais" acompanhados o tempo todo.',
-  safety:'Retirar óculos ao entrar (ambiente limpo). Não mexer nas telas.'},
+  eq:'Esta é a sala de controle, o cérebro da fábrica. Cada tanque tem seus "sinais vitais" acompanhados por aqui, em tempo real e de forma automatizada — fermentação e limpeza dos equipamentos seguem sequências programadas. É também daqui que saem as análises de qualidade do processo, feitas por amostragem em cada área. É o que garante o mesmo padrão em todo lote.',
+  tec:'A planta opera por sequências automáticas, incluindo o CIP (limpeza no lugar, sem desmontar os equipamentos). Daqui se controlam pH, dosagens e se realizam as análises de processo — álcool, pH, condutividade, concentração de ácido e de soda — por amostragem de cada área. Nesta etapa, a amostra ainda traz a levedura misturada ao mosto; o produto puro vem mais adiante.',
+  cli:{disc:'Consistência não é sorte: é o que esta sala entrega, o dia inteiro.',
+       vant:['Automação = mesmo padrão de qualidade em cada entrega.','Rastreabilidade do processo, do início ao fim.','Menos variação significa menos surpresa na sua produção.']},
+  col:{disc:'Esta sala é onde a operação "enxerga" a fábrica. Familiarize-se com os parâmetros.',
+       ap:['CIP = limpeza automática dos equipamentos, sem desmontar.','Análises de processo: álcool, pH, condutividade, ácido e soda.','Controle por amostragem, área por área.'],
+       termos:['CIP','pH','Condutividade','Amostragem','Mosto']},
+  keys:['Automação e rastreabilidade','Consistência lote a lote','Retirar óculos ao entrar (ambiente limpo)'],
+  curio:'Nada acontece no escuro: cada tanque tem "sinais vitais" monitorados o tempo todo.',
+  safety:'Retirar óculos ao entrar (ambiente limpo e seco). Não mexer nas telas.'},
 
  {id:'separacao',ic:'🌀',pill:'serv',name:'Separação & Creme',dur:5,
   min:'Aqui a levedura é separada do líquido e vira o "creme" — a base do produto.',
-  eq:'Centrífugas separam a levedura, que vira o creme-mãe. É também aqui que definimos se o lote será para massa salgada ou massa doce — com o mesmo poder fermentativo.',
-  tec:'Após o G2, duas centrífugas separam o creme, armazenado como creme-mãe (que vira o creme comercial, "G3"). Na inoculação escolhe-se a cepa: uma linha para massa salgada, outra para massa doce. O mesmo creme atende às duas, conforme o planejamento de demanda.',
-  keys:['Flexibilidade massa doce × salgada','Mesmo desempenho fermentativo','Produto sob medida — conecta com Serviço'],
-  curio:'Doce ou salgada? A "personalidade" do fermento é decidida bem aqui, no início.',
+  eq:'Depois da fermentação, centrífugas separam a levedura do líquido. O resultado é o creme, que armazenamos em tanques próprios — o chamado creme-mãe. É também neste ponto que definimos se o lote vai virar fermento para massa salgada ou para massa doce, com o mesmo poder fermentativo nos dois casos. E há aqui um cuidado de qualidade: uma acidificação controlada que reduz ao máximo possíveis contaminantes, sem afetar o produto.',
+  tec:'Após o G2, duas centrífugas separam o creme, armazenado como creme-mãe (em três tanques), que depois se torna o creme comercial — a "geração 3" do processo. Na inoculação escolhe-se a cepa adequada: uma para massa salgada, outra para massa doce. Antes da inoculação, parte do creme passa por acidificação controlada para reduzir contaminantes. O mesmo creme atende às duas linhas, conforme o planejamento de demanda.',
+  cli:{disc:'É aqui que o produto ganha "personalidade" para o seu segmento.',
+       vant:['Doce ou salgada: produto adequado ao seu mix de produção.','Mesmo desempenho fermentativo nas duas linhas.','Flexibilidade = atendimento sob medida (pilar Serviço).']},
+  col:{disc:'Ponto-chave de qualidade e de definição de produto. Entenda a lógica das cepas.',
+       ap:['Centrífugas separam creme do líquido → creme-mãe.','A escolha da cepa define massa doce × salgada.','Acidificação controlada reduz contaminantes antes da inoculação.'],
+       termos:['Creme-mãe','Creme comercial (G3)','Cepa','Inoculação','Acidificação']},
+  keys:['Flexibilidade massa doce × salgada','Mesmo desempenho fermentativo','Gancho com Serviço (sob medida)'],
+  curio:'Doce ou salgada? A "personalidade" do fermento é decidida bem aqui, no começo.',
   safety:'Piso pode estar úmido.'},
 
  {id:'desidratacao',ic:'💧',pill:'qual',name:'Desidratação & Salmoura',dur:6,
   min:'Agora tiramos o excesso de água do creme para ele ganhar consistência.',
-  eq:'Usamos salmoura e filtros a vácuo para concentrar o creme até o ponto certo de prensagem. É o que dá firmeza ao bloquinho.',
-  tec:'Tanques-pulmão recebem o creme (cerca de 18–22% de matéria seca). A salmoura retira água por pressão osmótica, controlada por condutividade; os filtros rotativos a vácuo elevam a matéria seca até a faixa de prensagem (em torno de 32–34%).',
-  keys:['Concentração e padronização','Define a firmeza do bloco','Conecta com Qualidade'],
+  eq:'Aqui o creme — que ainda é bem líquido — perde o excesso de água para ganhar firmeza. Usamos salmoura (água com sal) e filtros a vácuo para concentrar o creme até o ponto certo de prensagem. São dois tanques independentes, o que permite produzir massa salgada e massa doce ao mesmo tempo, conforme o planejamento.',
+  tec:'Tanques-pulmão recebem o creme da fermentação (entre 18 e 22% de matéria seca). Adiciona-se salmoura: o sal retira água por pressão osmótica, e o ponto é controlado por condutividade. Em seguida, filtros rotativos a vácuo elevam a matéria seca até a faixa de prensagem (em torno de 32 a 34%). Esses filtros ainda lavam o excesso de creme e o sal residual, controlando a condutividade final dos blocos. Os dois tanques são independentes — dá para rodar doce e salgada em paralelo.',
+  cli:{disc:'Esta etapa é o que garante um bloco firme e padronizado na sua bancada.',
+       vant:['Concentração controlada = bloco firme e uniforme.','Duas linhas em paralelo: agilidade para doce e salgada.','Padronização que vira previsibilidade na sua receita.']},
+  col:{disc:'Conceito central: concentrar matéria seca. Entenda salmoura + vácuo.',
+       ap:['Creme entra com 18–22% e sai com 32–34% de matéria seca.','Salmoura retira água por pressão osmótica; condutividade controla o sal.','Filtros rotativos a vácuo fazem a concentração e a lavagem final.'],
+       termos:['Matéria seca','Salmoura','Pressão osmótica','Condutividade','Filtro a vácuo','Tanque-pulmão']},
+  keys:['Concentração e padronização','Define a firmeza do bloco','Gancho com Qualidade'],
   curio:'O sal "puxa" a água para fora da levedura — pura física a serviço do produto.',
   safety:'Bombas e equipamento em movimento.'},
 
  {id:'extrusao',ic:'🧱',pill:'inov',name:'Extrusão (formação do bloco)',dur:5,
   min:'Olhem só: é aqui que o creme vira o bloquinho de fermento, na frente de vocês.',
-  eq:'Aqui acontece o momento mais visual: a massa é homogeneizada e empurrada contra a extrusora, saindo em tiras contínuas que são cortadas no formato do bloco.',
-  tec:'A misturadora homogeneíza a pasta; uma rosca sem fim a empurra contra o cone da extrusora; os bloquinhos contínuos saem e são cortados. O formato atual é o bloco — apresentado em conjunto de 6 bloquinhos.',
-  keys:['Momento "uau" — o produto nascendo','Boa parada para fotos','Conecta com Inovação'],
+  eq:'Este é o momento mais visual da visita. A massa de levedura é homogeneizada por uma misturadora e empurrada por uma rosca contra a extrusora. Dali ela sai em tiras contínuas, que são cortadas no formato do bloco. É um processo contínuo — o produto literalmente nascendo diante de vocês.',
+  tec:'A misturadora, com paletas rotativas, homogeneíza a pasta de levedura; uma rosca sem fim a empurra contra o cone da extrusora; os bloquinhos contínuos saem e são cortados na sequência. É um processo contínuo. O formato atual é o bloco, apresentado em conjunto de seis bloquinhos.',
+  cli:{disc:'Este é o produto que chega até você — e você está vendo ele nascer.',
+       vant:['Produto fresco, feito aqui: menor tempo entre produção e uso.','Esse "frescor de origem" protege o desempenho na sua padaria.','Bloco padronizado, pronto para a sua operação.']},
+  col:{disc:'Etapa de conformação. Saiba o caminho: misturadora → rosca → extrusora → corte.',
+       ap:['A misturadora homogeneíza a pasta antes de extrudar.','A rosca sem fim pressiona a massa contra o cone da extrusora.','Bloquinhos contínuos são cortados; formato = conjunto de 6.'],
+       termos:['Misturadora','Rosca sem fim','Extrusora','Bloquinho']},
+  keys:['Momento "uau" — produto nascendo','Boa parada para fotos','Gancho com Inovação'],
   curio:'Tirem uma foto com zoom: dá para ver a rosca sem fim moldando o fermento.',
   safety:'Equipamento em movimento — manter distância.'},
 
  {id:'embalagem',ic:'📦',pill:'qual',name:'Embalagem & Food Safety',dur:5,
   min:'Aqui o produto é embalado e passa por várias checagens antes de chegar até vocês.',
-  eq:'Cada bloco é embalado, agrupado em caixas, pesado e passa por detector de metais. Só sai o que está dentro do padrão.',
-  tec:'O bloco em celofane segue para a encaixotadora (uma por linha), impressão, balança de aferição de peso e detector de metais. Um aplicador de cola dá aderência às caixas no pallet, dispensando o stretch.',
-  keys:['Food safety visível: detector de metais + balança','Peso garantido e rastreabilidade','Conecta com Qualidade e Serviço'],
-  curio:'Detector de metais + balança: dois "porteiros" que todo produto precisa passar.',
+  eq:'Cada bloco é embalado em celofane e segue por uma linha que faz várias verificações automáticas: agrupamento em caixas, impressão, conferência de peso e detector de metais. Só sai da fábrica o que está dentro do padrão. No fim, uma cola garante a estabilidade das caixas no transporte, sem precisar de filme plástico.',
+  tec:'O bloco unitário em celofane segue nas esteiras até a encaixotadora (uma por linha), que agrupa os blocos em caixas. A caixa passa por impressão, por uma balança que afere o peso do conjunto e por um detector de metais. Por fim, um aplicador de cola dá aderência entre as caixas no pallet, dispensando o stretch.',
+  cli:{disc:'Food safety não é discurso aqui — é uma etapa visível da linha.',
+       vant:['Detector de metais + aferição de peso: segurança do alimento garantida.','Padrão de embalagem pensado para o seu estoque e transporte.','Produção local encurta o trânsito até o ponto de venda.']},
+  col:{disc:'Decore a sequência da linha — é o coração do food safety.',
+       ap:['Sequência: celofane → encaixotadora → impressão → balança → detector de metais → cola.','Uma encaixotadora por linha de produção.','A cola substitui o stretch na amarração do pallet.'],
+       termos:['Encaixotadora','Detector de metais','Aferição de peso','Food safety','Celofane']},
+  keys:['Food safety visível: detector de metais + balança','Peso garantido e rastreabilidade','Gancho com Qualidade e Serviço'],
+  curio:'Detector de metais + balança: dois "porteiros" por onde todo produto precisa passar.',
   safety:'Esteiras em movimento.'},
 
  {id:'laboratorio',ic:'🔬',pill:'qual',name:'Laboratório & Força Fermentativa',dur:6,
   min:'Por fim, o laboratório: é onde garantimos que o fermento realmente faz o pão crescer.',
-  eq:'No laboratório testamos a força fermentativa de cada lote e fazemos o controle microbiológico. É a garantia de desempenho que chega na padaria.',
-  tec:'O laboratório reúne descontaminação/autoclave, preparo e esterilização de meios, incubadora e a sala de força fermentativa — um ensaio com farinha e açúcar que mede o gás gerado. A microbiologia é coletada em embalagem asséptica.',
-  keys:['Prova de desempenho do produto','A ciência por trás da confiança','Geralmente visto pelo vidro — conecta com Qualidade'],
+  eq:'O laboratório é a garantia de desempenho do produto. Aqui testamos a "força fermentativa" de cada lote — ou seja, o quanto o fermento faz o pão crescer — e fazemos o controle microbiológico, para assegurar que o produto está limpo e seguro. Há ainda áreas dedicadas à preparação e esterilização dos meios e à descontaminação de materiais.',
+  tec:'O laboratório reúne: área de descontaminação e lavagem de materiais (com esterilização e lavagem a cerca de 60 °C); sala de preparo e esterilização de meios (com autoclave dedicada); incubadora, onde placas ficam a temperatura e tempo controlados para revelar eventuais microrganismos; e a sala de força fermentativa — a principal — onde um ensaio com farinha e açúcar mede o gás gerado pelo fermento. As amostras de microbiologia são coletadas em embalagem asséptica; a físico-química segue um roteiro próprio.',
+  cli:{disc:'A confiança no produto começa aqui, com ciência.',
+       vant:['Cada lote tem o desempenho testado antes de chegar a você.','Controle microbiológico = segurança e tranquilidade na sua produção.','Qualidade comprovada, não apenas prometida (pilar Qualidade).']},
+  col:{disc:'Aqui você entende como "qualidade" vira número. Domine os testes.',
+       ap:['Força fermentativa: ensaio farinha + açúcar mede o gás gerado.','Incubadora revela contaminação; autoclave esteriliza os meios.','Microbiologia em embalagem asséptica; físico-química com roteiro próprio.'],
+       termos:['Força fermentativa','Microbiologia','Autoclave','Incubadora','Meio de cultura','Assepsia']},
+  keys:['Prova de desempenho do produto','A ciência por trás da confiança','Geralmente observado pelo vidro'],
   curio:'Medimos o gás que a levedura produz — é, literalmente, medir a força do seu pão crescer.',
   safety:'Área controlada — em geral observada pelo vidro.'},
 
  {id:'encerramento',ic:'🤝',pill:'all',name:'Encerramento',dur:5,
   min:'Vocês acabaram de ver, do início ao fim, como nasce o fermento fresco Lesaffre. Obrigado pela visita.',
-  eq:'Vocês acompanharam o ciclo completo, da cana ao bloquinho. Mais perto, com mais qualidade e tecnologia, prontos para atender vocês. Fico à disposição para perguntas.',
-  tec:'Recapitulando o fluxo: melaço → fermentação → separação → concentração → bloco → controle de qualidade. Tudo nacional, tudo rastreado. Aberto para perguntas e próximos passos.',
+  eq:'Vocês acompanharam o ciclo completo: da cana ao bloquinho, passando pela fermentação, pelo controle e pela qualidade. Esta fábrica significa estar mais perto de vocês, com mais qualidade, tecnologia e serviço. A nova era da panificação chegou — e ela é de vocês. Fico à disposição para perguntas.',
+  tec:'Recapitulando o fluxo: melaço → fermentação (pré-ferm → G1 → G2) → separação → desidratação → extrusão → embalagem → controle de qualidade. Tudo nacional, automatizado e rastreado. Vale lembrar: aqui produzimos o fermento fresco; produtos secos e líquidos a granel envolvem outras instalações do mesmo complexo. Aberto para perguntas e próximos passos.',
+  cli:{disc:'O que tudo isso significa para o seu negócio, na prática:',
+       vant:['Produção local: logística simplificada frente ao produto importado.','Lead times menores em pedidos e entregas.','Mais shelf-life útil: menor tempo entre produção e disponibilidade de venda/uso.','Consistência e abastecimento previsível, o ano todo.']},
+  col:{disc:'Feche o mapa mental: você acabou de ver toda a cadeia que vai operar.',
+       ap:['Saiba recontar o fluxo macro de cabeça.','Esta unidade é fresco; seco/líquido são outras instalações do complexo.','Use a visita como referência de para onde cada etapa leva.'],
+       termos:['Fermento fresco','Granel','Shelf-life','Lead time']},
   keys:['Reforçar os 4 pilares no fechamento','Abrir para perguntas','Encaminhar próximos passos comerciais'],
   curio:'Da cana ao bloquinho: vocês acompanharam o ciclo completo hoje.',
   safety:''},
 ];
 const MOD_BY_ID=Object.fromEntries(MODULES.map(m=>[m.id,m]));
 const DEPTH_LABEL={min:'Mínimo',eq:'Equilibrado',tec:'Técnico'};
+const PROF_LABEL={cliente:'Cliente',distrib:'Distribuidor',colab:'Novo colaborador'};
 
-/* ======================= STATE ======================= */
-let route=['abertura','materia','fermentacao','controle','separacao','desidratacao','extrusao','embalagem','laboratorio','encerramento'];
-let depth='eq';
-let currentVisitId=null;
+/* ===================== STATE ===================== */
+let route=MODULES.map(m=>m.id);
+let depth='eq', profile='cliente', currentVisitId=null;
 
-/* ======================= BUILDER RENDER ======================= */
-const $=s=>document.querySelector(s);
+/* ===================== BUILDER ===================== */
 const palette=$('#palette'), routeEl=$('#route');
-
-function pillClass(p){return 'pill p-'+p}
-function paletteCard(m){
-  return `<div class="mod" draggable="true" data-id="${m.id}">
-    <div class="ic">${m.ic}</div>
-    <div class="mt"><b>${m.name}</b><small>${m.dur} min · ${PILLARS[m.pill]}</small></div>
-    <span class="${pillClass(m.pill)}">${PILLARS[m.pill]}</span>
-    <button class="add" title="Adicionar">+</button>
-  </div>`;
-}
-function routeCard(m,i){
-  return `<div class="mod in-route" draggable="true" data-id="${m.id}">
-    <div class="num">${i+1}</div>
-    <div class="ic">${m.ic}</div>
-    <div class="mt"><b>${m.name}</b><small>${m.dur} min</small></div>
-    <div class="ctrls">
-      <button class="up" title="Subir">▲</button>
-      <button class="down" title="Descer">▼</button>
-      <button class="rm" title="Remover">✕</button>
-    </div>
-  </div>`;
-}
+function paletteCard(m){return `<div class="mod" draggable="true" data-id="${m.id}"><div class="ic">${m.ic}</div>
+  <div class="mt"><b>${m.name}</b><small>${m.dur} min · ${PILLARS[m.pill]}</small></div>
+  <span class="pill p-${m.pill}">${PILLARS[m.pill]}</span><button class="add" title="Adicionar">+</button></div>`}
+function routeCard(m,i){return `<div class="mod in-route" draggable="true" data-id="${m.id}"><div class="num">${i+1}</div>
+  <div class="ic">${m.ic}</div><div class="mt"><b>${m.name}</b><small>${m.dur} min</small></div>
+  <div class="ctrls"><button class="up" title="Subir">▲</button><button class="down" title="Descer">▼</button><button class="rm" title="Remover">✕</button></div></div>`}
 function renderBuilder(){
   const inRoute=new Set(route);
-  palette.innerHTML=MODULES.filter(m=>!inRoute.has(m.id)).map(paletteCard).join('')
-    || '<div class="route-empty" style="border:none">Todos os departamentos já estão no roteiro.</div>';
-  if(route.length){
-    routeEl.innerHTML=route.map((id,i)=>routeCard(MOD_BY_ID[id],i)).join('');
-  }else{
-    routeEl.innerHTML='<div class="route-empty"><b>Roteiro vazio</b>Arraste departamentos para cá ou toque no + para montar a visita.</div>';
-  }
-  updateSummary();
-  bindBuilderEvents();
+  palette.innerHTML=MODULES.filter(m=>!inRoute.has(m.id)).map(paletteCard).join('')||'<div class="route-empty" style="border:none">Todos os departamentos já estão no roteiro.</div>';
+  routeEl.innerHTML=route.length?route.map((id,i)=>routeCard(MOD_BY_ID[id],i)).join(''):'<div class="route-empty"><b>Roteiro vazio</b>Arraste departamentos para cá ou toque no + para montar a visita.</div>';
+  updateSummary();bindBuilderEvents();
 }
-function updateSummary(){
-  const t=route.reduce((s,id)=>s+MOD_BY_ID[id].dur,0);
-  $('#sumStations').textContent=route.length;
-  $('#sumTime').textContent=t+' min';
-  $('#sumDepth').textContent=DEPTH_LABEL[depth];
-  $('#btnGenerate').disabled=route.length===0;
-}
+function updateSummary(){const t=route.reduce((s,id)=>s+MOD_BY_ID[id].dur,0);
+  $('#sumStations').textContent=route.length;$('#sumTime').textContent=t+' min';
+  $('#sumProf').textContent=PROF_LABEL[profile];$('#sumDepth').textContent=DEPTH_LABEL[depth];
+  $('#btnGenerate').disabled=route.length===0}
 function bindBuilderEvents(){
   palette.querySelectorAll('.add').forEach(b=>b.onclick=e=>{e.stopPropagation();addToRoute(b.closest('.mod').dataset.id)});
   routeEl.querySelectorAll('.rm').forEach(b=>b.onclick=e=>{e.stopPropagation();route=route.filter(x=>x!==b.closest('.mod').dataset.id);renderBuilder()});
@@ -489,8 +547,6 @@ function bindBuilderEvents(){
 }
 function addToRoute(id){if(!route.includes(id)){route.push(id);renderBuilder()}}
 function move(id,d){const i=route.indexOf(id),j=i+d;if(j<0||j>=route.length)return;[route[i],route[j]]=[route[j],route[i]];renderBuilder()}
-
-/* drag & drop */
 let dragId=null;
 function enableDnD(){
   document.querySelectorAll('.mod[draggable]').forEach(el=>{
@@ -498,147 +554,118 @@ function enableDnD(){
     el.addEventListener('dragend',()=>{dragId=null;el.classList.remove('dragging');routeEl.classList.remove('drag-over')});
   });
   routeEl.addEventListener('dragover',e=>{e.preventDefault();routeEl.classList.add('drag-over');
-    const after=afterEl(routeEl,e.clientY);const dragging=routeEl.querySelector('.dragging');
-    if(dragging){after==null?routeEl.appendChild(dragging):routeEl.insertBefore(dragging,after)}
-  });
+    const after=afterEl(routeEl,e.clientY),dragging=routeEl.querySelector('.dragging');
+    if(dragging){after==null?routeEl.appendChild(dragging):routeEl.insertBefore(dragging,after)}});
   routeEl.addEventListener('dragleave',e=>{if(!routeEl.contains(e.relatedTarget))routeEl.classList.remove('drag-over')});
   routeEl.addEventListener('drop',e=>{e.preventDefault();routeEl.classList.remove('drag-over');
-    if(dragId && !route.includes(dragId)){ // dropped from palette
-      const order=[...routeEl.querySelectorAll('.mod')].map(x=>x.dataset.id);
-      const idx=order.indexOf(dragId); route.splice(idx<0?route.length:idx,0,dragId);
-    }else{ // reorder
-      route=[...routeEl.querySelectorAll('.mod')].map(x=>x.dataset.id).filter(id=>MOD_BY_ID[id]);
-    }
-    renderBuilder();
-  });
+    if(dragId&&!route.includes(dragId)){const order=[...routeEl.querySelectorAll('.mod')].map(x=>x.dataset.id);const idx=order.indexOf(dragId);route.splice(idx<0?route.length:idx,0,dragId)}
+    else{route=[...routeEl.querySelectorAll('.mod')].map(x=>x.dataset.id).filter(id=>MOD_BY_ID[id])}
+    renderBuilder()});
 }
-function afterEl(c,y){
-  const els=[...c.querySelectorAll('.mod:not(.dragging)')];
-  return els.reduce((closest,child)=>{const box=child.getBoundingClientRect();const off=y-box.top-box.height/2;
-    return off<0&&off>closest.offset?{offset:off,element:child}:closest},{offset:-Infinity}).element||null;
-}
+function afterEl(c,y){const els=[...c.querySelectorAll('.mod:not(.dragging)')];
+  return els.reduce((cl,ch)=>{const b=ch.getBoundingClientRect();const off=y-b.top-b.height/2;return off<0&&off>cl.offset?{offset:off,element:ch}:cl},{offset:-Infinity}).element||null}
 
-/* depth selector */
-$('#depthOpts').addEventListener('click',e=>{const d=e.target.closest('.depth');if(!d)return;
-  depth=d.dataset.depth;document.querySelectorAll('#depthOpts .depth').forEach(x=>x.classList.toggle('on',x===d));updateSummary()});
+$('#profOpts').addEventListener('click',e=>{const o=e.target.closest('.opt');if(!o)return;profile=o.dataset.prof;
+  document.querySelectorAll('#profOpts .opt').forEach(x=>x.classList.toggle('on',x===o));updateSummary()});
+$('#depthOpts').addEventListener('click',e=>{const o=e.target.closest('.opt');if(!o)return;depth=o.dataset.depth;
+  document.querySelectorAll('#depthOpts .opt').forEach(x=>x.classList.toggle('on',x===o));updateSummary()});
 
-/* ======================= VIEWS NAV ======================= */
-document.querySelectorAll('.top-nav button').forEach(b=>b.onclick=()=>{if(!b.disabled)showView(b.dataset.view)});
-function showView(v){
-  document.querySelectorAll('.view').forEach(s=>s.classList.remove('show'));
-  $('#view-'+v).classList.add('show');
-  document.querySelectorAll('.top-nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
-  if(v==='saved')renderSaved();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
+/* ===================== NAV ===================== */
+document.querySelectorAll('.top-nav button[data-view]').forEach(b=>b.onclick=()=>{if(!b.disabled)showView(b.dataset.view)});
+function showView(v){document.querySelectorAll('.view').forEach(s=>s.classList.remove('show'));$('#view-'+v).classList.add('show');
+  document.querySelectorAll('.top-nav button[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
+  if(v==='saved')renderSaved();window.scrollTo({top:0,behavior:'smooth'})}
 
-/* ======================= PLAYBOOK ======================= */
+/* ===================== PLAYBOOK ===================== */
 $('#btnGenerate').onclick=()=>{if(route.length){buildPlaybook();showView('playbook')}};
 $('#btnEdit').onclick=()=>showView('builder');
 $('#navPlaybook').onclick=function(){if(!this.disabled){buildPlaybook();showView('playbook')}};
-
 function buildPlaybook(){
   $('#navPlaybook').disabled=false;$('#navPlaybook').style.opacity=1;
-  const name=$('#cfgName').value.trim()||'Visita guiada';
-  const date=$('#cfgDate').value, host=$('#cfgHost').value.trim(), aud=$('#cfgAudience').value.trim();
-  $('#pbTitle').textContent=name;
+  $('#pbTitle').textContent=$('#cfgName').value.trim()||'Visita guiada';
+  const date=$('#cfgDate').value,host=$('#cfgHost').value.trim(),aud=$('#cfgAudience').value.trim();
   const t=route.reduce((s,id)=>s+MOD_BY_ID[id].dur,0);
-  let meta=[];
-  if(date)meta.push('📅 <b>'+date.split('-').reverse().join('/')+'</b>');
-  meta.push('📍 <b>'+route.length+'</b> estações');
-  meta.push('⏱️ ~<b>'+t+' min</b>');
-  if(host)meta.push('🎙️ <b>'+host+'</b>');
-  if(aud)meta.push('👥 '+aud);
+  let meta=[];if(date)meta.push('📅 <b>'+date.split('-').reverse().join('/')+'</b>');
+  meta.push('👤 <b>'+PROF_LABEL[profile]+'</b>');meta.push('📍 <b>'+route.length+'</b> estações');meta.push('⏱️ ~<b>'+t+' min</b>');
+  if(host)meta.push('🎙️ '+host);if(aud)meta.push(aud);
   $('#pbMeta').innerHTML=meta.join('<span style="opacity:.4">·</span> ');
-  // depth segment sync
+  document.querySelectorAll('#pbProf button').forEach(b=>b.classList.toggle('on',b.dataset.prof===profile));
   document.querySelectorAll('#pbDepth button').forEach(b=>b.classList.toggle('on',b.dataset.depth===depth));
   renderStations();
+}
+function profileBlock(m){
+  if(profile==='colab'){return `<div class="pblk col"><div class="block-title">🎓 Para dominar (treinamento)</div>
+    <p class="disc">${m.col.disc}</p><ul class="mini">${m.col.ap.map(x=>`<li>${x}</li>`).join('')}</ul>
+    ${m.col.termos?`<div class="termos">${m.col.termos.map(t=>`<span>${t}</span>`).join('')}</div>`:''}</div>`}
+  const head=profile==='distrib'?'🚚 Vantagem para o distribuidor':'💼 Vantagem para o cliente';
+  return `<div class="pblk cli"><div class="block-title">${head}</div>
+    <p class="disc">${m.cli.disc}</p><ul class="mini">${m.cli.vant.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
 }
 function renderStations(){
   const c=$('#stations');
   c.innerHTML=route.map((id,i)=>{const m=MOD_BY_ID[id];
     return `<div class="station ${i===0?'open':''}" data-id="${id}">
-      <div class="st-head" onclick="toggleSt(this)">
-        <div class="ic">${m.ic}</div>
+      <div class="st-head" onclick="toggleSt(this)"><div class="ic">${m.ic}</div>
         <div class="stt"><div class="n">Estação ${i+1} · ${m.dur} min</div><h3>${m.name}</h3><small>${PILLARS[m.pill]}</small></div>
-        <div class="chev">▾</div>
-      </div>
+        <div class="chev">▾</div></div>
       <div class="st-body"><div class="st-inner">
-        <div class="script"><span class="qq">&ldquo;</span><span class="script-text">${m[depth]}</span></div>
+        <div class="script"><span class="qq">&ldquo;</span>${m[depth]}</div>
+        ${profileBlock(m)}
         <div class="block-title">✓ Pontos para reforçar</div>
-        <ul class="keys">${m.keys.map((k,ki)=>`<li onclick="this.classList.toggle('done');updateProg()" data-k="${id}-${ki}"><span class="ck">✓</span><span>${k}</span></li>`).join('')}</ul>
+        <ul class="keys">${m.keys.map((k,ki)=>`<li onclick="this.classList.toggle('done');updateProg()"><span class="ck">✓</span><span>${k}</span></li>`).join('')}</ul>
         ${m.curio?`<div style="margin-top:14px"><button class="reveal" onclick="this.nextElementSibling.classList.toggle('show')">💡 Curiosidade para soltar</button><div class="curio">${m.curio}</div></div>`:''}
         ${m.safety?`<div class="safety">⚠️ <span>${m.safety}</span></div>`:''}
-      </div></div>
-    </div>`;
+      </div></div></div>`;
   }).join('');
-  // open first body height
   c.querySelectorAll('.station.open .st-body').forEach(b=>b.style.maxHeight=b.scrollHeight+'px');
   updateProg();
 }
-function toggleSt(h){const st=h.closest('.station'),b=st.querySelector('.st-body');
-  st.classList.toggle('open');b.style.maxHeight=st.classList.contains('open')?b.scrollHeight+'px':0}
-function updateProg(){const all=document.querySelectorAll('#stations .keys li');
-  const done=document.querySelectorAll('#stations .keys li.done').length;
+function toggleSt(h){const st=h.closest('.station'),b=st.querySelector('.st-body');st.classList.toggle('open');
+  b.style.maxHeight=st.classList.contains('open')?b.scrollHeight+'px':0}
+function updateProg(){const all=document.querySelectorAll('#stations .keys li'),done=document.querySelectorAll('#stations .keys li.done').length;
   $('#pbProg').style.width=all.length?(done/all.length*100)+'%':'0'}
-$('#pbDepth').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
-  depth=b.dataset.depth;document.querySelectorAll('#pbDepth button').forEach(x=>x.classList.toggle('on',x===b));
-  // update scripts in place + reopen heights
-  document.querySelectorAll('#stations .station').forEach(st=>{
-    st.querySelector('.script-text').textContent=MOD_BY_ID[st.dataset.id][depth];
-    if(st.classList.contains('open')){const bd=st.querySelector('.st-body');bd.style.maxHeight=bd.scrollHeight+'px'}
-  });
-});
+$('#pbProf').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;profile=b.dataset.prof;
+  document.querySelectorAll('#pbProf button').forEach(x=>x.classList.toggle('on',x===b));renderStations()});
+$('#pbDepth').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;depth=b.dataset.depth;
+  document.querySelectorAll('#pbDepth button').forEach(x=>x.classList.toggle('on',x===b));renderStations()});
 
-/* ======================= SAVE / LOAD VISITS ======================= */
+/* ===================== SAVE / LOAD ===================== */
 async function getVisits(){const raw=await Store.get(VISITS_KEY);try{return raw?JSON.parse(raw):[]}catch(e){return[]}}
 async function saveVisits(v){await Store.set(VISITS_KEY,JSON.stringify(v))}
-
 $('#btnSave').onclick=async()=>{
   if(!route.length){toast('Adicione ao menos um departamento.');return}
-  const name=$('#cfgName').value.trim()||'Visita sem nome';
   const visits=await getVisits();
-  const obj={id:currentVisitId||('v'+Date.now()),name,date:$('#cfgDate').value,host:$('#cfgHost').value.trim(),
-    audience:$('#cfgAudience').value.trim(),route:[...route],depth,updated:Date.now()};
-  const idx=visits.findIndex(x=>x.id===obj.id);
-  if(idx>=0)visits[idx]=obj;else visits.push(obj);
-  currentVisitId=obj.id;
-  await saveVisits(visits);
-  toast('✓ Visita salva: '+name);
+  const obj={id:currentVisitId||('v'+Date.now()),name:$('#cfgName').value.trim()||'Visita sem nome',date:$('#cfgDate').value,
+    host:$('#cfgHost').value.trim(),audience:$('#cfgAudience').value.trim(),route:[...route],depth,profile,updated:Date.now()};
+  const idx=visits.findIndex(x=>x.id===obj.id);if(idx>=0)visits[idx]=obj;else visits.push(obj);
+  currentVisitId=obj.id;await saveVisits(visits);toast('✓ Visita salva: '+obj.name);
 };
-
 async function renderSaved(){
-  const visits=(await getVisits()).sort((a,b)=>b.updated-a.updated);
-  const g=$('#savedGrid');
-  if(!visits.length){g.innerHTML='<div class="empty-state"><div class="big">🗂️</div><b>Nenhuma visita salva ainda.</b><br>Monte um roteiro e clique em "Salvar visita".</div>';return}
+  const visits=(await getVisits()).sort((a,b)=>b.updated-a.updated),g=$('#savedGrid');
+  if(!visits.length){g.className='';g.innerHTML='<div class="empty-state"><div class="big">🗂️</div><b>Nenhuma visita salva ainda.</b><br>Monte um roteiro e clique em "Salvar".</div>';return}
   g.className='saved-grid';
-  g.innerHTML=visits.map(v=>`<div class="sv" data-id="${v.id}">
-    <div class="tag">visita</div>
-    <h4>${v.name}</h4>
-    <div class="meta">${v.date?v.date.split('-').reverse().join('/'):'sem data'} · ${v.route.length} estações · ${DEPTH_LABEL[v.depth]||''}</div>
-    <div class="chips">${v.route.slice(0,5).map(id=>`<span class="chip">${MOD_BY_ID[id]?MOD_BY_ID[id].ic+' '+MOD_BY_ID[id].name.split('—')[0].split('(')[0].trim():id}</span>`).join('')}${v.route.length>5?`<span class="chip">+${v.route.length-5}</span>`:''}</div>
-    <div class="acts"><button class="open">Abrir</button><button class="dup">Duplicar</button><button class="del">Excluir</button></div>
-  </div>`).join('');
-  g.querySelectorAll('.sv').forEach(card=>{
-    const id=card.dataset.id, v=visits.find(x=>x.id===id);
+  g.innerHTML=visits.map(v=>`<div class="sv" data-id="${v.id}"><div class="tag">visita</div><h4>${v.name}</h4>
+    <div class="meta">${v.date?v.date.split('-').reverse().join('/'):'sem data'} · ${PROF_LABEL[v.profile]||'Cliente'} · ${v.route.length} estações</div>
+    <div class="chips">${v.route.slice(0,5).map(id=>MOD_BY_ID[id]?`<span class="chip">${MOD_BY_ID[id].ic} ${MOD_BY_ID[id].name.split('—')[0].split('(')[0].trim()}</span>`:'').join('')}${v.route.length>5?`<span class="chip">+${v.route.length-5}</span>`:''}</div>
+    <div class="acts"><button class="open">Abrir</button><button class="dup">Duplicar</button><button class="del">Excluir</button></div></div>`).join('');
+  g.querySelectorAll('.sv').forEach(card=>{const id=card.dataset.id,v=visits.find(x=>x.id===id);
     card.querySelector('.open').onclick=()=>loadVisit(v);
     card.querySelector('.dup').onclick=async()=>{const c={...v,id:'v'+Date.now(),name:v.name+' (cópia)',updated:Date.now()};const all=await getVisits();all.push(c);await saveVisits(all);renderSaved();toast('Visita duplicada.')};
     card.querySelector('.del').onclick=async()=>{const all=(await getVisits()).filter(x=>x.id!==id);await saveVisits(all);renderSaved();toast('Visita excluída.')};
   });
 }
-function loadVisit(v){
-  currentVisitId=v.id;
+function loadVisit(v){currentVisitId=v.id;
   $('#cfgName').value=v.name||'';$('#cfgDate').value=v.date||'';$('#cfgHost').value=v.host||'';$('#cfgAudience').value=v.audience||'';
-  route=v.route.filter(id=>MOD_BY_ID[id]);depth=v.depth||'eq';
-  document.querySelectorAll('#depthOpts .depth').forEach(x=>x.classList.toggle('on',x.dataset.depth===depth));
+  route=v.route.filter(id=>MOD_BY_ID[id]);depth=v.depth||'eq';profile=v.profile||'cliente';
+  document.querySelectorAll('#profOpts .opt').forEach(x=>x.classList.toggle('on',x.dataset.prof===profile));
+  document.querySelectorAll('#depthOpts .opt').forEach(x=>x.classList.toggle('on',x.dataset.depth===depth));
   renderBuilder();buildPlaybook();showView('playbook');
 }
 
-/* ======================= TOAST ======================= */
+/* ===================== TOAST + INIT ===================== */
 let toastT;function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2400)}
-
-/* ======================= INIT ======================= */
 renderBuilder();
+checkSession();
 </script>
 </body>
 </html>
