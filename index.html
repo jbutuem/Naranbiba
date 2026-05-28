@@ -526,8 +526,8 @@ function bootApp(){
 /* ============ VIEWS ============ */
 function showView(v){
   currentView=v;
-  $$('.view').forEach(el=>el.style.display='none');
-  $('.view-'+v).style.display='';
+  $$('.view').forEach(el=>{el.classList.remove('show');el.style.display='';});
+  const vEl=$('.view-'+v);vEl.classList.add('show');vEl.style.display='';
   $$('#navBuilder,#navSaved,#navPlaybook').forEach(b=>b.classList.remove('active'));
   if(v==='builder'){$('#navBuilder').classList.add('active');renderPalette();renderRoute();updateSummary();syncOpts();}
   else if(v==='saved'){$('#navSaved').classList.add('active');renderSaved();}
